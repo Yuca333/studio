@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { Phase } from '@/lib/types';
@@ -5,7 +6,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { ExternalLink, Copy, AlertTriangle } from 'lucide-react';
+import { ExternalLink, Copy, AlertTriangle, Download } from 'lucide-react'; // Added Download
 import { cn } from '@/lib/utils';
 
 interface PhaseCardProps {
@@ -43,6 +44,8 @@ export default function PhaseCard({ phase, isCompact, promptContent }: PhaseCard
   };
 
   const ToolIcon = phase.toolIcon || ExternalLink;
+  const ExtraActionIcon = phase.extraAction?.icon || Download;
+
 
   return (
     <Card className="w-full shadow-lg transition-all duration-300 ease-in-out">
@@ -66,13 +69,23 @@ export default function PhaseCard({ phase, isCompact, promptContent }: PhaseCard
           </div>
         )}
       </CardContent>
-      <CardFooter className="flex flex-col sm:flex-row justify-between gap-3">
-        <Button variant="outline" asChild className="w-full sm:w-auto">
-          <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
-            <ToolIcon className="mr-2 h-4 w-4" />
-            {phase.toolName}
-          </a>
-        </Button>
+      <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-3">
+        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <Button variant="outline" asChild className="w-full sm:w-auto">
+            <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
+                <ToolIcon className="mr-2 h-4 w-4" />
+                {phase.toolName}
+            </a>
+            </Button>
+            {phase.extraAction && (
+            <Button variant="outline" asChild className="w-full sm:w-auto">
+                <a href={phase.extraAction.url} target="_blank" rel="noopener noreferrer">
+                <ExtraActionIcon className="mr-2 h-4 w-4" />
+                {phase.extraAction.text}
+                </a>
+            </Button>
+            )}
+        </div>
         <Button onClick={handleCopyPrompt} disabled={!promptContent} className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground">
           {promptContent === null ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
           {promptContent === null ? 'Prompt Unavailable' : 'Copy Prompt'}

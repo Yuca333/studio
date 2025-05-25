@@ -1,6 +1,6 @@
 
 import type { Phase } from './types';
-import { Brain, Search, Edit3, Share2, BarChart2, Zap, CheckCircle } from 'lucide-react';
+import { Brain, Search, Edit3, Share2, BarChart2, Zap, CheckCircle, Lightbulb, Download } from 'lucide-react';
 
 export const phasesData: Phase[] = [
   {
@@ -20,24 +20,29 @@ export const phasesData: Phase[] = [
     headline: 'Informationen vom Unternehmen rausziehen',
     imageSrc: 'https://the-decoder.com/wp-content/uploads/2025/03/deepersearch_grok.png',
     imageAlt: 'Screenshot of Grok AI interface with Deepsearch feature',
-    dataAiHint: 'AI search',
+    dataAiHint: 'AI deepsearch',
     description: 'kopiere den prompt und ein neues Chat Fenster von Grok und \u2028kopiere einer der  URL/Webseite Addresse raus  z.b. www.UnternehmenABC.de und setzte sie ein wo steht PLATZHALTER\u2028\nverwende hier DEEPSEARCH',
     toolUrl: 'https://grok.com/',
     toolName: 'Grok (Deepsearch)',
-    toolIcon: Brain, // Using Brain icon for Grok
+    toolIcon: Brain,
     promptFileName: 'phase2_research.txt',
   },
   {
     id: 'phase3',
-    headline: 'Phase 3: Content Creation & Drafting',
-    imageSrc: 'https://placehold.co/600x400.png',
-    imageAlt: 'Pen writing on paper, representing content creation',
-    dataAiHint: 'writing content',
-    description: 'Draft initial content such as articles, reports, or marketing copy. AI writing assistants can help generate text, summarize information, or rephrase sentences.',
-    toolUrl: 'https://www.jasper.ai',
-    toolName: 'Jasper',
-    toolIcon: Edit3,
+    headline: 'Prompt für Website Genererierung erstellen',
+    imageSrc: 'https://ai-rockstars.de/wp-content/uploads/2025/03/google-ai-studio.png',
+    imageAlt: 'Screenshot of Google AI Studio interface',
+    dataAiHint: 'AI studio website',
+    description: 'Kopiere den nächsten Prompt C und hänge am Ende Das an was beim letzten Prompt rauskam, füge auch das extra Dokument an.',
+    toolUrl: 'https://aistudio.google.com/u/1/prompts/new_chat',
+    toolName: 'Google AI Studio',
+    toolIcon: Lightbulb,
     promptFileName: 'phase3_creation.txt',
+    extraAction: {
+      text: 'Download extra Dokument',
+      url: 'https://drive.google.com/file/d/1GhGJoQI7j0yB1V_z-M7aa5nOcAeALYvl/view?usp=sharing',
+      icon: Download,
+    },
   },
   {
     id: 'phase4',

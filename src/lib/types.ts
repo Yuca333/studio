@@ -1,3 +1,6 @@
+
+import type React from 'react';
+
 export interface Phase {
   id: string;
   headline: string;
@@ -9,4 +12,9 @@ export interface Phase {
   toolName: string;
   toolIcon?: React.ElementType; // Optional: For custom icons if lucide doesn't have specific ones
   promptFileName: string;
+  extraAction?: {
+    text: string;
+    url: string;
+    icon?: React.ElementType;
+  };
 }
