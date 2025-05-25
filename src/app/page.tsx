@@ -4,10 +4,12 @@
 import { useState, useEffect } from 'react';
 import AppHeader from '@/components/AppHeader';
 import PhaseCard from '@/components/PhaseCard';
-import { phasesData } from '@/lib/phase-data.tsx'; // Updated import path
+import { phasesData } from '@/lib/phase-data.tsx';
 import type { Phase } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Send } from 'lucide-react';
 
 export default function WorkflowAiPage() {
   const [isCompact, setIsCompact] = useState(false);
@@ -113,7 +115,13 @@ export default function WorkflowAiPage() {
         </div>
       </main>
       <footer className="py-8 text-center text-muted-foreground border-t border-border mt-12">
-        <p>&copy; {new Date().getFullYear()} WorkflowAI. All rights reserved.</p>
+        <p className="mb-4">&copy; {new Date().getFullYear()} WorkflowAI. All rights reserved.</p>
+        <Button asChild variant="outline" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+          <a href="https://t.me/+V2YZwP_5CyRlZmYx" target="_blank" rel="noopener noreferrer">
+            <Send className="mr-2 h-4 w-4" />
+            Bei Fragen schreibe uns in der Telegram Gruppe.
+          </a>
+        </Button>
       </footer>
     </div>
   );
