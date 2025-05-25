@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Label } from "@/components/ui/label";
@@ -17,16 +18,17 @@ export default function AppHeader({ isCompact, onToggleCompact }: AppHeaderProps
           <WorkflowIcon className="h-8 w-8 mr-3 text-primary" />
           <h1 className="text-3xl font-bold text-foreground">WorkflowAI</h1>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 p-3 border border-accent rounded-lg bg-accent/10 shadow-sm">
           <Switch
             id="compact-view-toggle"
             checked={isCompact}
             onCheckedChange={onToggleCompact}
             aria-label="Toggle compact view"
           />
-          <Label htmlFor="compact-view-toggle" className="text-foreground">Compact View</Label>
+          <Label htmlFor="compact-view-toggle" className="text-foreground font-medium">Compact View</Label>
         </div>
       </div>
     </header>
   );
 }
+

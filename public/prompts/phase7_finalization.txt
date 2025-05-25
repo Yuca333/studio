@@ -1,9 +1,0 @@
-Placeholder prompt for Phase 7: Finalization & Deployment.
-Create a checklist for the final review before launching the website/project.
-Include items like:
-- Spell check and grammar review
-- Test all links and forms
-- Verify mobile responsiveness on different devices
-- Check image optimization and loading speed
-- Ensure SEO basics are covered (meta titles, descriptions)
-- Confirm tracking codes (e.g., Google Analytics) are in place.
