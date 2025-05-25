@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { ExternalLink, Copy, AlertTriangle, Download } from 'lucide-react'; // Added Download
+import { ExternalLink, Copy, AlertTriangle, Download } from 'lucide-react'; 
 import { cn } from '@/lib/utils';
 
 interface PhaseCardProps {
@@ -28,7 +28,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           description: `Prompt for "${phase.headline}" copied to clipboard.`,
         });
       } catch (err) {
-        console.error('Failed to copy prompt: ', err);
+        console.error('Failed to copy prompt: ', err instanceof Error ? err.message : String(err));
         toast({
           variant: 'destructive',
           title: 'Copy Failed',
@@ -52,7 +52,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
     <Card className="w-full shadow-lg transition-all duration-300 ease-in-out">
       <CardHeader>
         <div className="flex items-center gap-3 mb-1">
-          <div className="flex-shrink-0 flex items-center justify-center h-8 w-8 bg-primary text-primary-foreground rounded-full text-lg font-bold">
+          <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 bg-primary text-primary-foreground rounded-full text-lg font-bold shadow">
             {phaseNumber}
           </div>
           <CardTitle className="text-2xl font-semibold">{phase.headline}</CardTitle>
@@ -63,7 +63,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
       </CardHeader>
       <CardContent className={cn("transition-all duration-300 ease-in-out overflow-hidden", isCompact ? "max-h-0 p-0 opacity-0" : "max-h-[1000px] p-6 opacity-100")}>
         {phase.imageSrc && (
-          <div className="mb-4 overflow-hidden rounded-md aspect-video relative">
+          <div className="mb-4 overflow-hidden rounded-md aspect-video relative shadow-md">
             <Image 
               src={phase.imageSrc} 
               alt={phase.imageAlt} 

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -41,7 +42,7 @@ export default function AiToolSuggester() {
       const result = await aiToolSuggestion(data);
       setSuggestion(result);
     } catch (e) {
-      console.error('Error fetching AI tool suggestion:', e);
+      console.error('Error fetching AI tool suggestion:', e instanceof Error ? e.message : String(e));
       setError('Failed to get AI tool suggestion. Please try again.');
     } finally {
       setIsLoading(false);

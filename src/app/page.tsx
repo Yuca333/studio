@@ -28,7 +28,7 @@ export default function WorkflowAiPage() {
             fetchedPrompts[phase.id] = null; // Mark as unavailable
           }
         } catch (error) {
-          console.error(`Error fetching prompt ${phase.promptFileName}:`, error);
+          console.error(`Error fetching prompt ${phase.promptFileName}:`, error instanceof Error ? error.message : String(error));
           fetchedPrompts[phase.id] = null; // Mark as unavailable
         }
       }
@@ -91,7 +91,7 @@ export default function WorkflowAiPage() {
 
         <div className="grid gap-8 md:gap-12">
           {isLoadingPrompts 
-            ? phasesData.map((phase, index) => <PhaseSkeleton key={phase.id} />)
+            ? phasesData.map((phase) => <PhaseSkeleton key={phase.id} />)
             : phasesData.map((phase: Phase, index: number) => (
                 <PhaseCard
                   key={phase.id}
