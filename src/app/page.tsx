@@ -4,8 +4,7 @@
 import { useState, useEffect } from 'react';
 import AppHeader from '@/components/AppHeader';
 import PhaseCard from '@/components/PhaseCard';
-// import AiToolSuggester from '@/components/AiToolSuggester'; // Removed
-import { phasesData } from '@/lib/phase-data';
+import { phasesData } from '@/lib/phase-data.tsx'; // Updated import path
 import type { Phase } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
@@ -99,7 +98,7 @@ export default function WorkflowAiPage() {
           </div>
         )}
 
-        <div className={cn("grid", isCompact ? "gap-2 md:gap-3" : "gap-8 md:gap-12")}>
+        <div className={cn("grid", isCompact ? "gap-1 md:gap-1.5" : "gap-8 md:gap-12")}>
           {isLoadingPrompts 
             ? phasesData.map((phase, index) => <PhaseSkeleton key={phase.id} isCompact={isCompact} phaseNumber={index + 1} />)
             : phasesData.map((phase: Phase, index: number) => (
@@ -112,12 +111,6 @@ export default function WorkflowAiPage() {
                 />
               ))}
         </div>
-
-        {/* AI Tool Suggester section removed
-        <div className="mt-16 pt-12 border-t border-border">
-          <AiToolSuggester />
-        </div>
-        */}
       </main>
       <footer className="py-8 text-center text-muted-foreground border-t border-border mt-12">
         <p>&copy; {new Date().getFullYear()} WorkflowAI. All rights reserved.</p>
