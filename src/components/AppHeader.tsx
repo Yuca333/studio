@@ -18,14 +18,14 @@ export default function AppHeader({ isCompact, onToggleCompact }: AppHeaderProps
           <WorkflowIcon className="h-8 w-8 mr-3 text-primary" />
           <h1 className="text-3xl font-bold text-foreground">WorkflowAI</h1>
         </div>
-        <div className="flex items-center space-x-2 p-3 border border-accent rounded-lg bg-accent/10 shadow-sm">
+        <div className="flex items-center space-x-3 p-4 border-2 border-primary rounded-xl bg-primary/20 shadow-lg hover:shadow-xl transition-shadow duration-200">
           <Switch
             id="compact-view-toggle"
             checked={isCompact}
             onCheckedChange={onToggleCompact}
             aria-label="Toggle compact view"
           />
-          <Label htmlFor="compact-view-toggle" className="text-foreground font-medium">Compact View</Label>
+          <Label htmlFor="compact-view-toggle" className="text-foreground font-semibold text-base cursor-pointer">Compact View</Label>
         </div>
       </div>
     </header>
