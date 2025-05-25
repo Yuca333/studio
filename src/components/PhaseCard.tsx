@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { ExternalLink, Copy, AlertTriangle, Download } from 'lucide-react'; 
+import { ExternalLink, Copy, AlertTriangle, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface PhaseCardProps {
@@ -50,24 +50,24 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
 
   return (
     <Card className="w-full shadow-lg transition-all duration-300 ease-in-out">
-      <CardHeader>
-        <div className="flex items-center gap-3 mb-1">
-          <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 bg-primary text-primary-foreground rounded-full text-lg font-bold shadow">
+      <CardHeader className={cn(isCompact ? 'p-3' : 'p-6')}>
+        <div className={cn("flex items-center gap-3", isCompact ? "mb-0" : "mb-1")}>
+          <div className={cn("flex-shrink-0 flex items-center justify-center rounded-full font-bold shadow", isCompact ? "h-7 w-7 text-sm bg-primary text-primary-foreground" : "h-10 w-10 text-lg bg-primary text-primary-foreground")}>
             {phaseNumber}
           </div>
-          <CardTitle className="text-2xl font-semibold">{phase.headline}</CardTitle>
+          <CardTitle className={cn("font-semibold", isCompact ? 'text-base leading-tight' : 'text-2xl')}>{phase.headline}</CardTitle>
         </div>
         {!isCompact && phase.description && (
           <CardDescription className="pt-1 text-base">{phase.description}</CardDescription>
         )}
       </CardHeader>
-      <CardContent className={cn("transition-all duration-300 ease-in-out overflow-hidden", isCompact ? "max-h-0 p-0 opacity-0" : "max-h-[1000px] p-6 opacity-100")}>
+      <CardContent className={cn("transition-all duration-300 ease-in-out overflow-hidden", isCompact ? "max-h-0 p-0 opacity-0" : "max-h-[1000px] p-6 pt-0 opacity-100")}>
         {phase.imageSrc && (
           <div className="mb-4 overflow-hidden rounded-md aspect-video relative shadow-md">
-            <Image 
-              src={phase.imageSrc} 
-              alt={phase.imageAlt} 
-              fill 
+            <Image
+              src={phase.imageSrc}
+              alt={phase.imageAlt}
+              fill
               style={{objectFit: 'cover'}}
               data-ai-hint={phase.dataAiHint}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -75,16 +75,16 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           </div>
         )}
       </CardContent>
-      <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-3">
-        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            <Button variant="outline" asChild className="w-full sm:w-auto">
+      <CardFooter className={cn("flex items-center gap-2", isCompact ? 'p-3 flex-row justify-end' : 'p-6 pt-0 flex-col sm:flex-row justify-between')}>
+        <div className={cn("flex gap-2", isCompact ? "flex-row" : "flex-col sm:flex-row w-full sm:w-auto")}>
+            <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn(isCompact ? "w-auto" : "w-full sm:w-auto")}>
             <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
                 <ToolIcon className="mr-2 h-4 w-4" />
                 {phase.toolName}
             </a>
             </Button>
             {phase.extraAction && (
-            <Button variant="outline" asChild className="w-full sm:w-auto">
+            <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn(isCompact ? "w-auto" : "w-full sm:w-auto")}>
                 <a href={phase.extraAction.url} target="_blank" rel="noopener noreferrer">
                 <ExtraActionIcon className="mr-2 h-4 w-4" />
                 {phase.extraAction.text}
@@ -92,7 +92,12 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
             </Button>
             )}
         </div>
-        <Button onClick={handleCopyPrompt} disabled={!promptContent} className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground">
+        <Button
+          onClick={handleCopyPrompt}
+          disabled={!promptContent}
+          size={isCompact ? 'sm' : 'default'}
+          className={cn(isCompact ? "w-auto" : "w-full sm:w-auto", "bg-primary hover:bg-primary/90 text-primary-foreground")}
+        >
           {promptContent === null ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
           {promptContent === null ? 'Prompt Unavailable' : 'Copy Prompt'}
         </Button>
@@ -100,3 +105,4 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
     </Card>
   );
 }
+

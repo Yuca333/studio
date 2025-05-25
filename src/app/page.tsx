@@ -8,6 +8,7 @@ import AiToolSuggester from '@/components/AiToolSuggester';
 import { phasesData } from '@/lib/phase-data';
 import type { Phase } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 
 export default function WorkflowAiPage() {
   const [isCompact, setIsCompact] = useState(false);
@@ -43,20 +44,24 @@ export default function WorkflowAiPage() {
     setIsCompact(checked);
   };
   
-  const PhaseSkeleton = () => (
-    <div className="w-full p-4 space-y-4 border rounded-lg shadow-lg bg-card">
+  const PhaseSkeleton = ({ isCompact }: { isCompact: boolean }) => (
+    <div className="w-full p-4 space-y-3 border rounded-lg shadow-lg bg-card">
       <div className="flex items-center gap-3">
-        <Skeleton className="h-8 w-8 rounded-full" />
-        <Skeleton className="h-8 w-3/4" />
+        <Skeleton className={cn("rounded-full", isCompact ? "h-7 w-7" : "h-8 w-8")} />
+        <Skeleton className={cn("w-3/4", isCompact ? "h-6" : "h-8")} />
       </div>
-      <Skeleton className="h-4 w-full" />
-      <Skeleton className="h-4 w-5/6" />
-      <div className="aspect-video">
-        <Skeleton className="w-full h-full rounded-md" />
-      </div>
+      {!isCompact && (
+        <>
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-5/6" />
+          <div className="aspect-video">
+            <Skeleton className="w-full h-full rounded-md" />
+          </div>
+        </>
+      )}
       <div className="flex justify-between">
-        <Skeleton className="h-10 w-1/3" />
-        <Skeleton className="h-10 w-1/3" />
+        <Skeleton className={cn("w-1/3", isCompact ? "h-9" : "h-10")} />
+        <Skeleton className={cn("w-1/3", isCompact ? "h-9" : "h-10")} />
       </div>
     </div>
   );
@@ -89,9 +94,9 @@ export default function WorkflowAiPage() {
           </p>
         </div>
 
-        <div className="grid gap-8 md:gap-12">
+        <div className={cn("grid", isCompact ? "gap-2 md:gap-3" : "gap-8 md:gap-12")}>
           {isLoadingPrompts 
-            ? phasesData.map((phase) => <PhaseSkeleton key={phase.id} />)
+            ? phasesData.map((phase) => <PhaseSkeleton key={phase.id} isCompact={isCompact} />)
             : phasesData.map((phase: Phase, index: number) => (
                 <PhaseCard
                   key={phase.id}
@@ -113,3 +118,4 @@ export default function WorkflowAiPage() {
     </div>
   );
 }
+
