@@ -17,14 +17,14 @@ export const phasesData: Phase[] = [
   },
   {
     id: 'phase2',
-    headline: 'Phase 2: Research & Information Gathering',
-    imageSrc: 'https://placehold.co/600x400.png',
-    imageAlt: 'Magnifying glass over documents, symbolizing research',
-    dataAiHint: 'research books',
-    description: 'Gather relevant information and data. Utilize AI-powered search engines or research assistants to find articles, studies, market trends, and competitor analysis.',
-    toolUrl: 'https://perplexity.ai',
-    toolName: 'Perplexity AI',
-    toolIcon: Search,
+    headline: 'Informationen vom Unternehmen rausziehen',
+    imageSrc: 'https://the-decoder.com/wp-content/uploads/2025/03/deepersearch_grok.png',
+    imageAlt: 'Screenshot of Grok AI interface with Deepsearch feature',
+    dataAiHint: 'AI search',
+    description: 'kopiere den prompt und ein neues Chat Fenster von Grok und \u2028kopiere einer der  URL/Webseite Addresse raus  z.b. www.UnternehmenABC.de und setzte sie ein wo steht PLATZHALTER\u2028\nverwende hier DEEPSEARCH',
+    toolUrl: 'https://grok.com/',
+    toolName: 'Grok (Deepsearch)',
+    toolIcon: Brain, // Using Brain icon for Grok
     promptFileName: 'phase2_research.txt',
   },
   {
