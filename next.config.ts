@@ -34,6 +34,12 @@ const nextConfig: NextConfig = {
         hostname: 'substackcdn.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'mintlify.s3.us-west-1.amazonaws.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

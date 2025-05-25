@@ -46,15 +46,15 @@ export const phasesData: Phase[] = [
   },
   {
     id: 'phase4',
-    headline: 'Erstelle 1. Version der Webseite',
-    imageSrc: 'https://substackcdn.com/image/fetch/w_520,h_272,c_fill,f_auto,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0a313aa3-e74d-41bc-bb0f-9f28454d1220_2248x1164.png',
-    imageAlt: 'Lovable website builder interface',
-    dataAiHint: 'website builder',
-    description: 'Kopiere das Ergebnis von dem letzten Prompt und füge ihn in Lovable ein',
+    headline: 'Webseite verbessern',
+    imageSrc: 'https://mintlify.s3.us-west-1.amazonaws.com/lovable-f9060f1e/lovable-editor-v2.png',
+    imageAlt: 'Lovable editor interface with chat window',
+    dataAiHint: 'website editor',
+    description: 'Kopiere diesen prompt in das chat fenster links ein, drücke erst auf "Chat" und klicke dann enter.\nWarte und wenn es fertig ist. drücke entweder auf Implement the Plan, oder schreibe "Implement the Plan" in den Chat',
     toolUrl: 'https://lovable.dev/',
     toolName: 'Lovable',
     toolIcon: Edit3,
-    promptFileName: 'phase4_refinement.txt', // Keeping existing prompt file, update if needed
+    promptFileName: 'phase4_refinement.txt',
   },
   {
     id: 'phase5',
