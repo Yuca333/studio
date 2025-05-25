@@ -1,16 +1,17 @@
+
 import type { Phase } from './types';
 import { Brain, Search, Edit3, Share2, BarChart2, Zap, CheckCircle } from 'lucide-react';
 
 export const phasesData: Phase[] = [
   {
     id: 'phase1',
-    headline: 'Phase 1: Ideation & Brainstorming',
-    imageSrc: 'https://placehold.co/600x400.png',
-    imageAlt: 'Abstract representation of ideas and brainstorming',
-    dataAiHint: 'ideas lightbulb',
-    description: 'Generate and explore new ideas. Use AI tools to brainstorm potential concepts, features, or solutions related to your project. Focus on quantity and diversity of ideas.',
-    toolUrl: 'https://chat.openai.com',
-    toolName: 'ChatGPT',
+    headline: 'Unternehmen Finden',
+    imageSrc: 'https://the-decoder.com/wp-content/uploads/2025/03/deepersearch_grok.png',
+    imageAlt: 'Screenshot of Grok AI interface',
+    dataAiHint: 'AI search',
+    description: 'Als erstes gibt du den Prompt an Grok um nach Unternehmen zu suchen die neue neue Webseite gebrauchen könnten. Schau dir die Vorschläge selber an und und beurteile ob da ein guter Kandidat dabei ist. Schau dir die Beispiel Screenshots die bei der Auswahl helfen könnten.',
+    toolUrl: 'https://grok.com/',
+    toolName: 'Grok',
     toolIcon: Brain,
     promptFileName: 'phase1_ideation.txt',
   },
