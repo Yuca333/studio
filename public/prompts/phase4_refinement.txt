@@ -1,0 +1,14 @@
+Review the following text for clarity, grammar, style, and engagement. Provide specific suggestions for improvement.
+
+Original Text:
+"[PASTE_ORIGINAL_TEXT_HERE]"
+
+Specifically, I'm looking for feedback on:
+1. Grammar and Punctuation: Are there any errors?
+2. Clarity and Conciseness: Is the message easy to understand? Can any parts be worded more directly?
+3. Tone and Style: Is the tone appropriate for [TARGET_AUDIENCE_OR_CONTEXT]? Are there any awkward phrases?
+4. Engagement: How can the text be made more interesting or persuasive?
+5. Overall Structure: Does the text flow logically? Are transitions smooth?
+
+Please provide your feedback in a structured manner, referencing specific parts of the text if possible.
+Example [TARGET_AUDIENCE_OR_CONTEXT] = "a professional email to a potential client".

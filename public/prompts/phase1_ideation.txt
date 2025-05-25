@@ -1,0 +1,13 @@
+Generate 10 innovative project ideas related to [USER_TOPIC_OR_INDUSTRY]. 
+For each idea, provide:
+1. A catchy name.
+2. A brief 1-2 sentence description.
+3. Potential target audience.
+4. One unique selling proposition.
+
+Consider current trends and future possibilities. Be creative and think outside the box.
+Example for [USER_TOPIC_OR_INDUSTRY] = Sustainable Urban Farming:
+1. Name: VertiBloom
+2. Description: A modular vertical farming system for urban apartments, enabling residents to grow their own fresh produce year-round.
+3. Target Audience: City dwellers, eco-conscious individuals, home gardening enthusiasts.
+4. USP: Space-efficient design with automated watering and lighting, requiring minimal maintenance.

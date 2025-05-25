@@ -1,0 +1,10 @@
+Provide a comprehensive overview of the current market trends for [SPECIFIC_PRODUCT_OR_SERVICE_TYPE] in the [TARGET_GEOGRAPHIC_REGION] region. 
+Include the following:
+1. Key market drivers and restraints.
+2. Top 3-5 existing competitors and their primary strengths/weaknesses.
+3. Emerging technologies or innovations in this space.
+4. Potential opportunities for a new entrant.
+5. Cite sources where possible (e.g., links to reports, articles).
+
+Focus on data from the last 12-18 months.
+Example for [SPECIFIC_PRODUCT_OR_SERVICE_TYPE] = AI-powered language learning apps, [TARGET_GEOGRAPHIC_REGION] = Southeast Asia.

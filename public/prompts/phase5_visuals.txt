@@ -1,0 +1,15 @@
+Generate 5 creative visual concepts for a [TYPE_OF_PROJECT_OR_CAMPAIGN] centered around the theme of [CENTRAL_THEME].
+For each concept, describe:
+1. Visual Style: (e.g., minimalist, futuristic, retro, hand-drawn, photorealistic)
+2. Key Elements: What objects, symbols, or characters would be prominent?
+3. Color Palette: Suggest 3-4 primary colors.
+4. Mood/Feeling: What emotion should the visual evoke? (e.g., excitement, tranquility, curiosity)
+5. Potential Slogan/Tagline (optional): A short phrase that complements the visual.
+
+Example for [TYPE_OF_PROJECT_OR_CAMPAIGN] = "marketing campaign for an eco-friendly coffee brand", [CENTRAL_THEME] = "nature and sustainability".
+Concept 1:
+  Visual Style: Organic, hand-drawn illustration.
+  Key Elements: Coffee beans morphing into leaves, a gentle hand cupping the earth.
+  Color Palette: Earthy browns, deep greens, soft sky blue.
+  Mood/Feeling: Warm, natural, caring.
+  Slogan: "Sip Sustainably."

@@ -1,0 +1,12 @@
+Draft a 500-word blog post about [TOPIC_OF_CONTENT]. 
+The tone should be [DESIRED_TONE - e.g., informative, engaging, professional, casual].
+The target audience is [TARGET_AUDIENCE_DESCRIPTION - e.g., small business owners, tech enthusiasts, beginner gardeners].
+
+Include the following sections:
+1. Introduction: Hook the reader and briefly introduce the topic.
+2. Main Body (2-3 paragraphs): Discuss key aspects, provide examples, or explain concepts.
+3. Key Takeaways (bullet points): Summarize the main points.
+4. Conclusion: Offer a final thought or call to action.
+
+Use clear language and avoid jargon where possible. Optimize for readability.
+Example for [TOPIC_OF_CONTENT] = "The Benefits of Remote Work for Employee Well-being", [DESIRED_TONE] = "persuasive and empathetic", [TARGET_AUDIENCE_DESCRIPTION] = "HR managers and company leaders".

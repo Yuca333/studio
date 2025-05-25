@@ -1,0 +1,16 @@
+Create a comprehensive pre-launch checklist for a [TYPE_OF_PRODUCT_OR_PROJECT - e.g., new software application, marketing campaign, website redesign].
+The checklist should cover the following categories:
+1. Content Review: (e.g., proofreading all text, checking links, verifying information accuracy)
+2. Technical Checks: (e.g., testing functionality on different devices/browsers, performance testing, security checks)
+3. Design & UX: (e.g., consistency of branding, mobile responsiveness, accessibility compliance)
+4. Legal & Compliance: (e.g., privacy policy updated, terms of service clear, necessary disclaimers present)
+5. Marketing & Communication: (e.g., announcement plan, social media posts drafted, press release ready)
+6. Analytics & Tracking: (e.g., tracking codes implemented, goals set up in analytics tools)
+
+For each item on the checklist, provide a brief description of what needs to be verified.
+Aim for at least 3-5 checklist items per category.
+Example for [TYPE_OF_PRODUCT_OR_PROJECT] = "new mobile app".
+Content Review:
+  - App Store Description: Proofread for typos and clarity.
+  - In-app Text: Verify all buttons, labels, and messages are correct.
+  - FAQs/Help Section: Ensure information is up-to-date and comprehensive.
