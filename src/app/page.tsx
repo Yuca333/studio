@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -45,7 +46,10 @@ export default function WorkflowAiPage() {
   // Skeleton loader for phase cards while prompts are loading
   const PhaseSkeleton = () => (
     <div className="w-full p-4 space-y-4 border rounded-lg shadow-lg bg-card">
-      <Skeleton className="h-8 w-3/4" />
+      <div className="flex items-center gap-3">
+        <Skeleton className="h-8 w-8 rounded-full" />
+        <Skeleton className="h-8 w-3/4" />
+      </div>
       <Skeleton className="h-4 w-full" />
       <Skeleton className="h-4 w-5/6" />
       <div className="aspect-video">
@@ -65,11 +69,12 @@ export default function WorkflowAiPage() {
       <main className="container mx-auto px-4 pb-12">
         <div className="grid gap-8 md:gap-12">
           {isLoadingPrompts 
-            ? phasesData.map((phase) => <PhaseSkeleton key={phase.id} />)
-            : phasesData.map((phase: Phase) => (
+            ? phasesData.map((phase, index) => <PhaseSkeleton key={phase.id} />)
+            : phasesData.map((phase: Phase, index: number) => (
                 <PhaseCard
                   key={phase.id}
                   phase={phase}
+                  phaseNumber={index + 1}
                   isCompact={isCompact}
                   promptContent={prompts[phase.id]}
                 />

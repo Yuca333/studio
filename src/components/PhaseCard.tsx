@@ -11,11 +11,12 @@ import { cn } from '@/lib/utils';
 
 interface PhaseCardProps {
   phase: Phase;
+  phaseNumber: number;
   isCompact: boolean;
   promptContent: string | null;
 }
 
-export default function PhaseCard({ phase, isCompact, promptContent }: PhaseCardProps) {
+export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent }: PhaseCardProps) {
   const { toast } = useToast();
 
   const handleCopyPrompt = async () => {
@@ -50,9 +51,14 @@ export default function PhaseCard({ phase, isCompact, promptContent }: PhaseCard
   return (
     <Card className="w-full shadow-lg transition-all duration-300 ease-in-out">
       <CardHeader>
-        <CardTitle className="text-2xl font-semibold">{phase.headline}</CardTitle>
+        <div className="flex items-center gap-3 mb-1">
+          <div className="flex-shrink-0 flex items-center justify-center h-8 w-8 bg-primary text-primary-foreground rounded-full text-lg font-bold">
+            {phaseNumber}
+          </div>
+          <CardTitle className="text-2xl font-semibold">{phase.headline}</CardTitle>
+        </div>
         {!isCompact && phase.description && (
-          <CardDescription className="pt-2 text-base">{phase.description}</CardDescription>
+          <CardDescription className="pt-1 text-base">{phase.description}</CardDescription>
         )}
       </CardHeader>
       <CardContent className={cn("transition-all duration-300 ease-in-out overflow-hidden", isCompact ? "max-h-0 p-0 opacity-0" : "max-h-[1000px] p-6 opacity-100")}>
