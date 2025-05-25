@@ -2,6 +2,7 @@
 import React from 'react';
 import type { Phase } from './types';
 import { Brain, Search, Edit3, Share2, BarChart2, Zap, CheckCircle, Lightbulb, Download } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export const phasesData: Phase[] = [
   {
@@ -10,7 +11,32 @@ export const phasesData: Phase[] = [
     imageSrc: 'https://the-decoder.com/wp-content/uploads/2025/03/deepersearch_grok.png',
     imageAlt: 'Screenshot of Grok AI interface',
     dataAiHint: 'AI search',
-    description: 'Als erstes gibt du den Prompt an Grok um nach Unternehmen zu suchen die neue neue Webseite gebrauchen könnten. Schau dir die Vorschläge selber an und und beurteile ob da ein guter Kandidat dabei ist. Schau dir die Beispiel Screenshots die bei der Auswahl helfen könnten.',
+    description: (
+      <>
+        <p className="mb-3">
+          Als erstes gibt du den Prompt an Grok um nach Unternehmen zu suchen die neue neue Webseite gebrauchen könnten. Verwende hier die Funktion DEEPER Research. Warte bis der Prompt fertig ist. Schau dir die Ergebnisse selber an und und beurteile ob da ein guter Kandidat dabei ist. Schau dir die Beispiel Screenshots die bei der Auswahl helfen könnten.
+        </p>
+        <div className="my-4 space-y-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <Button asChild variant="outline" size="sm" className="w-full">
+              <a href="https://hairgott.de/" target="_blank" rel="noopener noreferrer">Geeignetes Beispiel 1</a>
+            </Button>
+            <Button asChild variant="outline" size="sm" className="w-full">
+              <a href="https://www.elektriker.de/" target="_blank" rel="noopener noreferrer">Geeignetes Beispiel 1</a>
+            </Button>
+            <Button asChild variant="outline" size="sm" className="w-full">
+              <a href="https://www.pageou.de/de/" target="_blank" rel="noopener noreferrer">Nicht geeignetes Beispiel 1</a>
+            </Button>
+            <Button asChild variant="outline" size="sm" className="w-full">
+              <a href="https://www.pfistermuehle.de/" target="_blank" rel="noopener noreferrer">Nicht geeignetes Beispiel 1</a>
+            </Button>
+          </div>
+        </div>
+        <p className="mt-3">
+          Aber das sind nur Beispiele, im prinzip könnte jeder dieser Unternehmen anbeißen. Beurteile einfach selbst wo du denkst Bei den könnte es gut klappen
+        </p>
+      </>
+    ),
     toolUrl: 'https://grok.com/',
     toolName: 'Grok (DeeperSearch)',
     toolNameJsx: <>Grok (<strong>Deeper</strong>Search)</>,
@@ -23,7 +49,7 @@ export const phasesData: Phase[] = [
     imageSrc: 'https://the-decoder.com/wp-content/uploads/2025/03/deepersearch_grok.png',
     imageAlt: 'Screenshot of Grok AI interface with Deepsearch feature',
     dataAiHint: 'AI deepsearch',
-    description: 'kopiere den prompt und ein neues Chat Fenster von Grok und \u2028kopiere einer der  URL/Webseite Addresse raus  z.b. www.UnternehmenABC.de und setzte sie ein wo steht PLATZHALTER\u2028\nverwende hier DEEPSEARCH',
+    description: 'Kopiere den prompt in ein neues Chat Fenster von Grok und kopiere einer der URL/Webseite Addresse raus vom letzten prompt die geeignet ausgeschaut haben. z.b. www.UnternehmenABC.de und setzte sie ein wo PLATZHALTER steht in diesem prompt verwende hier DEEPSEARCH',
     toolUrl: 'https://grok.com/',
     toolName: 'Grok (Deepsearch)',
     toolNameJsx: <>Grok (<strong>Deep</strong>search)</>,

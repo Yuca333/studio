@@ -7,7 +7,7 @@ export interface Phase {
   imageSrc: string;
   imageAlt: string;
   dataAiHint?: string;
-  description: string;
+  description: React.ReactNode; // Changed from string to React.ReactNode
   toolUrl: string;
   toolName: string;
   toolNameJsx?: React.ReactNode; // For rich text in tool button
