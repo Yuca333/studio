@@ -46,15 +46,15 @@ export const phasesData: Phase[] = [
   },
   {
     id: 'phase4',
-    headline: 'Phase 4: Review & Refinement',
-    imageSrc: 'https://placehold.co/600x400.png',
-    imageAlt: 'Two people collaborating on a document',
-    dataAiHint: 'collaboration review',
-    description: 'Review and refine the drafted content. AI tools can assist with grammar checks, style improvements, plagiarism detection, and ensuring clarity and coherence.',
-    toolUrl: 'https://quillbot.com/',
-    toolName: 'QuillBot',
-    toolIcon: Share2, // Using Share2 as a proxy for collaboration/refinement
-    promptFileName: 'phase4_refinement.txt',
+    headline: 'Erstelle 1. Version der Webseite',
+    imageSrc: 'https://substackcdn.com/image/fetch/w_520,h_272,c_fill,f_auto,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0a313aa3-e74d-41bc-bb0f-9f28454d1220_2248x1164.png',
+    imageAlt: 'Lovable website builder interface',
+    dataAiHint: 'website builder',
+    description: 'Kopiere das Ergebnis von dem letzten Prompt und füge ihn in Lovable ein',
+    toolUrl: 'https://lovable.dev/',
+    toolName: 'Lovable',
+    toolIcon: Edit3,
+    promptFileName: 'phase4_refinement.txt', // Keeping existing prompt file, update if needed
   },
   {
     id: 'phase5',

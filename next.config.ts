@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
         hostname: 'ai-rockstars.de',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'substackcdn.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
