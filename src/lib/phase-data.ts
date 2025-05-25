@@ -82,14 +82,14 @@ export const phasesData: Phase[] = [
   },
   {
     id: 'phase7',
-    headline: 'Phase 7: Finalization & Deployment',
-    imageSrc: 'https://placehold.co/600x400.png',
-    imageAlt: 'Rocket launching, signifying deployment',
-    dataAiHint: 'launch rocket',
-    description: 'Finalize all components and prepare for deployment or launch. This may involve final checks, packaging, and distributing the completed work.',
-    toolUrl: '#', // Placeholder for a general deployment tool or checklist
-    toolName: 'Final Check',
-    toolIcon: CheckCircle,
-    promptFileName: 'phase7_finalization.txt',
+    headline: 'In die Datenbank hinzufügen',
+    description: 'Nimm den Prompt und gebe ihn wieder an Google AI Studio. Danach werden für dich informationen erstellt die du dann einfach in die Excel tabelle einfügen kannst. am Ende füge auch deinen Namen hinzu das falls dieser Kunde in Auftrag geht du deine Provision bekommst',
+    imageSrc: 'https://media.gcflearnfree.org/content/55e073de7dd48174331f51b3_01_17_2014/getting_started_interactive2.png',
+    imageAlt: 'Google Sheets interface for database entry',
+    dataAiHint: 'spreadsheet database',
+    toolUrl: 'https://docs.google.com/spreadsheets/d/1_GhSWvbrdzexArl77digCHz3mlhXgFu1S1zFnYPjsXE/edit?usp=sharing',
+    toolName: 'Google Sheets',
+    toolIcon: BarChart2,
+    promptFileName: 'phase7_database_entry.txt',
   },
 ];

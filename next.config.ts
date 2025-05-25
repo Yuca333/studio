@@ -40,6 +40,12 @@ const nextConfig: NextConfig = {
         hostname: 'mintlify.s3.us-west-1.amazonaws.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.gcflearnfree.org',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

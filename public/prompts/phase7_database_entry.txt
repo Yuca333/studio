@@ -1,0 +1,6 @@
+Prompt for Phase 7: In die Datenbank hinzufügen.
+
+Use this prompt with Google AI Studio. The information generated should then be entered into the Google Sheet.
+Remember to add your name at the end so you receive your commission if this client's project proceeds.
+
+[Your detailed prompt instructions for Google AI Studio go here...]
