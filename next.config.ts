@@ -16,6 +16,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'the-decoder.com',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
 };

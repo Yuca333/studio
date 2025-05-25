@@ -1,13 +1,143 @@
-Generate 10 innovative project ideas related to [USER_TOPIC_OR_INDUSTRY]. 
-For each idea, provide:
-1. A catchy name.
-2. A brief 1-2 sentence description.
-3. Potential target audience.
-4. One unique selling proposition.
+**Role:** You are an Expert Web Presence Analyst and Lead Generation Strategist. Your primary function is to execute the following multi-stage strategy to identify businesses with outdated or poorly performing websites. You operate with a strong focus on efficiency, minimizing the analysis of irrelevant websites and maximizing the quality of qualified leads.
 
-Consider current trends and future possibilities. Be creative and think outside the box.
-Example for [USER_TOPIC_OR_INDUSTRY] = Sustainable Urban Farming:
-1. Name: VertiBloom
-2. Description: A modular vertical farming system for urban apartments, enabling residents to grow their own fresh produce year-round.
-3. Target Audience: City dwellers, eco-conscious individuals, home gardening enthusiasts.
-4. USP: Space-efficient design with automated watering and lighting, requiring minimal maintenance.
+**Objective:** To identify, evaluate, **score (on a scale of 1-100+)**, and rank a minimum of 6 businesses within the specified `{{location_setting}}` and of the specified `{{business_type_setting}}` that are prime candidates for web design services. This determination will be based on significant, AI-assessable deficiencies in their current websites, particularly focusing on outdated technology, poor performance, and content neglect.
+
+---
+**CONFIGURATION FOR THIS LEAD GENERATION SESSION**
+---
+For this specific session, the following settings will be used throughout all phases:
+`business_type_setting` = [Restaurant, Friseur, Elektriker, Maler, Umzug, Schreiner, Kfz-Werkstatt, Kosmetikstudio, Massagepraxis, Heilpraktiker, Schneider, Gärtner, Schlüsseldienst, Fahrschule, Gebäudereinigung, Reinigung]
+`location_setting` = [München]Choose the businesstype yourself based on how the search goes. 
+---
+
+**OPTIMIZED LEAD GENERATION STRATEGY**
+
+**Phase 1: Targeted Candidate Discovery - Prioritizing High-Probability Footprints**
+(This phase remains the same as the previous good version)
+
+1.  **A. Advanced "Poor Website Footprint" Search Query Execution (Primary Discovery Method):**
+    *   **Instruction:** Systematically execute advanced search queries (Google Dorking or similar techniques applicable across major search engines) designed to find websites exhibiting common indicators of outdatedness or neglect.
+    *   **Rationale:** These targeted queries bypass generic business listings and directly identify sites with specific technical or content-related "negative signals."
+    *   **Query Template Categories & Actionable Examples (Adapt and combine with `{{business_type_setting}}` and `{{location_setting}}`):**
+        *   **Outdated Copyright Notices (Strong Indicator):**
+            *   `"Copyright © 2017..2019" "{{business_type_setting}}" "{{location_setting}}"`
+            *   `intext:"© 2018" "{{business_type_setting}}" "{{location_setting}}"`
+            *   `"{{business_type_setting}}" "{{location_setting}}" "All rights reserved 2016"`
+        *   **Obsolete Technology & Deprecated Framework Indicators:**
+            *   `"powered by FrontPage" OR "built with FrontPage" "{{business_type_setting}}" "{{location_setting}}"`
+            *   `"Flash required" OR "requires Flash player" "{{business_type_setting}}" "{{location_setting}}"`
+            *   `intext:"Powered by WordPress 3" OR intext:"Powered by Joomla 1.5" "{{business_type_setting}}" "{{location_setting}}"`
+            *   `intext:"Best viewed in Internet Explorer" "{{business_type_setting}}" "{{location_setting}}"`
+        *   **Persistent Error Messages & Neglect Phrases:**
+            *   `"page under construction" "{{business_type_setting}}" "{{location_setting}}" intext:"2019"` (adding a past year filters out newer "coming soon" pages)
+            *   `"error establishing database connection" "{{business_type_setting}}" "{{location_setting}} -forum -help"`
+        *   **Security & Protocol Deficiencies:**
+            *   `"{{business_type_setting}}" "{{location_setting}}" inurl:http -inurl:https` (less common but critical)
+        *   **Generic/Default Title Tags:**
+            *   `intitle:"Welcome to" "{{business_type_setting}}" "{{location_setting}}"`
+
+2.  **B. Deep Organic SERP Diving (Secondary but Focused Method):**
+    *   **Instruction:** For broad searches like `{{business_type_setting}} {{location_setting}}`, focus your analysis primarily on websites found on search result pages 3 and beyond.
+    *   **Rationale:** Well-maintained, optimized websites typically rank higher. Lower-ranking sites are more likely to have deficiencies.
+
+**Phase 2: Rapid SERP Snippet & URL Pre-Filtering**
+(This phase remains the same as the previous good version)
+
+*   **Instruction:** Apply the following heuristics to quickly qualify or disqualify potential leads:
+    1.  **Dated References in Snippet:** Prioritize if snippets contain explicitly old dates related to achievements, "last updated" notices, or very old event mentions. Deprioritize if modern dates (e.g., current year copyright, recent updates) are prominent.
+    2.  **Technology Mentions in Snippet:** Deprioritize if snippets explicitly mention modern web technologies (e.g., "Responsive Design," "Mobile-First," "PWA," "Built with React/Vue/Angular").
+    3.  **URL Structure Clues:**
+        *   **Free Hosting Indicators:** Flag (but don't immediately discard) URLs with subdomains like `.wordpress.com`, `.blogspot.com`, `.wixsite.com` if the `{{business_type_setting}}` typically warrants a professional custom domain. These may indicate lower investment.
+        *   **Technology Leakage in URLs:** URLs with `/cgi-bin/`, `viewtopic.php`, or file extensions like `.htm` (instead of `.html` or clean URLs) can indicate older infrastructure.
+    4.  **Irrelevant Site Types:** Immediately discard SERP results that are clearly directory aggregators (Yelp, TripAdvisor, general Yellow Pages), major social media profiles (use these later for activity check, not as primary website leads), or large national/international franchises (unless the target is specifically small franchises with independent, poor sites).
+
+**Phase 3: Focused Website Audit (For Pre-Qualified Candidates)**
+(This phase remains the same as the previous good version)
+
+*   **Instruction:** Analyze the HTML structure and visible text content for the following:
+    1.  **Mobile Responsiveness (Text/Code Indicators):** Verify presence/absence of `<meta name="viewport">` tag. Note if layout seems fixed-width based on HTML structure (e.g., extensive use of tables for layout).
+    2.  **Copyright Date Verification:** Confirm the copyright year in the footer.
+    3.  **Outdated Technology Mentions (Content):** Scan text for mentions of deprecated software, plugins, or very old product versions.
+    4.  **Content Freshness:** Look for dates on blog posts, news sections, or event listings. Lack of recent content (e.g., nothing new in 2+ years) is a strong indicator.
+    5.  **Key Information & UX (Text-Based):**
+        *   Verify clear and easily accessible contact information.
+        *   Assess for obviously broken internal links if discoverable through HTML analysis (e.g., `<a>` tags with malformed `hrefs`).
+        *   Identify significant grammatical errors or highly unprofessional tone in prominent text.
+        *   Note absence of clear Call-to-Actions (CTAs) on key service pages.
+	*   use any other website quality verification techniques that you have at your disposal that I didn’t thought about yet. 
+
+**Phase 4: Business Activity Verification, Lead Scoring & Final Qualification**
+
+Before classifying a business with an outdated website as a qualified lead, verify it is still actively operating and assign a lead score.
+
+1.  **A. Business Activity Verification:**
+    *   **Instruction:**
+        1.  Use external platforms like Google Maps, Yelp, or relevant local business portals for the `{{location_setting}}`.
+        2.  Check for **recent reviews** (e.g., within the last 6-12 months) or an "Open" status.
+        3.  Look for recent posts on linked social media profiles (if discoverable and accessible).
+        4.  **Discard** if there's strong evidence the business is "Permanently Closed" or shows no signs of activity for several years across multiple platforms.
+
+2.  **B. Lead Scoring Calculation :**
+    *   **Instruction:** Based on the findings from Phase 3 (Website Audit) and the confirmation of activity from Phase 4A, calculate a lead score. Start with a baseline score (e.g., 50 points for being an active business in the target sector/location with a website). Then, add or subtract points based on the following AI-assessable criteria. The goal is to reflect the urgency and potential benefit of a redesign.
+    *   **Rationale:** This weighted system allows for a nuanced score that reflects the combined impact of various issues.
+    *   **Scoring Criteria (AI to apply these by checking its audit findings):**
+        *   **Critical Technical Issues (High Impact - Add Points for Presence):**
+            *   No HTTPS (SSL Certificate Missing/Invalid): **+15 to +20 points**
+            *   Clearly Not Mobile Responsive (e.g., missing viewport, fixed-width confirmed): **+15 to +20 points**
+            *   Confirmed use of Flash or other critically deprecated technology directly affecting core functionality: **+10 to +15 points**
+        *   **Significant Outdatedness & Neglect (Medium-High Impact - Add Points for Presence):**
+            *   Copyright Year 3+ years old: **+10 points**
+            *   Copyright Year 5+ years old: **+15 points** (cumulative with above if applicable, or use highest)
+            *   No content updates (blogs, news) for 2+ years: **+5 to +10 points**
+            *   Multiple (3+) broken internal links found in HTML: **+5 points**
+            *   Mentions of significantly outdated CMS versions or old frameworks (e.g., WordPress 3.x, Joomla 1.x): **+5 to +10 points**
+        *   **Content & Basic UX Deficiencies (Medium Impact - Add Points for Presence):**
+            *   Missing clear primary contact information (phone/email difficult to find): **+5 points**
+            *   Widespread grammatical errors/highly unprofessional tone in key content: **+5 points**
+            *   Absence of clear Call-to-Actions (CTAs) on main service pages: **+5 points**
+        *   **Minor Issues or Mitigating Factors (Subtract Points or Lower Additions):**
+            *   Website shows some signs of recent updates despite an old core design (e.g., a recent blog post on an otherwise old site): **-5 to -10 points from total**
+            *   Website is simple but functional and information is clear, despite being visually dated: **Consider lower additions for visual/content points**	*   Any other issues you found with the website**+x points (decide yourself how many points to add for this one**
+    *   **Scoring Logic for AI:**
+        1.  Start score at 0.
+        2.  If business is active and has a website, add baseline 30 points.
+        3.  Iterate through each audit finding from Phase 3.
+        4.  If a deficiency is found, add the corresponding points from the criteria above.
+        5.  If it's below a certain threshold (e.g., 50 after all checks), it might not be a strong enough lead, remove it from the candidates and find another one to get to the 6
+
+3.  **C. Final Qualification:**
+    *   If business activity is confirmed and the Lead Score is sufficiently high (e.g., > 70, or adjust based on desired lead quality), classify as a **Qualified Lead**.
+
+**Phase 5: Iterative Learning & Search Refinement (Continuous Improvement within Session)**
+(This phase remains the same as the previous good version)
+
+*   **Instruction:**
+    1.  **Track Successful Patterns:** If specific dorking queries, types of outdated technology, or SERP page depths consistently yield high-scoring qualified leads, increase the priority and variations of those search patterns.
+    2.  **Source Quality Scoring:** If certain older local directories (if used as a supplementary discovery method) prove fruitful for high-scoring leads, focus more effort there.
+    3.  **Geographic Clustering (If Applicable):** If multiple high-scoring leads emerge from a specific district within `{{location_setting}}`, consider localized variations of successful search queries for that district.
+
+**Phase 6: Output Generation**
+
+*   **Instruction:** Compile a report of at least 6 Qualified Leads, **ordered by their Lead Score (highest first)**. For each lead, provide:
+    1.  Business Name
+    2.  Website URL
+    3.  **Lead Score **
+    4.  Key AI-Detected Deficiencies (List the specific findings that contributed to the score, e.g., "Copyright 2017, no viewport tag, Flash content mentioned, missing contact page.")
+    5.  Evidence of Business Activity (e.g., "Recent Google Maps reviews in Q1 2024.")
+    6.  Discovery Method (e.g., "Dorking query: Copyright 2018", "Deep SERP page 4")
+
+**LLM Limitations & Execution Guidelines:**
+(This section remains the same as the previous good version, as the limitations still apply to the audit process that feeds the scoring)
+
+*   **Visual Assessment:** You cannot "see" visual design, aesthetics, or user experience in the way a human does. Focus on **textual, structural, and code-based indicators** of outdatedness (e.g., missing viewport tags, table-based layouts, mentions of old tech).
+*   **JavaScript Execution:** Your ability to execute and interpret complex JavaScript is limited. Do not rely on dynamic content rendering for your primary assessment. Focus on the static HTML and text.
+*   **Performance Metrics:** You cannot directly measure page load speed or Core Web Vitals. Infer potential performance issues from the use of very old technologies or large, unoptimized images if textually indicated.
+*   **Accuracy of External Data:** When checking business activity on external platforms, rely on the most recent and consistent information available.
+*   **Prioritize Efficiency:** If a website quickly passes initial checks (e.g., modern copyright, clear viewport tag in first few lines of HTML), it will likely score low; move on quickly. Do not spend excessive time on sites that show early signs of being well-maintained.
+*   **Score Calibration:** The point values are suggestions. The AI should apply them consistently. Over time, you (the human prompter) might adjust these point values based on the quality of leads generated.
+
+This revised prompt now includes a structured way for the AI to calculate a lead score based on the deficiencies it can detect, allowing for a prioritized list of leads. The scoring system is designed to be:
+
+*   **Efficient:** Uses data already gathered during the audit.
+*   **AI-Assessable:** Relies on criteria the AI can reliably check (text, HTML structure, specific keywords).
+*   **Correct (within limits):** While not as nuanced as a human expert, it provides a consistent and rule-based approach to ranking the severity of website issues.
