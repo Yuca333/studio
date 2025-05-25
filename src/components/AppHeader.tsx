@@ -31,4 +31,3 @@ export default function AppHeader({ isCompact, onToggleCompact }: AppHeaderProps
     </header>
   );
 }
-
