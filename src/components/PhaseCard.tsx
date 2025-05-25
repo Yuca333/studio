@@ -50,12 +50,12 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
 
   return (
     <Card className="w-full shadow-lg transition-all duration-300 ease-in-out">
-      <CardHeader className={cn(isCompact ? 'p-3' : 'p-6')}>
+      <CardHeader className={cn(isCompact ? 'p-2' : 'p-6')}>
         <div className={cn("flex items-center gap-3", isCompact ? "mb-0" : "mb-1")}>
-          <div className={cn("flex-shrink-0 flex items-center justify-center rounded-full font-bold shadow", isCompact ? "h-7 w-7 text-sm bg-primary text-primary-foreground" : "h-10 w-10 text-lg bg-primary text-primary-foreground")}>
+          <div className={cn("flex-shrink-0 flex items-center justify-center rounded-full font-bold shadow", isCompact ? "h-6 w-6 text-xs bg-primary text-primary-foreground" : "h-10 w-10 text-lg bg-primary text-primary-foreground")}>
             {phaseNumber}
           </div>
-          <CardTitle className={cn("font-semibold", isCompact ? 'text-base leading-tight' : 'text-2xl')}>{phase.headline}</CardTitle>
+          <CardTitle className={cn("font-semibold", isCompact ? 'text-sm leading-tight' : 'text-2xl')}>{phase.headline}</CardTitle>
         </div>
         {!isCompact && phase.description && (
           <CardDescription className="pt-1 text-base">{phase.description}</CardDescription>
@@ -75,12 +75,12 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           </div>
         )}
       </CardContent>
-      <CardFooter className={cn("flex items-center gap-2", isCompact ? 'p-3 flex-row justify-end' : 'p-6 pt-0 flex-col sm:flex-row justify-between')}>
+      <CardFooter className={cn("flex items-center gap-2", isCompact ? 'p-2 flex-row justify-end' : 'p-6 pt-0 flex-col sm:flex-row justify-between')}>
         <div className={cn("flex gap-2", isCompact ? "flex-row" : "flex-col sm:flex-row w-full sm:w-auto")}>
             <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn(isCompact ? "w-auto" : "w-full sm:w-auto")}>
             <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
                 <ToolIcon className="mr-2 h-4 w-4" />
-                {phase.toolName}
+                {phase.toolNameJsx || phase.toolName}
             </a>
             </Button>
             {phase.extraAction && (
@@ -105,4 +105,3 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
     </Card>
   );
 }
-

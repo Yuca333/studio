@@ -1,4 +1,5 @@
 
+import type React from 'react'; // Added this line
 import type { Phase } from './types';
 import { Brain, Search, Edit3, Share2, BarChart2, Zap, CheckCircle, Lightbulb, Download } from 'lucide-react';
 
@@ -11,7 +12,8 @@ export const phasesData: Phase[] = [
     dataAiHint: 'AI search',
     description: 'Als erstes gibt du den Prompt an Grok um nach Unternehmen zu suchen die neue neue Webseite gebrauchen könnten. Schau dir die Vorschläge selber an und und beurteile ob da ein guter Kandidat dabei ist. Schau dir die Beispiel Screenshots die bei der Auswahl helfen könnten.',
     toolUrl: 'https://grok.com/',
-    toolName: 'Grok',
+    toolName: 'Grok (DeeperSearch)',
+    toolNameJsx: <>Grok (<strong>Deeper</strong>Search)</>,
     toolIcon: Brain,
     promptFileName: 'phase1_ideation.txt',
   },
@@ -24,6 +26,7 @@ export const phasesData: Phase[] = [
     description: 'kopiere den prompt und ein neues Chat Fenster von Grok und \u2028kopiere einer der  URL/Webseite Addresse raus  z.b. www.UnternehmenABC.de und setzte sie ein wo steht PLATZHALTER\u2028\nverwende hier DEEPSEARCH',
     toolUrl: 'https://grok.com/',
     toolName: 'Grok (Deepsearch)',
+    toolNameJsx: <>Grok (<strong>Deep</strong>search)</>,
     toolIcon: Brain,
     promptFileName: 'phase2_research.txt',
   },
@@ -71,10 +74,10 @@ export const phasesData: Phase[] = [
   {
     id: 'phase6',
     headline: 'Abschluss Funktion',
+    description: 'Zum schluss soll noch eine Information für den Kunden hinzugefügt werden.',
     imageSrc: 'https://substackcdn.com/image/fetch/w_520,h_272,c_fill,f_auto,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0a313aa3-e74d-41bc-bb0f-9f28454d1220_2248x1164.png',
     imageAlt: 'Lovable interface for final customer information',
     dataAiHint: 'customer info',
-    description: 'Zum schluss soll noch eine Information für den Kunden hinzugefügt werden.',
     toolUrl: 'https://lovable.dev/',
     toolName: 'Lovable',
     toolIcon: Edit3,
