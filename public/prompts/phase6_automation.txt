@@ -1,13 +1,4 @@
-Identify 3-5 repetitive tasks in a typical [TYPE_OF_BUSINESS_OR_WORKFLOW] that could be automated using AI or other digital tools.
-For each task:
-1. Describe the task as it is currently performed manually.
-2. Explain how it could be automated.
-3. Suggest a specific tool or type of tool that could achieve this automation (e.g., CRM, email marketing platform, RPA software, AI chatbot).
-4. List the potential benefits of automating this task (e.g., time savings, cost reduction, improved accuracy, increased efficiency).
-
-Example for [TYPE_OF_BUSINESS_OR_WORKFLOW] = "small e-commerce business".
-Task 1:
-  Manual: Manually responding to common customer inquiries about order status or shipping times via email.
-  Automation: Implement an AI-powered chatbot on the website and social media to handle frequently asked questions 24/7.
-  Tool: Tidio, Drift, or a custom Rasa chatbot.
-  Benefits: Faster response times, reduced support staff workload, improved customer satisfaction, 24/7 availability.
+Placeholder prompt for Phase 6: Automation & Optimization.
+Suggest ways to automate tasks related to [aspect of the business, e.g., customer inquiries, social media posting, email marketing] using Zapier or similar tools.
+Focus on improving efficiency and reducing manual workload.
+Example: "Set up a Zap to automatically create a new lead in our CRM when a contact form on the website is submitted."

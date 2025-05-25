@@ -1,0 +1,4 @@
+Dies ist ein Platzhalter-Prompt für Phase 4: Erstelle 1. Version der Webseite.
+Anleitung für Lovable:
+Kopiere hier das Ergebnis (den generierten Prompt) aus Phase 3 (Google AI Studio) hinein.
+Lovable soll diesen Prompt verwenden, um eine erste Version der Webseite zu erstellen.

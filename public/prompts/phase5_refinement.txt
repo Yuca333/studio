@@ -1,0 +1,11 @@
+Dies ist ein Platzhalter-Prompt für Phase 5: Webseite verbessern.
+Anleitung für den Lovable Chat:
+"Überprüfe die aktuell generierte Webseite.
+Verbesserungsvorschläge:
+1. Optimiere das Farbschema für bessere Lesbarkeit und modernen Look (verwende Primärfarbe X, Sekundärfarbe Y).
+2. Stelle sicher, dass alle Call-to-Action Buttons klar hervorgehoben sind.
+3. Verbessere die mobile Ansicht für die folgenden Sektionen: [Sektion A, Sektion B].
+4. Füge einen Testimonial-Bereich hinzu.
+Implementiere diese Änderungen."
+
+(Drücke erst auf "Chat" und klicke dann Enter. Warte und wenn es fertig ist, drücke entweder auf "Implement the Plan", oder schreibe "Implement the Plan" in den Chat.)
