@@ -1,3 +1,0 @@
-Dies ist ein Platzhalter-Prompt für Phase 2: Informationen vom Unternehmen rausziehen.
-Anleitung für Grok (Deepsearch) mit PLATZHALTER für die URL:
-"Analysiere die Webseite PLATZHALTER und extrahiere die folgenden Informationen: Hauptdienstleistungen, Zielgruppe, Alleinstellungsmerkmale, Kontaktdaten und aktuelle Online-Präsenz (Social Media, Bewertungen). Fasse die Ergebnisse übersichtlich zusammen."

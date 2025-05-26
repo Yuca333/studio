@@ -1,0 +1,4 @@
+Placeholder prompt for Phase 7: In die Datenbank hinzufügen.
+Take this prompt and provide it to Google AI Studio.
+The AI will generate information for you to copy and paste into the Excel spreadsheet.
+Remember to add your name at the end so you receive your commission if this client places an order.

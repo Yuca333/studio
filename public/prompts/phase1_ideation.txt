@@ -1,3 +1,0 @@
-Dies ist ein Platzhalter-Prompt für Phase 1: Unternehmen Finden.
-Beschreibe hier, wie Grok verwendet werden soll, um Unternehmen zu finden, die eine neue Webseite benötigen.
-Beispiel: "Finde 10 lokale Handwerksbetriebe in [Stadt/Region], deren Webseiten veraltet aussehen oder schlecht für Mobilgeräte optimiert sind."

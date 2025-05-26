@@ -1,3 +1,0 @@
-Dies ist ein Platzhalter-Prompt für Phase 3: Prompt für Website Genererierung erstellen.
-Anleitung für Google AI Studio:
-"Basierend auf den folgenden Informationen [HIER ERGEBNISSE AUS PHASE 2 EINFÜGEN] und dem beigefügten Dokument, erstelle einen detaillierten Prompt für einen Webseiten-Generator. Der Prompt soll den Aufbau, die wichtigsten Inhalte, den Stil und die Tonalität der neuen Webseite beschreiben. Ziel ist es, eine moderne, ansprechende und konversionsorientierte Webseite für das Unternehmen zu generieren."

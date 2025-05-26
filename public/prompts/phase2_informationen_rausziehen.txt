@@ -1,0 +1,3 @@
+Placeholder prompt for Phase 2: Informationen vom Unternehmen rausziehen.
+Use this prompt in a new Grok chat window (Deepsearch).
+Copy a suitable company URL (e.g., www.UnternehmenABC.de) from the previous phase's results and replace the PLATZHALTER in this prompt with that URL.

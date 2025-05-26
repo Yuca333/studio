@@ -1,0 +1,4 @@
+Placeholder prompt for Phase 1: Unternehmen Finden.
+This prompt is used with Grok (DeeperSearch) to find companies that might need a new website.
+Analyze the search results to identify good candidates. Refer to example screenshots for guidance.
+Remember to be judgmental and select promising leads.

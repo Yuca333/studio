@@ -1,7 +1,7 @@
 
 import React from 'react';
 import type { Phase } from './types';
-import { Brain, Search, Edit3, Share2, BarChart2, Zap, CheckCircle, Lightbulb, Download } from 'lucide-react';
+import { Brain, Edit3, BarChart2, Lightbulb, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const phasesData: Phase[] = [
@@ -41,7 +41,7 @@ export const phasesData: Phase[] = [
     toolName: 'Grok (DeeperSearch)',
     toolNameJsx: <>Grok (<strong>Deeper</strong>Search)</>,
     toolIcon: Brain,
-    promptFileName: 'phase1_ideation.txt',
+    promptFileName: 'phase1_unternehmen_finden.txt',
   },
   {
     id: 'phase2',
@@ -49,12 +49,12 @@ export const phasesData: Phase[] = [
     imageSrc: 'https://the-decoder.com/wp-content/uploads/2025/03/deepersearch_grok.png',
     imageAlt: 'Screenshot of Grok AI interface with Deepsearch feature',
     dataAiHint: 'AI deepsearch',
-    description: 'Kopiere den prompt in ein neues Chat Fenster von Grok und kopiere einer der URL/Webseite Addresse raus vom letzten prompt die geeignet ausgeschaut haben. z.b. www.UnternehmenABC.de und setzte sie ein wo PLATZHALTER steht in diesem prompt verwende hier DEEPSEARCH',
+    description: 'kopiere den prompt in ein neues Chat Fenster von Grok und \nkopiere einer der URL/Webseite Addresse raus  vom letzten prompt die geeignet ausgeschaut haben. z.b. www.UnternehmenABC.de und setzte sie ein wo PLATZHALTER\nsteht in diesem prompt verwende hier DEEPSEARCH',
     toolUrl: 'https://grok.com/',
     toolName: 'Grok (Deepsearch)',
     toolNameJsx: <>Grok (<strong>Deep</strong>search)</>,
     toolIcon: Brain,
-    promptFileName: 'phase2_research.txt',
+    promptFileName: 'phase2_informationen_rausziehen.txt',
   },
   {
     id: 'phase3',
@@ -66,7 +66,7 @@ export const phasesData: Phase[] = [
     toolUrl: 'https://aistudio.google.com/u/1/prompts/new_chat',
     toolName: 'Google AI Studio',
     toolIcon: Lightbulb,
-    promptFileName: 'phase3_creation.txt',
+    promptFileName: 'phase3_website_generierung.txt',
     extraAction: {
       text: 'Download extra Dokument',
       url: 'https://drive.google.com/file/d/1GhGJoQI7j0yB1V_z-M7aa5nOcAeALYvl/view?usp=sharing',
@@ -83,7 +83,7 @@ export const phasesData: Phase[] = [
     toolUrl: 'https://lovable.dev/',
     toolName: 'Lovable',
     toolIcon: Edit3,
-    promptFileName: 'phase4_initial_version.txt',
+    promptFileName: 'phase4_erste_webseite_version.txt',
   },
   {
     id: 'phase5',
@@ -95,7 +95,7 @@ export const phasesData: Phase[] = [
     toolUrl: 'https://lovable.dev/',
     toolName: 'Lovable',
     toolIcon: Edit3,
-    promptFileName: 'phase5_refinement.txt',
+    promptFileName: 'phase5_webseite_verbessern.txt',
   },
   {
     id: 'phase6',
@@ -107,7 +107,7 @@ export const phasesData: Phase[] = [
     toolUrl: 'https://lovable.dev/',
     toolName: 'Lovable',
     toolIcon: Edit3,
-    promptFileName: 'phase6_customer_info.txt',
+    promptFileName: 'phase6_abschluss_funktion.txt',
   },
   {
     id: 'phase7',
@@ -119,6 +119,6 @@ export const phasesData: Phase[] = [
     toolUrl: 'https://docs.google.com/spreadsheets/d/1_GhSWvbrdzexArl77digCHz3mlhXgFu1S1zFnYPjsXE/edit?usp=sharing',
     toolName: 'Google Sheets',
     toolIcon: BarChart2,
-    promptFileName: 'phase7_database_entry.txt',
+    promptFileName: 'phase7_datenbank_eintrag.txt',
   },
 ];

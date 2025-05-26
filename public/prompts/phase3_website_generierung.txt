@@ -1,0 +1,4 @@
+Placeholder prompt for Phase 3: Prompt für Website Generierung erstellen.
+Use this prompt with Google AI Studio.
+Append the output from the last Grok prompt (Phase 2) to the end of this prompt.
+Also, attach the extra document provided for this phase.

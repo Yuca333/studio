@@ -1,0 +1,2 @@
+Placeholder prompt for Phase 4: Erstelle 1. Version der Webseite.
+Take the output from the Google AI Studio prompt (Phase 3) and paste it into Lovable to generate the first version of the website.
