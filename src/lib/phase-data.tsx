@@ -51,9 +51,9 @@ export const phasesData: Phase[] = [
   {
     id: 'phase2',
     headline: 'Informationen vom Unternehmen rausziehen',
-    imageSrc: 'https://placehold.co/600x900.png', // Portrait placeholder
-    imageAlt: 'Google AI Studio run settings with Gemini 2.5 Pro Preview, Grounding, and URL Context enabled', // More descriptive alt
-    dataAiHint: 'AI studio settings', // Matches image content
+    imageSrc: 'https://i.ibb.co/8Lw3JntG/Screenshot-2025-05-26-at-18-18-45.png',
+    imageAlt: 'Google AI Studio run settings showing Gemini 2.5 Pro Preview, Grounding, and URL Context options',
+    dataAiHint: 'AI studio settings',
     description: (
       <>
         <p className="mb-2">Öffne Google AI Studio.</p>
@@ -102,7 +102,7 @@ export const phasesData: Phase[] = [
     toolUrl: 'https://lovable.dev/',
     toolName: 'Lovable',
     toolIcon: Edit3,
-    promptFileName: 'phase4_erste_webseite_version.txt', // This prompt file will be used
+    promptFileName: 'phase4_erste_webseite_version.txt',
     imageAspectRatio: 'video',
   },
   {
