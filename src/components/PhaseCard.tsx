@@ -8,6 +8,9 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { useToast } from '@/hooks/use-toast';
 import { ExternalLink, Copy, AlertTriangle, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 interface PhaseCardProps {
   phase: Phase;
@@ -18,48 +21,70 @@ interface PhaseCardProps {
 
 export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent }: PhaseCardProps) {
   const { toast } = useToast();
+  const [urlInput, setUrlInput] = useState('');
 
   const handleCopyPrompt = async () => {
-    if (promptContent) {
-      let textToCopy: string | null = null;
+    if (!promptContent) {
+      toast({
+        variant: 'destructive',
+        title: 'Prompt Not Available',
+        description: 'The prompt(s) for this phase could not be loaded.',
+      });
+      return;
+    }
 
-      if (Array.isArray(promptContent)) {
-        if (promptContent.length > 0) {
-          const randomIndex = Math.floor(Math.random() * promptContent.length);
-          textToCopy = promptContent[randomIndex];
-        }
-      } else { // It's a string
-        textToCopy = promptContent;
+    let textToCopy: string | null = null;
+
+    if (Array.isArray(promptContent)) {
+      if (promptContent.length > 0) {
+        const randomIndex = Math.floor(Math.random() * promptContent.length);
+        textToCopy = promptContent[randomIndex];
       }
-
-      if (textToCopy) {
-        try {
-          await navigator.clipboard.writeText(textToCopy);
-          toast({
-            title: 'Prompt Copied!',
-            description: `Prompt for "${phase.headline}" copied to clipboard.`,
-          });
-        } catch (err) {
-          console.error('Failed to copy prompt: ', err instanceof Error ? err.message : String(err));
+    } else if (typeof promptContent === 'string') {
+      if (phase.id === 'phase2') {
+        if (!urlInput.trim()) {
           toast({
             variant: 'destructive',
-            title: 'Copy Failed',
-            description: 'Could not copy prompt to clipboard.',
+            title: 'URL fehlt',
+            description: 'Bitte geben Sie eine URL in das Textfeld ein, um den Prompt zu vervollständigen.',
           });
+          return;
+        }
+        if (promptContent.includes('PLACEHOLDER')) {
+          textToCopy = promptContent.replace('PLACEHOLDER', urlInput.trim());
+        } else {
+          toast({
+            variant: 'destructive',
+            title: 'Prompt-Fehler',
+            description: 'Der Prompt-Text enthält keinen "PLACEHOLDER". Bitte überprüfen Sie die Prompt-Datei.',
+          });
+          return;
         }
       } else {
-        // This case might happen if promptContent is an empty array, though page.tsx logic tries to prevent it.
+        textToCopy = promptContent;
+      }
+    }
+
+    if (textToCopy) {
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        toast({
+          title: 'Prompt Copied!',
+          description: `Prompt for "${phase.headline}" copied to clipboard.`,
+        });
+      } catch (err) {
+        console.error('Failed to copy prompt: ', err instanceof Error ? err.message : String(err));
         toast({
           variant: 'destructive',
-          title: 'Prompt Not Available',
-          description: 'No prompt content to copy for this phase.',
+          title: 'Copy Failed',
+          description: 'Could not copy prompt to clipboard.',
         });
       }
     } else {
       toast({
         variant: 'destructive',
         title: 'Prompt Not Available',
-        description: 'The prompt(s) for this phase could not be loaded.',
+        description: 'No prompt content to copy for this phase.',
       });
     }
   };
@@ -94,6 +119,21 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
               style={{objectFit: 'cover'}}
               data-ai-hint={phase.dataAiHint}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
+        )}
+         {phase.id === 'phase2' && !isCompact && (
+          <div className="space-y-2 mt-4">
+            <Label htmlFor={`url-input-${phase.id}`} className="text-base font-medium">
+              Webseiten-URL für Analyse eingeben:
+            </Label>
+            <Input
+              id={`url-input-${phase.id}`}
+              type="url"
+              placeholder="z.B. https://www.beispielseite.de"
+              value={urlInput}
+              onChange={(e) => setUrlInput(e.target.value)}
+              className="text-base"
             />
           </div>
         )}

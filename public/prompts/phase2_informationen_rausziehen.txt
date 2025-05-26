@@ -1,3 +1,28 @@
-Placeholder prompt for Phase 2: Informationen vom Unternehmen rausziehen.
-Use this prompt in a new Grok chat window (Deepsearch).
-Copy a suitable company URL (e.g., www.UnternehmenABC.de) from the previous phase's results and replace the PLATZHALTER in this prompt with that URL.
+Analyze the website at this URL: PLACEHOLDER
+
+As an expert web content analyst and SEO specialist, your task is to provide a comprehensive overview of the website's content and structure, specifically tailored for a web developer who will be creating a new website (or significantly updating an existing one) for the same business. Pay close attention to capturing the essence and unique characteristics of the business. 
+
+Follow these steps:
+
+1. Crawl all public-facing pages of the website. Extract all text content from each page, noting the page title/heading associated with each section of text.
+
+2. Gather the content of each page. Provide a complete overview of the purpose and key topics covered on each page. 
+
+3. Identify Key Themes and Business Characteristics. After reviewing all pages, identify the major themes, services, products, and unique value propositions that characterize this business. What makes this business special or different from its competitors? This section should be detailed.
+
+4. Extract and integrate relevant Image URLs. Identify 2-3 representative images from the website that visually exemplify the business and its offerings. Include the direct URL to each image in text. Insert these images as URL text links at appropriate points within the content overview to provide visual context. If they would fit best in certain spots please write this in parentheses, but also include URLs
+
+5. Analyze Website Structure and Navigation. Describe the overall website structure (e.g., number of pages, top-level navigation items). How are the pages organized? Is the navigation intuitive? Are there any pages that seem unnecessary or could be better integrated? Also what colors did they use? what fonts did they use?
+
+6. Evaluate the website from a web developers perspective. what could be better?
+
+7. Outline Website Content Requirements for the Web Developer. Based on your analysis, provide a clear outline of the content that the web developer should include in the new website to faithfully represent the business. Be specific and actionable.
+
+8. Highlight opportunities for improvement.
+
+9. Format the output:
+    * Use clear headings and subheadings to organize the information.
+    * Present the page summaries in a list format, with each page identified by its title
+    * Use bullet points to list key themes, image descriptions, content requirements, and opportunities for improvement. It should also have the Name of the business and the URL in it. 
+
+Deliver the output in a single, well-organized document suitable for a web developer to use as a guide in building a new website. Important: The output should be in professional germanThe First and the last Sentence of the report should be how confident you are that you were able to extract everything from the page in percent (x %) for exampleConfidence / completion score of the task: 70%
