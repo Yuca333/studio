@@ -24,14 +24,14 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
   const [urlInput, setUrlInput] = useState('');
 
   const handleCopyPrompt = async () => {
-    if (promptContent === null && phase.promptFileName === null) { // Phase has no prompt by design
+    if (promptContent === null && phase.promptFileName === null) {
       toast({
         title: 'No Prompt to Copy',
         description: 'This phase does not have an associated prompt.',
       });
       return;
     }
-    if (!promptContent && phase.promptFileName !== null) { // Prompt was expected but not loaded
+    if (!promptContent && phase.promptFileName !== null) {
       toast({
         variant: 'destructive',
         title: 'Prompt Not Available',
@@ -87,7 +87,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           description: 'Could not copy prompt to clipboard.',
         });
       }
-    } else if (phase.promptFileName !== null) { // Only show "Not Available" if a prompt was expected and it's not ready
+    } else if (phase.promptFileName !== null) {
       toast({
         variant: 'destructive',
         title: 'Prompt Not Available',
@@ -99,11 +99,22 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
   const ToolIcon = phase.toolIcon || ExternalLink;
   const ExtraActionIcon = phase.extraAction?.icon || Download;
 
-  const showToolButtons = !(phase.id === 'phase5' || phase.id === 'phase6' || phase.isOptional || !phase.toolUrl);
+  const showMainToolButtons = !(phase.id === 'phase5' || phase.id === 'phase6' || phase.isOptional || !phase.toolUrl);
   
   const isPromptAvailable = promptContent !== null && (!Array.isArray(promptContent) || promptContent.length > 0);
   const hasPromptFile = phase.promptFileName !== null;
 
+  const getImageAspectRatioClass = () => {
+    switch (phase.imageAspectRatio) {
+      case 'portrait':
+        return 'aspect-[2/3]'; // Or 'aspect-[9/16]' if you prefer
+      case 'square':
+        return 'aspect-square';
+      case 'video':
+      default:
+        return 'aspect-video';
+    }
+  };
 
   return (
     <Card className="w-full shadow-lg transition-all duration-300 ease-in-out">
@@ -138,7 +149,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
               className={cn(isCompact ? "h-8 text-xs px-2 py-1" : "h-10 text-base")}
             />
           </div>
-          {showToolButtons && phase.toolUrl && ( 
+          {phase.toolUrl && ( 
              <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn("shrink-0", isCompact ? "h-8" : "h-10")}>
               <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
                   <ToolIcon className="mr-2 h-4 w-4" />
@@ -158,9 +169,9 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
         </div>
       )}
 
-      <CardContent className={cn("transition-all duration-300 ease-in-out overflow-hidden", isCompact ? "max-h-0 p-0 opacity-0" : "max-h-[1000px] p-6 pt-0 opacity-100")}>
-        {phase.imageSrc && (
-          <div className="mb-4 overflow-hidden rounded-md aspect-video relative shadow-md">
+      {!isCompact && phase.imageSrc && ( // Image and full description only in non-compact view
+        <CardContent className={cn("transition-all duration-300 ease-in-out overflow-hidden", "p-6 pt-0")}>
+          <div className={cn("mb-4 overflow-hidden rounded-md relative shadow-md", getImageAspectRatioClass())}>
             <Image
               src={phase.imageSrc}
               alt={phase.imageAlt}
@@ -170,10 +181,12 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
-        )}
-      </CardContent>
+        </CardContent>
+      )}
+      
+      {/* Footer buttons, excluding phase 2 main tool button if it's handled above */}
       <CardFooter className={cn("flex items-center gap-2", isCompact ? 'p-2 flex-row justify-end' : 'p-6 pt-0 flex-col sm:flex-row justify-between')}>
-        {showToolButtons && phase.id !== 'phase2' && phase.toolUrl && (
+        {showMainToolButtons && phase.id !== 'phase2' && phase.toolUrl && (
           <div className={cn("flex gap-2", isCompact ? "flex-row" : "flex-col sm:flex-row w-full sm:w-auto")}>
               <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn(isCompact ? "w-auto" : "w-full sm:w-auto")}>
               <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
@@ -192,7 +205,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           </div>
         )}
         
-        {isCompact && !showToolButtons && phase.id !== 'phase2' && <div className="flex-grow"></div>}
+        {isCompact && !showMainToolButtons && phase.id !== 'phase2' && <div className="flex-grow"></div>}
 
         {phase.id !== 'phase2' && phase.id !== 'phase4' && hasPromptFile && !phase.isOptional && (
           <Button

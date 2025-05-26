@@ -46,19 +46,33 @@ export const phasesData: Phase[] = [
       'phase1_unternehmen_finden_b.txt',
       'phase1_unternehmen_finden_c.txt',
     ],
+    imageAspectRatio: 'video',
   },
   {
     id: 'phase2',
     headline: 'Informationen vom Unternehmen rausziehen',
-    imageSrc: 'https://the-decoder.com/wp-content/uploads/2025/03/deepersearch_grok.png',
-    imageAlt: 'Screenshot of Grok AI interface with Deepsearch feature',
-    dataAiHint: 'AI deepsearch',
-    description: 'kopiere den prompt in ein neues Chat Fenster von Grok und \nkopiere einer der URL/Webseite Addresse raus  vom letzten prompt die geeignet ausgeschaut haben. z.b. www.UnternehmenABC.de und setzte sie ein wo PLATZHALTER\nsteht in diesem prompt verwende hier DEEPSEARCH',
-    toolUrl: 'https://grok.com/',
-    toolName: 'Grok (Deepsearch)',
-    toolNameJsx: <>Grok (<strong>Deep</strong>search)</>,
-    toolIcon: Brain,
-    promptFileName: 'phase2_informationen_rausziehen.txt',
+    imageSrc: 'https://placehold.co/400x600.png', // New portrait placeholder
+    imageAlt: 'Google AI Studio run settings interface', // New alt
+    dataAiHint: 'AI studio settings', // New hint
+    description: (
+      <>
+        <p className="mb-2">Öffne Google AI Studio.</p>
+        <p className="mb-2">Auf der rechten Seite Im Bereich "Run Settings" Stelle folgende sachen ein:</p>
+        <ul className="list-disc list-inside mb-2 space-y-1 ml-4">
+          <li>Erstes Feld (Drop Down): Gemini 2.5 Pro Preview</li>
+        </ul>
+        <p className="mb-1">Im Bereich "Tools":</p>
+        <ul className="list-disc list-inside mb-2 space-y-1 ml-4">
+          <li>Aktiviere Grounding with Google Search</li>
+          <li>Aktiviere URL Context</li>
+        </ul>
+      </>
+    ),
+    toolUrl: 'https://aistudio.google.com/u/1/prompts/new_chat', // New URL
+    toolName: 'Google AI Studio', // New Tool Name
+    toolIcon: Lightbulb, // New Icon
+    promptFileName: 'phase2_informationen_rausziehen.txt', // Prompt file remains for URL injection
+    imageAspectRatio: 'portrait', // Specify portrait aspect ratio
   },
   {
     id: 'phase3',
@@ -76,6 +90,7 @@ export const phasesData: Phase[] = [
       url: 'https://drive.google.com/file/d/1GhGJoQI7j0yB1V_z-M7aa5nOcAeALYvl/view?usp=sharing',
       icon: Download,
     },
+    imageAspectRatio: 'video',
   },
   {
     id: 'phase4',
@@ -88,6 +103,7 @@ export const phasesData: Phase[] = [
     toolName: 'Lovable',
     toolIcon: Edit3,
     promptFileName: 'phase4_erste_webseite_version.txt',
+    imageAspectRatio: 'video',
   },
   {
     id: 'phaseA_error_handling',
@@ -102,6 +118,7 @@ export const phasesData: Phase[] = [
     toolName: '', // No tool name
     toolIcon: undefined,
     promptFileName: null, // No prompt
+    imageAspectRatio: 'video',
   },
   {
     id: 'phase5',
@@ -114,6 +131,7 @@ export const phasesData: Phase[] = [
     toolName: 'Lovable',
     toolIcon: Edit3,
     promptFileName: 'phase5_webseite_verbessern.txt',
+    imageAspectRatio: 'video',
   },
   {
     id: 'phase6',
@@ -126,6 +144,7 @@ export const phasesData: Phase[] = [
     toolName: 'Lovable',
     toolIcon: Edit3,
     promptFileName: 'phase6_abschluss_funktion.txt',
+    imageAspectRatio: 'video',
   },
   {
     id: 'phase7',
@@ -138,5 +157,6 @@ export const phasesData: Phase[] = [
     toolName: 'Google Sheets',
     toolIcon: BarChart2,
     promptFileName: 'phase7_datenbank_eintrag.txt',
+    imageAspectRatio: 'video',
   },
 ];

@@ -20,4 +20,5 @@ export interface Phase {
   };
   isOptional?: boolean; // For phases not shown in compact view and having special ID
   displayId?: string; // To display 'A' instead of a number
+  imageAspectRatio?: 'video' | 'portrait' | 'square'; // Added for dynamic image aspect ratio
 }
