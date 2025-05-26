@@ -110,7 +110,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
         )}
       </CardHeader>
 
-      {/* URL Input, Copy Prompt button, and Tool Link button row for Phase 2 */}
+      {/* URL Input, Tool Link button, and Copy Prompt button row for Phase 2 */}
       {phase.id === 'phase2' && (
         <div className={cn("flex items-end gap-2", isCompact ? "p-2 pt-0" : "px-6 pb-4")}>
           {/* URL Input */}
@@ -130,6 +130,15 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
               className={cn(isCompact ? "h-8 text-xs px-2 py-1" : "h-10 text-base")}
             />
           </div>
+          {/* Tool Link Button for Phase 2 */}
+          {showToolButtons && ( 
+             <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn("shrink-0", isCompact ? "h-8" : "h-10")}>
+              <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
+                  <ToolIcon className="mr-2 h-4 w-4" />
+                  {phase.toolNameJsx || phase.toolName}
+              </a>
+            </Button>
+          )}
           {/* Copy Prompt Button for Phase 2 */}
           <Button
             onClick={handleCopyPrompt}
@@ -140,15 +149,6 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
             {!isPromptAvailable ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
             {!isPromptAvailable ? (isCompact ? 'N/A' : 'Prompt Unavailable') : (isCompact ? 'Copy' : 'Copy Prompt')}
           </Button>
-          {/* Tool Link Button for Phase 2 */}
-          {showToolButtons && ( /* This condition is true for phase 2, kept for consistency */
-             <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn("shrink-0", isCompact ? "h-8" : "h-10")}>
-              <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
-                  <ToolIcon className="mr-2 h-4 w-4" />
-                  {phase.toolNameJsx || phase.toolName}
-              </a>
-            </Button>
-          )}
         </div>
       )}
 
