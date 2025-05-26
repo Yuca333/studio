@@ -51,9 +51,9 @@ export const phasesData: Phase[] = [
   {
     id: 'phase2',
     headline: 'Informationen vom Unternehmen rausziehen',
-    imageSrc: 'https://placehold.co/400x600.png', // New portrait placeholder
-    imageAlt: 'Google AI Studio run settings interface', // New alt
-    dataAiHint: 'AI studio settings', // New hint
+    imageSrc: 'https://placehold.co/600x900.png', // Portrait placeholder
+    imageAlt: 'Google AI Studio run settings with Gemini 2.5 Pro Preview, Grounding, and URL Context enabled', // More descriptive alt
+    dataAiHint: 'AI studio settings', // Matches image content
     description: (
       <>
         <p className="mb-2">Öffne Google AI Studio.</p>
@@ -68,11 +68,11 @@ export const phasesData: Phase[] = [
         </ul>
       </>
     ),
-    toolUrl: 'https://aistudio.google.com/u/1/prompts/new_chat', // New URL
-    toolName: 'Google AI Studio', // New Tool Name
-    toolIcon: Lightbulb, // New Icon
-    promptFileName: 'phase2_informationen_rausziehen.txt', // Prompt file remains for URL injection
-    imageAspectRatio: 'portrait', // Specify portrait aspect ratio
+    toolUrl: 'https://aistudio.google.com/u/1/prompts/new_chat',
+    toolName: 'Google AI Studio',
+    toolIcon: Lightbulb,
+    promptFileName: 'phase2_informationen_rausziehen.txt',
+    imageAspectRatio: 'portrait',
   },
   {
     id: 'phase3',
@@ -102,7 +102,7 @@ export const phasesData: Phase[] = [
     toolUrl: 'https://lovable.dev/',
     toolName: 'Lovable',
     toolIcon: Edit3,
-    promptFileName: 'phase4_erste_webseite_version.txt',
+    promptFileName: 'phase4_erste_webseite_version.txt', // This prompt file will be used
     imageAspectRatio: 'video',
   },
   {
@@ -114,10 +114,10 @@ export const phasesData: Phase[] = [
     imageSrc: 'https://media.datacamp.com/cms/ad_4nxfczqqh4bahj2pzq_yjghbv_bjqgmtzq-jokkhvrbmaflj8hrykgvufrwegs5kgwbamk5xl1bzjlqj0lzam6zbffv53plxtussmgh_5rbxt7vts0vijwnvv_ze9a1bhzvb5txwn.png',
     imageAlt: 'Fehlerbehandlung in Lovable',
     dataAiHint: 'error fix',
-    toolUrl: '', // No tool
-    toolName: '', // No tool name
+    toolUrl: '', 
+    toolName: '', 
     toolIcon: undefined,
-    promptFileName: null, // No prompt
+    promptFileName: null, 
     imageAspectRatio: 'video',
   },
   {
