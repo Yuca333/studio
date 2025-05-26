@@ -46,6 +46,12 @@ const nextConfig: NextConfig = {
         hostname: 'media.gcflearnfree.org',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.datacamp.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

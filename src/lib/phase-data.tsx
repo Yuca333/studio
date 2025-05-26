@@ -90,6 +90,20 @@ export const phasesData: Phase[] = [
     promptFileName: 'phase4_erste_webseite_version.txt',
   },
   {
+    id: 'phaseA_error_handling',
+    displayId: 'A',
+    isOptional: true,
+    headline: 'Umgang mit Fehlern.',
+    description: 'Manchmal generiert Lovable Fehler, klicke dann einfach auf den button "Try to fix it" für die Schritte 4-6',
+    imageSrc: 'https://media.datacamp.com/cms/ad_4nxfczqqh4bahj2pzq_yjghbv_bjqgmtzq-jokkhvrbmaflj8hrykgvufrwegs5kgwbamk5xl1bzjlqj0lzam6zbffv53plxtussmgh_5rbxt7vts0vijwnvv_ze9a1bhzvb5txwn.png',
+    imageAlt: 'Fehlerbehandlung in Lovable',
+    dataAiHint: 'error fix',
+    toolUrl: '', // No tool
+    toolName: '', // No tool name
+    toolIcon: undefined,
+    promptFileName: null, // No prompt
+  },
+  {
     id: 'phase5',
     headline: 'Webseite verbessern',
     imageSrc: 'https://mintlify.s3.us-west-1.amazonaws.com/lovable-f9060f1e/lovable-editor-v2.png',

@@ -22,6 +22,10 @@ export default function WorkflowAiPage() {
       const fetchedPrompts: Record<string, string | string[] | null> = {};
       for (const phase of phasesData) {
         try {
+          if (phase.promptFileName === null) { // Handle phases with no prompts
+            fetchedPrompts[phase.id] = null;
+            continue;
+          }
           if (Array.isArray(phase.promptFileName)) {
             const individualPrompts = await Promise.all(
               phase.promptFileName.map(async (fileName) => {
@@ -66,13 +70,13 @@ export default function WorkflowAiPage() {
     setIsCompact(checked);
   };
   
-  const PhaseSkeleton = ({ isCompact, phaseNumber }: { isCompact: boolean, phaseNumber?: number }) => (
+  const PhaseSkeleton = ({ isCompact, phaseIdentifier }: { isCompact: boolean, phaseIdentifier?: string | number }) => (
     <div className="w-full p-4 space-y-3 border rounded-lg shadow-lg bg-card">
       <div className="flex items-center gap-3">
-        {typeof phaseNumber === 'number' && (
+        {phaseIdentifier && (
           <Skeleton className={cn("flex-shrink-0 rounded-full", isCompact ? "h-6 w-6" : "h-10 w-10")} />
         )}
-        <Skeleton className={cn("rounded-full", isCompact ? "h-7 w-7" : "h-8 w-8", typeof phaseNumber !== 'number' ? "" : "hidden sm:block")} />
+        <Skeleton className={cn("rounded-full", isCompact ? "h-7 w-7" : "h-8 w-8", !phaseIdentifier ? "" : "hidden sm:block")} />
         <Skeleton className={cn("w-3/4", isCompact ? "h-5" : "h-8")} />
       </div>
       {!isCompact && (
@@ -91,6 +95,7 @@ export default function WorkflowAiPage() {
     </div>
   );
 
+  let visiblePhaseCounter = 0;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -123,16 +128,39 @@ export default function WorkflowAiPage() {
 
         <div className={cn("grid", isCompact ? "gap-1 md:gap-1.5" : "gap-8 md:gap-12")}>
           {isLoadingPrompts 
-            ? phasesData.map((phase, index) => <PhaseSkeleton key={phase.id} isCompact={isCompact} phaseNumber={index + 1} />)
-            : phasesData.map((phase: Phase, index: number) => (
-                <PhaseCard
-                  key={phase.id}
-                  phase={phase}
-                  phaseNumber={index + 1}
-                  isCompact={isCompact}
-                  promptContent={prompts[phase.id]}
-                />
-              ))}
+            ? phasesData.map((phase, index) => {
+                if (isCompact && phase.isOptional) return null;
+                let phaseIdentifier: string | number | undefined;
+                if (phase.displayId) {
+                  phaseIdentifier = phase.displayId;
+                } else if (!phase.isOptional) {
+                  // Calculate visible index for skeletons
+                  const nonOptionalPhasesBefore = phasesData.slice(0, index).filter(p => !p.isOptional).length;
+                  phaseIdentifier = nonOptionalPhasesBefore + 1;
+                }
+                return <PhaseSkeleton key={phase.id} isCompact={isCompact} phaseIdentifier={phaseIdentifier} />;
+              })
+            : phasesData.map((phase: Phase) => {
+                if (isCompact && phase.isOptional) {
+                  return null; // Don't render optional phases in compact view
+                }
+                let phaseIdentifier: string | number;
+                if (phase.displayId) {
+                  phaseIdentifier = phase.displayId;
+                } else {
+                  visiblePhaseCounter++;
+                  phaseIdentifier = visiblePhaseCounter;
+                }
+                return (
+                  <PhaseCard
+                    key={phase.id}
+                    phase={phase}
+                    phaseNumber={phaseIdentifier}
+                    isCompact={isCompact}
+                    promptContent={prompts[phase.id]}
+                  />
+                );
+              })}
         </div>
       </main>
       <footer className="py-8 text-center text-muted-foreground border-t border-border mt-12">
