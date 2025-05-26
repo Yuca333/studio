@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { ExternalLink, Copy, AlertTriangle, Download } from 'lucide-react';
+import { ExternalLink, Copy, AlertTriangle, Download, WorkflowIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
@@ -96,7 +96,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
     }
   };
 
-  const ToolIcon = phase.toolIcon || ExternalLink;
+  const ToolIconComponent = phase.toolIcon || ExternalLink;
   const ExtraActionIcon = phase.extraAction?.icon || Download;
 
   const showMainToolButtons = !(phase.isOptional || !phase.toolUrl || phase.id === 'phaseA_error_handling' || phase.id === 'phase2' || phase.id === 'phase5' || phase.id === 'phase6');
@@ -164,47 +164,87 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
 
         {phase.id === 'phase2' && (
           <div className={cn(
-            "flex flex-col gap-2", 
-            isCompact ? "p-2 pt-0" : "px-6 pb-4",
-            isTwoColumnLayout && "md:px-6 md:pt-0 md:pb-4" 
+            // Common styling for the Phase 2 input/button block
+            "gap-2", 
+            // Conditional padding based on view type
+            isCompact ? "p-2 pt-0" : (isTwoColumnLayout ? "md:px-6 md:pt-0 md:pb-4" : "px-6 pb-4")
           )}>
-            {/* Row 1: Label and Input */}
-            <div className="flex items-center gap-x-2"> 
-              <Label 
-                htmlFor={`url-input-${phase.id}`} 
-                className={cn("font-medium whitespace-nowrap", isCompact ? "text-xs" : "text-sm")}
-              >
-                Webseiten-URL für Analyse eingeben:
-              </Label>
-              <Input
-                id={`url-input-${phase.id}`}
-                type="url"
-                placeholder="z.B. https://www.beispielseite.de"
-                value={urlInput}
-                onChange={(e) => setUrlInput(e.target.value)}
-                className={cn(isCompact ? "h-8 text-xs px-2 py-1" : "h-10 text-base", "w-full")}
-              />
-            </div>
-             {/* Row 2: Tool Button and Copy Button */}
-            <div className="flex items-center justify-end gap-2">
-                {phase.toolUrl && ( 
-                <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn("shrink-0", isCompact ? "h-8" : "h-10")}>
+            {isCompact ? (
+              // COMPACT VIEW: Single Row for Label, Input, and two icon buttons
+              <div className="flex items-center gap-1">
+                <Label
+                  htmlFor={`url-input-${phase.id}`}
+                  className="text-xs font-medium whitespace-nowrap flex-shrink-0 mr-1"
+                >
+                  Webseiten-URL für Analyse eingeben:
+                </Label>
+                <Input
+                  id={`url-input-${phase.id}`}
+                  type="url"
+                  placeholder="URL..."
+                  value={urlInput}
+                  onChange={(e) => setUrlInput(e.target.value)}
+                  className="h-8 text-xs px-2 py-1 flex-grow min-w-0"
+                />
+                {phase.toolUrl && (
+                  <Button variant="outline" asChild size="sm" className="h-8 shrink-0 px-2" title={typeof phase.toolName === 'string' ? phase.toolName : 'Open Tool'}>
                     <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
-                        <ToolIcon className="mr-2 h-4 w-4" />
-                        {phase.toolNameJsx || phase.toolName}
+                      <ToolIconComponent className="h-4 w-4" />
                     </a>
-                </Button>
+                  </Button>
                 )}
                 <Button
-                onClick={handleCopyPrompt}
-                disabled={!isPromptAvailable}
-                size={isCompact ? 'sm' : 'default'}
-                className={cn("shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground", isCompact ? "h-8" : "h-10")}
+                  onClick={handleCopyPrompt}
+                  disabled={!isPromptAvailable}
+                  size="sm"
+                  className="h-8 shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground px-2"
+                  title={!isPromptAvailable ? 'Prompt Unavailable' : 'Copy Prompt'}
                 >
-                {!isPromptAvailable ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
-                {isCompact ? (!isPromptAvailable ? 'N/A' : 'Copy') : (!isPromptAvailable ? 'Prompt Unavailable' : 'Copy Prompt')}
+                  {!isPromptAvailable ? <AlertTriangle className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                 </Button>
-            </div>
+              </div>
+            ) : (
+              // NON-COMPACT VIEW: Two Rows
+              <div className="flex flex-col gap-2">
+                {/* Row 1: Label and Input */}
+                <div className="flex items-center gap-2">
+                  <Label
+                    htmlFor={`url-input-${phase.id}`}
+                    className="text-sm font-medium whitespace-nowrap"
+                  >
+                    Webseiten-URL für Analyse eingeben:
+                  </Label>
+                  <Input
+                    id={`url-input-${phase.id}`}
+                    type="url"
+                    placeholder="z.B. https://www.beispielseite.de"
+                    value={urlInput}
+                    onChange={(e) => setUrlInput(e.target.value)}
+                    className="h-10 text-base w-full"
+                  />
+                </div>
+                {/* Row 2: Tool Button and Copy Button (right-aligned) */}
+                <div className="flex items-center justify-end gap-2">
+                  {phase.toolUrl && (
+                    <Button variant="outline" asChild size="default" className="h-10 shrink-0">
+                      <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
+                        <ToolIconComponent className="mr-2 h-4 w-4" />
+                        {phase.toolNameJsx || phase.toolName}
+                      </a>
+                    </Button>
+                  )}
+                  <Button
+                    onClick={handleCopyPrompt}
+                    disabled={!isPromptAvailable}
+                    size="default"
+                    className="h-10 shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground"
+                  >
+                    {!isPromptAvailable ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
+                    {!isPromptAvailable ? 'Prompt Unavailable' : 'Copy Prompt'}
+                  </Button>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -213,14 +253,12 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           <CardContent className={cn(
             "transition-all duration-300 ease-in-out overflow-hidden", 
             "p-6 pt-0", 
-            phase.isOptional && isCompact && "hidden", // Handles hiding for Phase A content specifically in compact
-            isCompact && "hidden" // General hide for images in compact non-PhaseA
+            phase.isOptional && "hidden", // Optional phase content (like image) hidden in compact
+             // General hide for images in compact non-PhaseA handled by this block's !isCompact
            )}>
-            {!(isCompact && phase.isOptional) && !(isCompact && !phase.isOptional) && ( // Show if not compact, or if it's Phase A and not compact
-                <div className="mb-4">
-                    <ImageDisplay />
-                </div>
-            )}
+             <div className="mb-4">
+                 <ImageDisplay />
+             </div>
           </CardContent>
         )}
         
@@ -229,11 +267,11 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           isCompact ? 'p-2 flex-row justify-end' : 'p-6 pt-0 flex-col sm:flex-row justify-between',
           isTwoColumnLayout && "md:pt-3 mt-auto" 
         )}>
-          {showMainToolButtons && (
+          {showMainToolButtons && phase.id !== 'phase2' && ( // Exclude phase2 since its buttons are handled above
             <div className={cn("flex gap-2", isCompact ? "flex-row" : "flex-col sm:flex-row w-full sm:w-auto")}>
                 <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn(isCompact ? "w-auto" : "w-full sm:w-auto")}>
                 <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
-                    <ToolIcon className="mr-2 h-4 w-4" />
+                    <ToolIconComponent className="mr-2 h-4 w-4" />
                     {phase.toolNameJsx || phase.toolName}
                 </a>
                 </Button>
@@ -258,7 +296,8 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
               className={cn(isCompact ? "w-auto" : "w-full sm:w-auto", "bg-primary hover:bg-primary/90 text-primary-foreground")}
             >
               {!isPromptAvailable ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
-              {!isPromptAvailable ? 'Prompt Unavailable' : 'Copy Prompt'}
+              {isCompact && !isPromptAvailable ? '' : (isCompact ? 'Copy' : (!isPromptAvailable ? 'Prompt Unavailable' : 'Copy Prompt'))}
+
             </Button>
           )}
         </CardFooter>
@@ -266,3 +305,5 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
     </Card>
   );
 }
+
+    
