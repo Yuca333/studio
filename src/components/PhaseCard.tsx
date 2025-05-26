@@ -168,37 +168,43 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
             isCompact ? "p-2 pt-0" : (isTwoColumnLayout ? "md:px-6 md:pt-0 md:pb-4" : "px-6 pb-4")
           )}>
             {isCompact ? (
-              <div className="flex items-center gap-1">
-                <Label
-                  htmlFor={`url-input-${phase.id}`}
-                  className="text-xs font-medium whitespace-nowrap flex-shrink-0 mr-1"
-                >
-                  Webseiten-URL:
-                </Label>
-                <Input
-                  id={`url-input-${phase.id}`}
-                  type="url"
-                  placeholder="URL..."
-                  value={urlInput}
-                  onChange={(e) => setUrlInput(e.target.value)}
-                  className="h-8 text-xs px-2 py-1 flex-1 min-w-[80px] max-w-[200px]"
-                />
-                {phase.toolUrl && (
-                  <Button variant="outline" asChild size="sm" className="h-8 shrink-0 px-2" title={typeof phase.toolName === 'string' ? phase.toolName : (typeof phase.toolNameJsx === 'string' ? phase.toolNameJsx : 'Open Tool')}>
-                    <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
-                      <ToolIconComponent className="h-4 w-4" />
-                    </a>
+              // COMPACT VIEW: Single Row, Label + Input on left, Buttons on right
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1 flex-grow min-w-0">
+                  <Label
+                    htmlFor={`url-input-${phase.id}`}
+                    className="text-xs font-medium whitespace-nowrap flex-shrink-0"
+                  >
+                    Webseiten-URL:
+                  </Label>
+                  <Input
+                    id={`url-input-${phase.id}`}
+                    type="url"
+                    placeholder="URL..."
+                    value={urlInput}
+                    onChange={(e) => setUrlInput(e.target.value)}
+                    className="h-8 text-xs px-2 py-1 flex-1 min-w-[80px] max-w-[200px]"
+                  />
+                </div>
+                <div className="flex items-center gap-1 flex-shrink-0">
+                  {phase.toolUrl && (
+                    <Button variant="outline" asChild size="sm" className="h-8 shrink-0">
+                      <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer" className="flex items-center">
+                        <ToolIconComponent className="mr-1 h-3 w-3" />
+                        {phase.toolNameJsx || phase.toolName}
+                      </a>
+                    </Button>
+                  )}
+                  <Button
+                    onClick={handleCopyPrompt}
+                    disabled={!isPromptAvailable}
+                    size="sm"
+                    className="h-8 shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground"
+                  >
+                    {!isPromptAvailable ? <AlertTriangle className="mr-1 h-3 w-3" /> : <Copy className="mr-1 h-3 w-3" />}
+                    {!isPromptAvailable ? 'N/A' : 'Copy'}
                   </Button>
-                )}
-                <Button
-                  onClick={handleCopyPrompt}
-                  disabled={!isPromptAvailable}
-                  size="sm"
-                  className="h-8 shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground px-2"
-                  title={!isPromptAvailable ? 'Prompt Unavailable' : 'Copy Prompt'}
-                >
-                  {!isPromptAvailable ? <AlertTriangle className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                </Button>
+                </div>
               </div>
             ) : (
               // NON-COMPACT VIEW: Two Rows
@@ -250,9 +256,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           <CardContent className={cn(
             "transition-all duration-300 ease-in-out overflow-hidden", 
             "p-6 pt-0", 
-            // Optional phase content (like image) hidden in compact is handled by page.tsx
-            // Hiding image for specific optional phase if compact
-            (isCompact && phase.isOptional) && "hidden"
+            (phase.isOptional && !phase.imageSrc) && "hidden" // Hide content for optional phase if no image AND not compact
            )}>
              <div className="mb-4">
                  <ImageDisplay />
@@ -260,7 +264,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           </CardContent>
         )}
         
-        {/* Image for Phase A (optional) in non-compact view if it wasn't handled by two-column layout */}
+        {/* Image for Phase A (optional) in non-compact view if it wasn't handled by two-column layout and has an image */}
         {!isCompact && phase.isOptional && phase.imageSrc && !isTwoColumnLayout && (
             <CardContent className="p-6 pt-0">
                 <div className="mb-4">
@@ -274,7 +278,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           isCompact ? 'p-2 flex-row justify-end' : 'p-6 pt-0 flex-col sm:flex-row justify-between',
           isTwoColumnLayout && "md:pt-3 mt-auto" 
         )}>
-          {showMainToolButtons && phase.id !== 'phase2' && ( // Exclude phase2 since its buttons are handled above
+          {showMainToolButtons && phase.id !== 'phase2' && ( 
             <div className={cn("flex gap-2", isCompact ? "flex-row" : "flex-col sm:flex-row w-full sm:w-auto")}>
                 <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn(isCompact ? "w-auto" : "w-full sm:w-auto")}>
                 <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
@@ -312,3 +316,4 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
     </Card>
   );
 }
+
