@@ -110,23 +110,34 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
         )}
       </CardHeader>
 
-      {/* URL Input for Phase 2 - visible in both compact and non-compact views */}
+      {/* URL Input and Copy Prompt button row for Phase 2 */}
       {phase.id === 'phase2' && (
-        <div className={cn("px-6 space-y-1", isCompact ? "pb-2 pt-0" : "pb-4")}>
-          <Label 
-            htmlFor={`url-input-${phase.id}`} 
-            className={cn("font-medium", isCompact ? "text-xs" : "text-base")}
+        <div className={cn("flex items-end gap-2", isCompact ? "p-2 pt-0" : "px-6 pb-4")}>
+          <div className="flex-grow space-y-1">
+            <Label 
+              htmlFor={`url-input-${phase.id}`} 
+              className={cn("font-medium", isCompact ? "text-xs" : "text-sm")} // Adjusted label size slightly for non-compact too
+            >
+              Webseiten-URL für Analyse eingeben:
+            </Label>
+            <Input
+              id={`url-input-${phase.id}`}
+              type="url"
+              placeholder="z.B. https://www.beispielseite.de"
+              value={urlInput}
+              onChange={(e) => setUrlInput(e.target.value)}
+              className={cn(isCompact ? "h-8 text-xs px-2 py-1" : "h-10 text-base")} // Using h-10 for non-compact for consistency
+            />
+          </div>
+          <Button
+            onClick={handleCopyPrompt}
+            disabled={!isPromptAvailable}
+            size={isCompact ? 'sm' : 'default'}
+            className={cn("shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground", isCompact ? "h-8" : "h-10")} // Match height with input
           >
-            Webseiten-URL für Analyse eingeben:
-          </Label>
-          <Input
-            id={`url-input-${phase.id}`}
-            type="url"
-            placeholder="z.B. https://www.beispielseite.de"
-            value={urlInput}
-            onChange={(e) => setUrlInput(e.target.value)}
-            className={cn(isCompact ? "h-8 text-xs px-2 py-1" : "text-base")}
-          />
+            {!isPromptAvailable ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
+            {!isPromptAvailable ? (isCompact ? 'N/A' : 'Prompt Unavailable') : (isCompact ? 'Copy' : 'Copy Prompt')}
+          </Button>
         </div>
       )}
 
@@ -143,7 +154,6 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
             />
           </div>
         )}
-        {/* The URL input for Phase 2 was previously here and conditional on !isCompact. It has been moved. */}
       </CardContent>
       <CardFooter className={cn("flex items-center gap-2", isCompact ? 'p-2 flex-row justify-end' : 'p-6 pt-0 flex-col sm:flex-row justify-between')}>
         {showToolButtons && (
@@ -164,16 +174,22 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
               )}
           </div>
         )}
-        {isCompact && !showToolButtons && <div className="flex-grow"></div>} {/* This ensures copy button stays right */}
-        <Button
-          onClick={handleCopyPrompt}
-          disabled={!isPromptAvailable}
-          size={isCompact ? 'sm' : 'default'}
-          className={cn(isCompact ? "w-auto" : "w-full sm:w-auto", "bg-primary hover:bg-primary/90 text-primary-foreground")}
-        >
-          {!isPromptAvailable ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
-          {!isPromptAvailable ? 'Prompt Unavailable' : 'Copy Prompt'}
-        </Button>
+        
+        {/* Spacer for compact view if tool buttons are hidden AND it's not Phase 2 (where copy button is moved) */}
+        {isCompact && !showToolButtons && phase.id !== 'phase2' && <div className="flex-grow"></div>}
+
+        {/* "Copy Prompt" button for phases OTHER THAN Phase 2 */}
+        {phase.id !== 'phase2' && (
+          <Button
+            onClick={handleCopyPrompt}
+            disabled={!isPromptAvailable}
+            size={isCompact ? 'sm' : 'default'}
+            className={cn(isCompact ? "w-auto" : "w-full sm:w-auto", "bg-primary hover:bg-primary/90 text-primary-foreground")}
+          >
+            {!isPromptAvailable ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
+            {!isPromptAvailable ? 'Prompt Unavailable' : 'Copy Prompt'}
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );
