@@ -1,3 +1,95 @@
-Placeholder prompt for Phase 6: Abschluss Funktion.
-This prompt is used with Lovable.
-The goal is to add final customer-specific information to the website.
+## Final Feature Implementation: Two-Stage Informational Overlay
+ As a final step, I'd like you to implement a sophisticated, visually engaging informational overlay feature. This feature will serve as a welcome message and a subtle way to provide additional service information.
+
+It's crucial that the design of this new feature **seamlessly integrates with and complements the established aesthetic and brand narrative of the website we've just built.** It should feel like a native, premium extension of the existing design, not an afterthought. Leverage React for component structure and Tailwind CSS for styling, incorporating gentle animations and professional color gradients that align with the site's overall visual language.
+
+**Task:**
+Implement a two-stage informational overlay system as new React components with the following specifications:
+
+**Phase 1: Initial Welcome Pop-up (Modal)**
+
+1.  **Trigger:** This pop-up should appear automatically once when the website initially loads for a user (e.g., manage visibility using local storage or a similar mechanism to show it once per session or until dismissed effectively).
+2.  **Component & Styling:**
+    *   Create a new React component for this modal.
+    *   **Design:** Style it using Tailwind CSS to be visually beautiful, modern, and professional. It should capture attention without being jarring.
+    *   **Animations:** Implement a smooth, gentle entry animation (e.g., fade-in and slight scale-up).
+    *   **Color Gradients:** Use professional-looking color gradients for the background or key elements of the pop-up, ensuring these gradients harmonize with the website's existing color palette.
+    *   **Layout:** Ensure a clean, readable layout for the content within the pop-up.
+3.  **Content:**
+    *   **Logo:**
+        *   Please integrate the "ImpactInk" logo. You can request the image asset (e.g., ask for an upload path or if I should paste SVG code) or use a prominent, stylish placeholder for "ImpactInk Logo" if the asset isn't immediately available.
+    *   **Text (exactly as follows, in German):**
+        ```
+        Guten Tag,
+
+        diese Webseite wurde exklusiv für Sie als unverbindliche Vorschau erstellt und wird nicht weiter veröffentlicht. Sie soll Ihnen zeigen, wie Ihre zukünftige Internetpräsenz aussehen könnte.
+
+        Selbstverständlich lassen sich sämtliche Inhalte und das Design ganz nach Ihren Wünschen anpassen.
+        Sollten Sie kein Interesse haben, wird die Vorschau in zwei Wochen automatisch wieder gelöscht.
+
+        Ich wünsche Ihnen viel Freude beim Anschauen!
+        Für Rückfragen oder Änderungswünsche stehe ich Ihnen jederzeit gerne zur Verfügung.
+
+        Herzliche Grüße
+
+        ImpactInk Team
+        ```
+    *   **Button:**
+        *   Text: `Seite begutachten`
+        *   Styling: Design as a clear, inviting call-to-action button, consistent with the site's primary button style but perhaps with a unique touch for this overlay.
+
+**Phase 2: Transition to Pinned Information Nugget & Panel**
+
+1.  **Interaction (Pop-up Button Click):**
+    *   When the "Seite begutachten" button in the initial pop-up is clicked:
+        *   The pop-up modal should smoothly animate its dismissal (e.g., shrink, fade out).
+        *   Simultaneously, a small "Information Nugget" box should appear.
+2.  **Information Nugget (Pinned Box):**
+    *   **Component & Styling:**
+        *   Create a new React component (or manage state within the main overlay component).
+        *   **Position:** Fixed to the lower-left corner of the viewport. It should be unobtrusive but noticeable.
+        *   **Design:** Small, clean, and professional. Use subtle design cues (e.g., a soft shadow, rounded corners, a gentle gradient) that align with the main site.
+        *   **Hover Effect:** Implement a subtle hover effect (e.g., slight background color change or lift) to indicate interactivity.
+    *   **Content (Text):** `Mehr Information zu dieser Seite`
+3.  **Interaction (Pinned Nugget Click):**
+    *   When the "Mehr Information zu dieser Seite" nugget is clicked:
+        *   An "Information Panel" should smoothly open or slide into view (e.g., from the left side or expanding from the nugget).
+4.  **Information Panel:**
+    *   **Component & Styling:**
+        *   Create a new React component.
+        *   **Design:** Ensure the text content within this panel is "nicely designed" – prioritize excellent typography, clear visual hierarchy for list items, ample whitespace, and an overall polished look. The panel itself should have a professional appearance, possibly using complementary gradients or background treatments from the main site.
+        *   **Animations:** Smooth open/close animations for the panel.
+        *   **Close Mechanism:** Include a clear and intuitive way to close the panel (e.g., an "X" icon).
+    *   **Content (Text - exactly as follows, in German, with appropriate formatting for the list):**
+        ```
+        Unser Service umfasst nicht nur die Gestaltung Ihrer Webseite, sondern auf Wunsch auch folgende Zusatzleistungen:
+
+        *   **Suchmaschinen-Optimierung (SEO):** Damit Ihre Seite bei Google & Co. besser gefunden wird
+        *   **Besucheranalyse:** Auswertung und Monitoring Ihrer Seitenaufrufe
+        *   **Optimierung für mobile Geräte:** Für eine perfekte Darstellung auf Smartphone und Tablet
+        *   **Erstellung von Logo, professionellen Fotos und Videos vor Ort**
+        *   **Individuelle Beratung:** Persönliche Unterstützung bei all Ihren Anliegen
+
+        Gerne besprechen wir gemeinsam, welche Leistungen für Sie interessant sind. Wir freuen uns auf Ihre Rückmeldung!
+        ```
+    *   **Button:**
+        *   Text: `Schreiben Sie uns`
+        *   Action: This button should be an email link: `mailto:hello@impactink.de`.
+        *   Styling: Consistent with other CTA buttons on the site.
+
+**General Guidelines for this Feature:**
+
+*   **State Management:** Implement robust React state management for the visibility and transitions of these components.
+*   **Responsiveness:** Ensure all elements of this feature (pop-up, nugget, panel) are fully responsive and look excellent on all screen sizes.
+*   **Performance:** Animations should be performant (e.g., using CSS transitions/animations where possible, or optimized JavaScript animations).
+*   **Accessibility (A11y):**
+    *   Ensure the pop-up and panel can be dismissed via the Escape key.
+    *   All interactive elements (buttons, close icons) must be keyboard accessible and have appropriate ARIA attributes.
+    *   Focus should be managed correctly when the modal/panel opens and closes.
+*   **Code Quality:** Generate clean, maintainable React and Tailwind CSS code.
+
+**Constraints:**
+*   This feature should not obstruct critical website navigation or content once the initial pop-up is dismissed to the nugget form. The pinned nugget should be relatively small.
+*   The primary purpose is informational and to offer further contact; avoid overly aggressive sales tactics in the design.
+
+Please proceed with implementing this feature, focusing on high-quality visual execution and smooth user interaction, ensuring it elevates the overall user experience of the website. If you need the logo asset, please specify how I should provide it.

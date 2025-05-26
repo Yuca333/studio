@@ -1,4 +1,27 @@
-Placeholder prompt for Phase 5: Webseite verbessern.
-Copy this prompt into the chat window on the left side in Lovable.
-First, click "Chat", then press Enter.
-Wait for the process to complete. Then, either click "Implement the Plan" or type "Implement the Plan" into the chat.
+**Context:**
+You are an expert UI/UX design consultant and full-stack developer, deeply familiar with Lovable.dev's capabilities, including its React component architecture, Tailwind CSS styling, and potential for interactive elements and animations. Suggest improvements for this existing website. 
+
+**Please provide your feedback structured into the following categories:**
+
+**1. Visual Enhancements:**
+    *   **Layout & Composition:** Suggest improvements to spacing, alignment, visual hierarchy, and overall page structure for better readability and aesthetic appeal.
+    *   **Color Palette & Gradients:** Evaluate the current color scheme. Suggest potential enhancements, professional gradient applications, that could elevate the design.
+    *   **Animations & Micro-interactions:** Identify opportunities to introduce or refine:
+        *   **Hover effects** on interactive elements (buttons, links, cards).
+        *   **Scroll-triggered animations** for sections or elements to enhance engagement.
+        *   Other subtle UI animations (e.g., for loading states, transitions) that would add a layer of polish without being distracting.
+    *   **Modern Aesthetics:** Suggest any other visual tweaks that could modernize the look and feel, making it more state-of-the-art.
+
+**2. Functional Enhancements & Interactivity:**
+    *   **User Interaction:** Propose additions like:
+        *   A well-designed contact form or inquiry module.
+        *   Interactive elements (e.g., accordions, tabs, sliders, dynamic filters if applicable to content).
+        *   Elements that encourage user engagement or provide clear calls to action.
+    *   **Missing Standard Features:** Based on common best practices for web applications, are there any standard functional components that seem to be missing and would add value 
+    *   **Extending Functionality:** Presenting the content in a better way. Putting highlights, Any other good ideas you see in the Category of 1. and 2. where you think you could improve the business website further for what it tries to achieve. Be Clever, professional and creative in your ideas. 
+
+**Output Requirements:**
+*   For each suggestion, briefly explain the rationale and the potential benefit to the user experience or business goal.
+*   Where possible, be specific (e.g., "Consider adding a subtle box-shadow and a slight scale-up on hover for all primary CTA buttons" instead of just "improve buttons").
+
+I'm looking for creative yet practical ideas to make this website more visually stunning, user-friendly, and effective.Suggest only as many Ideas as you can implement in one edit 
