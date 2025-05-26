@@ -1,28 +1,57 @@
-Analyze the website at this URL: PLACEHOLDER
-
-As an expert web content analyst and SEO specialist, your task is to provide a comprehensive overview of the website's content and structure, specifically tailored for a web developer who will be creating a new website (or significantly updating an existing one) for the same business. Pay close attention to capturing the essence and unique characteristics of the business. 
-
-Follow these steps:
-
-1. Crawl all public-facing pages of the website. Extract all text content from each page, noting the page title/heading associated with each section of text.
-
-2. Gather the content of each page. Provide a complete overview of the purpose and key topics covered on each page. 
-
-3. Identify Key Themes and Business Characteristics. After reviewing all pages, identify the major themes, services, products, and unique value propositions that characterize this business. What makes this business special or different from its competitors? This section should be detailed.
-
-4. Extract and integrate relevant Image URLs. Identify 2-3 representative images from the website that visually exemplify the business and its offerings. Include the direct URL to each image in text. Insert these images as URL text links at appropriate points within the content overview to provide visual context. If they would fit best in certain spots please write this in parentheses, but also include URLs
-
-5. Analyze Website Structure and Navigation. Describe the overall website structure (e.g., number of pages, top-level navigation items). How are the pages organized? Is the navigation intuitive? Are there any pages that seem unnecessary or could be better integrated? Also what colors did they use? what fonts did they use?
-
-6. Evaluate the website from a web developers perspective. what could be better?
-
-7. Outline Website Content Requirements for the Web Developer. Based on your analysis, provide a clear outline of the content that the web developer should include in the new website to faithfully represent the business. Be specific and actionable.
-
-8. Highlight opportunities for improvement.
-
-9. Format the output:
-    * Use clear headings and subheadings to organize the information.
-    * Present the page summaries in a list format, with each page identified by its title
-    * Use bullet points to list key themes, image descriptions, content requirements, and opportunities for improvement. It should also have the Name of the business and the URL in it. 
-
-Deliver the output in a single, well-organized document suitable for a web developer to use as a guide in building a new website. Important: The output should be in professional germanThe First and the last Sentence of the report should be how confident you are that you were able to extract everything from the page in percent (x %) for exampleConfidence / completion score of the task: 70%
+Primary Target URL for Analysis: PLACEHOLDER
+Task:
+As an expert web content analyst and SEO specialist, your task is to provide a comprehensive overview of the website at the Primary Target URL. This analysis should be tailored for a web developer who will be creating a new website (or significantly updating an existing one) for the same business. Pay close attention to capturing the essence and unique characteristics of the business. Your output should be an analytical report and a requirements outline; do NOT attempt to generate a mock-up, wireframe, or prototype of the new website itself.
+Follow these steps meticulously:
+Website Crawling and Content Extraction Strategy:
+a. Initial Homepage Browse: Use the browse tool on the Primary Target URL to attempt to retrieve its full HTML content.
+Note on Tool Limitations: Be aware that the browse tool may not always return full, easily parsable HTML, especially for sites heavily reliant on JavaScript for content or link rendering. If full HTML for link discovery is not obtained, this will be noted, and fallback methods will be prioritized.
+b. Internal Link Discovery - Methodical Approach:
+i. Primary - Parse Homepage HTML: If full HTML was retrieved in step 1a (or if the user provided homepage HTML for this specific analysis run), meticulously examine it for internal navigation links. Focus on <nav> elements, <ul> or <ol> lists within headers or designated menu areas, and footer links. Extract href attributes from <a> tags pointing to internal pages (URLs on the same domain). List all discovered navigation link texts and their corresponding URLs.
+ii. Fallback 1 - Re-Browse Homepage for Menu Text (if link extraction failed): If step 1b.i fails to yield clear navigation links (e.g., if browse returned a summary without linkable HTML), re-attempt to browse the homepage with a specific query asking it to identify the text content of list items (<li>) within <nav> or header elements that seem to constitute the main menu. This helps identify potential page names even if direct URLs aren't initially extractable.
+iii. Fallback 2 - site: Search: If primary navigation links are still unclear or incomplete, use the concise_search tool with the query site:[TARGET_URL_HERE] to discover indexed pages. Add these to your list of potential internal URLs to investigate.
+iv. Fallback 3 - Sitemap Check:
+Attempt to browse [TARGET_URL_HERE]/robots.txt. If successful and it contains a Sitemap: directive, extract that sitemap URL.
+Attempt to browse the sitemap URL found (e.g., sitemap.xml, sitemap_index.xml). If a sitemap is found and successfully browsed, attempt to parse it for further internal URLs and add them to your list. Explicitly state if the sitemap browse was successful and if you were able to parse URLs from it. If parsing fails, note this.
+v. Fallback 4 - Common Page Probing (Limited & Prioritized): If key business sections (like Services, About, Portfolio, Contact) are still missing after the above steps, attempt to browse a maximum of 4-5 highly common page slugs. Prioritize:
+German sites: /leistungen, /ueber-uns (or /wir-ueber-uns), /kontakt, /projekte (or /referenzen, /portfolio, /galerie).
+English sites: /services, /about (or /about-us), /contact, /portfolio (or /projects, /gallery).
+Clearly state that these are speculative attempts.
+vi. Standard Pages: Regardless of other findings, specifically attempt to locate and add "Impressum" (or "Imprint," "Legal Notice") and "Datenschutz" (or "Privacy Policy") pages to your browsing list, typically found in footers or via methods above.
+c. Reporting Link Discovery: In your final report, clearly state which method(s) (Homepage HTML parsing, Homepage Menu Text query, site: search, Sitemap, Common Slugs) were primarily used to compile the list of internal URLs that were subsequently browsed, and which method yielded the most comprehensive list of navigation items.
+d. Sub-Page Browsing: Sequentially use the browse tool on each of the distinct internal URLs discovered. If browsing a specific URL fails (e.g., 404 error) or returns minimal/irrelevant content, note this failure and proceed to the next URL. Compile a list of all successfully browsed URLs that yielded meaningful content.
+Gather and Summarize Content of Each Successfully Browsed Page:
+a. For each successfully browsed page that yielded meaningful content:
+i. Extract all user-visible text content. This includes text within headings (<h1>-<h6>), paragraphs (<p>), lists (<li>), table cells (<td>, <th>), footers, and any text in prominent sections or within modal/pop-up dialogs if their content is present in the static HTML.
+ii. Note the page title (from the <title> tag or a primary <h1> heading) associated with each distinct page's content.
+iii. Provide a complete overview of the purpose and key topics covered on that specific page. When describing content (like on a contact page), specifically note if elements like map embeds or interactive forms are mentioned or seem to be present, even if their full interactive content isn't extractable by the browse tool.
+Identify Key Themes and Business Characteristics:
+a. Based on all successfully browsed pages, identify major themes, core services offered, products (if any), and unique value propositions (USPs).
+b. Business Name Identification: From the content of the browsed pages (e.g., homepage title, main headings, "About Us" section, or "Impressum"), identify and state the official business name. If multiple variations are used (e.g., "Friseur Honsell" and "Friseur Stefan Honsell"), note both.
+c. What makes this business special or different from its competitors? This section should be detailed, drawing from all extracted content.
+Extract and Integrate Relevant Image URLs:
+a. From the HTML of all successfully browsed pages, identify 2-3 <img> tags that are visually representative of the business/offerings.
+b. Extract their full, direct src attributes (absolute URLs).
+c. If direct src attributes are elusive from <img> tags, but image filenames or descriptive alt text, captions, or image credits (e.g., in Impressum) are found in the HTML, note these as strong indicators of images. Also, check for CSS background images if <style> tags or inline styles are accessible and easily parsable for background-image: url(...).
+d. Note the page and context. Integrate URLs/descriptions. If no images or strong indicators are found, state this clearly.
+Analyze Website Structure and Navigation:
+a. Describe the website structure: number of successfully browsed pages, identified top-level navigation items (based on actual link discovery from HTML menu structures, sitemap, or site: search, not just guesses).
+b. Page Organization: How are pages linked? Is a hierarchy apparent (e.g., main items with sub-pages)?
+c. Navigation Intuition: Based on link text and discovered structure, is navigation likely intuitive?
+d. Gaps/Issues: Any missing expected pages (e.g., "Services," "Portfolio" if not found despite attempts) or poorly integrated sections?
+e. Color/Font Estimation: Inspect HTML of key pages for inline styles, <style> blocks, or CSS links. Note potential font-family, color, background-color indicators. Acknowledge this is an estimation based on code inspection.
+Evaluate from a Web Developer's Perspective:
+a. Strengths of current site's content/structure.
+b. Weaknesses/areas for technical, structural, or content presentation improvement (consider mobile-friendliness from viewport tags, modern standards, content discoverability, and any issues noted from failed browse attempts).
+Outline Website Content Requirements for Web Developer (PRD Style):
+a. Provide a clear, actionable outline of content sections and specific information for the new website.
+b. Use PRD best practices, focusing on content needs.
+c. Recommend reuse of good existing text, possibly with improved formatting/structure, per modern web design/UX.
+Highlight Opportunities for Improvement:
+a. List key opportunities for enhancing effectiveness (SEO, UX, content depth, visuals, CTAs, interactivity, accessibility).
+Format the Output:
+a. Use clear, professional German headings/subheadings.
+b. Page summaries: list format, identified by title/main heading.
+c. Bullet points for themes, images, requirements, opportunities.
+d. Include the identified Business Name and the Primary Target URL at the start.
+Deliver the output in a single, well-organized document.
+The first and the last sentence of the report must be your confidence score (e.g., "Confidence / completion score of the task: X%") regarding your ability to comprehensively analyze the website based on these instructions and your tool's capabilities. Briefly justify the score based on the success of the link discovery and content extraction phases, noting any significant limitations encountered with the tools.
