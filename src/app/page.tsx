@@ -13,25 +13,46 @@ import { Send } from 'lucide-react';
 
 export default function WorkflowAiPage() {
   const [isCompact, setIsCompact] = useState(false);
-  const [prompts, setPrompts] = useState<Record<string, string | null>>({});
+  const [prompts, setPrompts] = useState<Record<string, string | string[] | null>>({});
   const [isLoadingPrompts, setIsLoadingPrompts] = useState(true);
 
   useEffect(() => {
     const fetchAllPrompts = async () => {
       setIsLoadingPrompts(true);
-      const fetchedPrompts: Record<string, string | null> = {};
+      const fetchedPrompts: Record<string, string | string[] | null> = {};
       for (const phase of phasesData) {
         try {
-          const response = await fetch(`/prompts/${phase.promptFileName}`);
-          if (response.ok) {
-            fetchedPrompts[phase.id] = await response.text();
+          if (Array.isArray(phase.promptFileName)) {
+            const individualPrompts = await Promise.all(
+              phase.promptFileName.map(async (fileName) => {
+                const response = await fetch(`/prompts/${fileName}`);
+                if (response.ok) {
+                  return await response.text();
+                }
+                console.error(`Failed to fetch sub-prompt: ${fileName}, status: ${response.status}, phase ID: ${phase.id}`);
+                return null;
+              })
+            );
+            if (individualPrompts.every(p => p !== null)) {
+              fetchedPrompts[phase.id] = individualPrompts as string[];
+            } else {
+              fetchedPrompts[phase.id] = null;
+              console.error(`One or more sub-prompts failed to load for phase: ${phase.id}`);
+            }
+          } else if (typeof phase.promptFileName === 'string') {
+            const response = await fetch(`/prompts/${phase.promptFileName}`);
+            if (response.ok) {
+              fetchedPrompts[phase.id] = await response.text();
+            } else {
+              console.error(`Failed to fetch prompt: ${phase.promptFileName}, status: ${response.status}`);
+              fetchedPrompts[phase.id] = null;
+            }
           } else {
-            console.error(`Failed to fetch prompt: ${phase.promptFileName}, status: ${response.status}`);
-            fetchedPrompts[phase.id] = null; // Mark as unavailable
+            fetchedPrompts[phase.id] = null;
           }
         } catch (error) {
-          console.error(`Error fetching prompt ${phase.promptFileName}:`, error instanceof Error ? error.message : String(error));
-          fetchedPrompts[phase.id] = null; // Mark as unavailable
+          console.error(`Error fetching prompt(s) for ${phase.id}:`, error instanceof Error ? error.message : String(error));
+          fetchedPrompts[phase.id] = null;
         }
       }
       setPrompts(fetchedPrompts);

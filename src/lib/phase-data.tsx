@@ -22,13 +22,13 @@ export const phasesData: Phase[] = [
               <a href="https://hairgott.de/" target="_blank" rel="noopener noreferrer">Geeignetes Beispiel 1</a>
             </Button>
             <Button asChild variant="outline" size="sm" className="w-full">
-              <a href="https://www.elektriker.de/" target="_blank" rel="noopener noreferrer">Geeignetes Beispiel 1</a>
+              <a href="https://www.elektriker.de/" target="_blank" rel="noopener noreferrer">Geeignetes Beispiel 2</a>
             </Button>
             <Button asChild variant="outline" size="sm" className="w-full">
               <a href="https://www.pageou.de/de/" target="_blank" rel="noopener noreferrer">Nicht geeignetes Beispiel 1</a>
             </Button>
             <Button asChild variant="outline" size="sm" className="w-full">
-              <a href="https://www.pfistermuehle.de/" target="_blank" rel="noopener noreferrer">Nicht geeignetes Beispiel 1</a>
+              <a href="https://www.pfistermuehle.de/" target="_blank" rel="noopener noreferrer">Nicht geeignetes Beispiel 2</a>
             </Button>
           </div>
         </div>
@@ -41,7 +41,11 @@ export const phasesData: Phase[] = [
     toolName: 'Grok (DeeperSearch)',
     toolNameJsx: <>Grok (<strong>Deeper</strong>Search)</>,
     toolIcon: Brain,
-    promptFileName: 'phase1_unternehmen_finden.txt',
+    promptFileName: [
+      'phase1_unternehmen_finden_a.txt',
+      'phase1_unternehmen_finden_b.txt',
+      'phase1_unternehmen_finden_c.txt',
+    ],
   },
   {
     id: 'phase2',

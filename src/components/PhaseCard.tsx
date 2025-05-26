@@ -13,7 +13,7 @@ interface PhaseCardProps {
   phase: Phase;
   phaseNumber: number;
   isCompact: boolean;
-  promptContent: string | null;
+  promptContent: string | string[] | null; // Can be a single prompt, array of prompts, or null
 }
 
 export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent }: PhaseCardProps) {
@@ -21,25 +21,45 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
 
   const handleCopyPrompt = async () => {
     if (promptContent) {
-      try {
-        await navigator.clipboard.writeText(promptContent);
-        toast({
-          title: 'Prompt Copied!',
-          description: `Prompt for "${phase.headline}" copied to clipboard.`,
-        });
-      } catch (err) {
-        console.error('Failed to copy prompt: ', err instanceof Error ? err.message : String(err));
+      let textToCopy: string | null = null;
+
+      if (Array.isArray(promptContent)) {
+        if (promptContent.length > 0) {
+          const randomIndex = Math.floor(Math.random() * promptContent.length);
+          textToCopy = promptContent[randomIndex];
+        }
+      } else { // It's a string
+        textToCopy = promptContent;
+      }
+
+      if (textToCopy) {
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+          toast({
+            title: 'Prompt Copied!',
+            description: `Prompt for "${phase.headline}" copied to clipboard.`,
+          });
+        } catch (err) {
+          console.error('Failed to copy prompt: ', err instanceof Error ? err.message : String(err));
+          toast({
+            variant: 'destructive',
+            title: 'Copy Failed',
+            description: 'Could not copy prompt to clipboard.',
+          });
+        }
+      } else {
+        // This case might happen if promptContent is an empty array, though page.tsx logic tries to prevent it.
         toast({
           variant: 'destructive',
-          title: 'Copy Failed',
-          description: 'Could not copy prompt to clipboard.',
+          title: 'Prompt Not Available',
+          description: 'No prompt content to copy for this phase.',
         });
       }
     } else {
       toast({
         variant: 'destructive',
         title: 'Prompt Not Available',
-        description: 'The prompt for this phase could not be loaded.',
+        description: 'The prompt(s) for this phase could not be loaded.',
       });
     }
   };
@@ -48,6 +68,8 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
   const ExtraActionIcon = phase.extraAction?.icon || Download;
 
   const showToolButtons = !(phase.id === 'phase5' || phase.id === 'phase6');
+  
+  const isPromptAvailable = promptContent !== null && (!Array.isArray(promptContent) || promptContent.length > 0);
 
   return (
     <Card className="w-full shadow-lg transition-all duration-300 ease-in-out">
@@ -95,15 +117,15 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
               )}
           </div>
         )}
-        {isCompact && !showToolButtons && <div className="flex-grow"></div>} {/* Ensures "Copy Prompt" stays right in compact mode */}
+        {isCompact && !showToolButtons && <div className="flex-grow"></div>}
         <Button
           onClick={handleCopyPrompt}
-          disabled={!promptContent}
+          disabled={!isPromptAvailable}
           size={isCompact ? 'sm' : 'default'}
           className={cn(isCompact ? "w-auto" : "w-full sm:w-auto", "bg-primary hover:bg-primary/90 text-primary-foreground")}
         >
-          {promptContent === null ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
-          {promptContent === null ? 'Prompt Unavailable' : 'Copy Prompt'}
+          {!isPromptAvailable ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
+          {!isPromptAvailable ? 'Prompt Unavailable' : 'Copy Prompt'}
         </Button>
       </CardFooter>
     </Card>

@@ -12,7 +12,7 @@ export interface Phase {
   toolName: string;
   toolNameJsx?: React.ReactNode; // For rich text in tool button
   toolIcon?: React.ElementType; // Optional: For custom icons if lucide doesn't have specific ones
-  promptFileName: string;
+  promptFileName: string | string[]; // Can be a single file or an array for multiple options
   extraAction?: {
     text: string;
     url: string;
