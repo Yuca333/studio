@@ -24,7 +24,14 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
   const [urlInput, setUrlInput] = useState('');
 
   const handleCopyPrompt = async () => {
-    if (!promptContent && phase.promptFileName !== null) { // Allow copy if promptFileName is null (no prompt to load)
+    if (promptContent === null && phase.promptFileName === null) { // Phase has no prompt by design
+      toast({
+        title: 'No Prompt to Copy',
+        description: 'This phase does not have an associated prompt.',
+      });
+      return;
+    }
+    if (!promptContent && phase.promptFileName !== null) { // Prompt was expected but not loaded
       toast({
         variant: 'destructive',
         title: 'Prompt Not Available',
@@ -32,14 +39,6 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
       });
       return;
     }
-     if (promptContent === null && phase.promptFileName === null) { // Phase has no prompt by design
-      toast({
-        title: 'No Prompt to Copy',
-        description: 'This phase does not have an associated prompt.',
-      });
-      return;
-    }
-
 
     let textToCopy: string | null = null;
 
@@ -88,7 +87,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           description: 'Could not copy prompt to clipboard.',
         });
       }
-    } else if (phase.promptFileName !== null) { // Only show "Not Available" if a prompt was expected
+    } else if (phase.promptFileName !== null) { // Only show "Not Available" if a prompt was expected and it's not ready
       toast({
         variant: 'destructive',
         title: 'Prompt Not Available',
@@ -159,7 +158,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
         </div>
       )}
 
-      <CardContent className={cn("transition-all duration-300 ease-in-out overflow-hidden", isCompact || phase.isOptional ? "max-h-0 p-0 opacity-0" : "max-h-[1000px] p-6 pt-0 opacity-100")}>
+      <CardContent className={cn("transition-all duration-300 ease-in-out overflow-hidden", isCompact ? "max-h-0 p-0 opacity-0" : "max-h-[1000px] p-6 pt-0 opacity-100")}>
         {phase.imageSrc && (
           <div className="mb-4 overflow-hidden rounded-md aspect-video relative shadow-md">
             <Image
