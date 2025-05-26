@@ -87,7 +87,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           description: 'Could not copy prompt to clipboard.',
         });
       }
-    } else if (phase.promptFileName !== null) {
+    } else if (phase.promptFileName !== null) { // This case handles if promptContent is an empty array or still null after checks
       toast({
         variant: 'destructive',
         title: 'Prompt Not Available',
@@ -107,7 +107,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
   const getImageAspectRatioClass = () => {
     switch (phase.imageAspectRatio) {
       case 'portrait':
-        return 'aspect-[2/3]'; // Or 'aspect-[9/16]' if you prefer
+        return 'aspect-[2/3]'; 
       case 'square':
         return 'aspect-square';
       case 'video':
@@ -116,109 +116,143 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
     }
   };
 
+  const isTwoColumnLayout = !isCompact && phase.imageAspectRatio === 'portrait' && phase.imageSrc;
+
+  const ImageDisplay = () => (
+    <div className={cn("overflow-hidden rounded-md relative shadow-md", getImageAspectRatioClass())}>
+      <Image
+        src={phase.imageSrc!}
+        alt={phase.imageAlt}
+        fill
+        style={{ objectFit: 'cover' }}
+        data-ai-hint={phase.dataAiHint}
+        sizes={isTwoColumnLayout 
+               ? "(max-width: 767px) 100vw, 280px" // For md breakpoint, image width is 280px
+               : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              }
+      />
+    </div>
+  );
+
   return (
-    <Card className="w-full shadow-lg transition-all duration-300 ease-in-out">
-      <CardHeader className={cn(isCompact ? 'p-2 pr-3' : 'p-6')}>
-        <div className={cn("flex items-center gap-3", isCompact ? "mb-0" : "mb-1")}>
-          <div className={cn("flex-shrink-0 flex items-center justify-center rounded-full font-bold shadow", isCompact ? "h-6 w-6 text-xs bg-primary text-primary-foreground" : "h-10 w-10 text-lg bg-primary text-primary-foreground")}>
-            {phaseNumber}
-          </div>
-          <CardTitle className={cn("font-semibold", isCompact ? 'text-sm leading-tight line-clamp-2' : 'text-2xl')}>{phase.headline}</CardTitle>
+    <Card className={cn(
+      "w-full shadow-lg transition-all duration-300 ease-in-out",
+      isTwoColumnLayout && "md:flex md:items-start"
+    )}>
+      {/* Image for Portrait, Non-Compact View (LEFT SIDE) */}
+      {isTwoColumnLayout && phase.imageSrc && (
+        <div className="md:w-[280px] md:flex-shrink-0 p-6 md:pr-3">
+          <ImageDisplay />
         </div>
-        {!isCompact && phase.description && (
-          <CardDescription className="pt-1 text-base">{phase.description}</CardDescription>
-        )}
-      </CardHeader>
+      )}
 
-      {/* URL Input, Tool Link button, and Copy Prompt button row for Phase 2 */}
-      {phase.id === 'phase2' && (
-        <div className={cn("flex items-end gap-2", isCompact ? "p-2 pt-0" : "px-6 pb-4")}>
-          <div className="flex-grow space-y-1">
-            <Label 
-              htmlFor={`url-input-${phase.id}`} 
-              className={cn("font-medium", isCompact ? "text-xs" : "text-sm")}
-            >
-              Webseiten-URL für Analyse eingeben:
-            </Label>
-            <Input
-              id={`url-input-${phase.id}`}
-              type="url"
-              placeholder="z.B. https://www.beispielseite.de"
-              value={urlInput}
-              onChange={(e) => setUrlInput(e.target.value)}
-              className={cn(isCompact ? "h-8 text-xs px-2 py-1" : "h-10 text-base")}
-            />
+      <div className={cn("flex flex-col flex-grow", isTwoColumnLayout && "min-w-0")}> {/* min-w-0 for flex child issues */}
+        <CardHeader className={cn(
+          isCompact ? 'p-2 pr-3' : 'p-6',
+          isTwoColumnLayout && 'md:pb-3' // Reduce bottom padding if image is on left
+        )}>
+          <div className={cn("flex items-center gap-3", isCompact ? "mb-0" : "mb-1")}>
+            <div className={cn("flex-shrink-0 flex items-center justify-center rounded-full font-bold shadow", isCompact ? "h-6 w-6 text-xs bg-primary text-primary-foreground" : "h-10 w-10 text-lg bg-primary text-primary-foreground")}>
+              {phaseNumber}
+            </div>
+            <CardTitle className={cn("font-semibold", isCompact ? 'text-sm leading-tight line-clamp-2' : 'text-2xl')}>{phase.headline}</CardTitle>
           </div>
-          {phase.toolUrl && ( 
-             <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn("shrink-0", isCompact ? "h-8" : "h-10")}>
-              <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
-                  <ToolIcon className="mr-2 h-4 w-4" />
-                  {phase.toolNameJsx || phase.toolName}
-              </a>
-            </Button>
+          {!isCompact && phase.description && (
+            <CardDescription className="pt-1 text-base">{phase.description}</CardDescription>
           )}
-          <Button
-            onClick={handleCopyPrompt}
-            disabled={!isPromptAvailable}
-            size={isCompact ? 'sm' : 'default'}
-            className={cn("shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground", isCompact ? "h-8" : "h-10")}
-          >
-            {!isPromptAvailable ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
-            {!isPromptAvailable ? (isCompact ? 'N/A' : 'Prompt Unavailable') : (isCompact ? 'Copy' : 'Copy Prompt')}
-          </Button>
-        </div>
-      )}
+        </CardHeader>
 
-      {!isCompact && phase.imageSrc && ( // Image and full description only in non-compact view
-        <CardContent className={cn("transition-all duration-300 ease-in-out overflow-hidden", "p-6 pt-0")}>
-          <div className={cn("mb-4 overflow-hidden rounded-md relative shadow-md", getImageAspectRatioClass())}>
-            <Image
-              src={phase.imageSrc}
-              alt={phase.imageAlt}
-              fill
-              style={{objectFit: 'cover'}}
-              data-ai-hint={phase.dataAiHint}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </div>
-        </CardContent>
-      )}
-      
-      {/* Footer buttons, excluding phase 2 main tool button if it's handled above */}
-      <CardFooter className={cn("flex items-center gap-2", isCompact ? 'p-2 flex-row justify-end' : 'p-6 pt-0 flex-col sm:flex-row justify-between')}>
-        {showMainToolButtons && phase.id !== 'phase2' && phase.toolUrl && (
-          <div className={cn("flex gap-2", isCompact ? "flex-row" : "flex-col sm:flex-row w-full sm:w-auto")}>
-              <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn(isCompact ? "w-auto" : "w-full sm:w-auto")}>
-              <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
-                  <ToolIcon className="mr-2 h-4 w-4" />
-                  {phase.toolNameJsx || phase.toolName}
-              </a>
+        {/* URL Input, Tool Link button, and Copy Prompt button row for Phase 2 */}
+        {phase.id === 'phase2' && (
+          <div className={cn(
+            "flex items-end gap-2", 
+            isCompact ? "p-2 pt-0" : "px-6 pb-4",
+            isTwoColumnLayout && "md:px-6 md:pt-0 md:pb-4" // Ensure padding is correct in 2-col
+          )}>
+            <div className="flex-grow space-y-1">
+              <Label 
+                htmlFor={`url-input-${phase.id}`} 
+                className={cn("font-medium", isCompact ? "text-xs" : "text-sm")}
+              >
+                Webseiten-URL für Analyse eingeben:
+              </Label>
+              <Input
+                id={`url-input-${phase.id}`}
+                type="url"
+                placeholder="z.B. https://www.beispielseite.de"
+                value={urlInput}
+                onChange={(e) => setUrlInput(e.target.value)}
+                className={cn(isCompact ? "h-8 text-xs px-2 py-1" : "h-10 text-base")}
+              />
+            </div>
+            {phase.toolUrl && ( 
+              <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn("shrink-0", isCompact ? "h-8" : "h-10")}>
+                <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
+                    <ToolIcon className="mr-2 h-4 w-4" />
+                    {phase.toolNameJsx || phase.toolName}
+                </a>
               </Button>
-              {phase.extraAction && (
-              <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn(isCompact ? "w-auto" : "w-full sm:w-auto")}>
-                  <a href={phase.extraAction.url} target="_blank" rel="noopener noreferrer">
-                  <ExtraActionIcon className="mr-2 h-4 w-4" />
-                  {phase.extraAction.text}
-                  </a>
-              </Button>
-              )}
+            )}
+            <Button
+              onClick={handleCopyPrompt}
+              disabled={!isPromptAvailable}
+              size={isCompact ? 'sm' : 'default'}
+              className={cn("shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground", isCompact ? "h-8" : "h-10")}
+            >
+              {!isPromptAvailable ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
+              {isCompact ? (!isPromptAvailable ? 'N/A' : 'Copy') : (!isPromptAvailable ? 'Prompt Unavailable' : 'Copy Prompt')}
+            </Button>
           </div>
+        )}
+
+        {/* Image for Non-Portrait or (Non-Compact but not Portrait) */}
+        {!isCompact && phase.imageSrc && !isTwoColumnLayout && (
+          <CardContent className={cn("transition-all duration-300 ease-in-out overflow-hidden", "p-6 pt-0")}>
+            <div className="mb-4">
+              <ImageDisplay />
+            </div>
+          </CardContent>
         )}
         
-        {isCompact && !showMainToolButtons && phase.id !== 'phase2' && <div className="flex-grow"></div>}
+        <CardFooter className={cn(
+          "flex items-center gap-2", 
+          isCompact ? 'p-2 flex-row justify-end' : 'p-6 pt-0 flex-col sm:flex-row justify-between',
+          isTwoColumnLayout && "md:pt-3 mt-auto" // mt-auto pushes footer to bottom in 2-col
+        )}>
+          {showMainToolButtons && phase.id !== 'phase2' && phase.toolUrl && (
+            <div className={cn("flex gap-2", isCompact ? "flex-row" : "flex-col sm:flex-row w-full sm:w-auto")}>
+                <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn(isCompact ? "w-auto" : "w-full sm:w-auto")}>
+                <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
+                    <ToolIcon className="mr-2 h-4 w-4" />
+                    {phase.toolNameJsx || phase.toolName}
+                </a>
+                </Button>
+                {phase.extraAction && (
+                <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn(isCompact ? "w-auto" : "w-full sm:w-auto")}>
+                    <a href={phase.extraAction.url} target="_blank" rel="noopener noreferrer">
+                    <ExtraActionIcon className="mr-2 h-4 w-4" />
+                    {phase.extraAction.text}
+                    </a>
+                </Button>
+                )}
+            </div>
+          )}
+          
+          {isCompact && !showMainToolButtons && phase.id !== 'phase2' && <div className="flex-grow"></div>}
 
-        {phase.id !== 'phase2' && phase.id !== 'phase4' && hasPromptFile && !phase.isOptional && (
-          <Button
-            onClick={handleCopyPrompt}
-            disabled={!isPromptAvailable}
-            size={isCompact ? 'sm' : 'default'}
-            className={cn(isCompact ? "w-auto" : "w-full sm:w-auto", "bg-primary hover:bg-primary/90 text-primary-foreground")}
-          >
-            {!isPromptAvailable ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
-            {!isPromptAvailable ? 'Prompt Unavailable' : 'Copy Prompt'}
-          </Button>
-        )}
-      </CardFooter>
+          {phase.id !== 'phase2' && phase.id !== 'phase4' && hasPromptFile && !phase.isOptional && (
+            <Button
+              onClick={handleCopyPrompt}
+              disabled={!isPromptAvailable}
+              size={isCompact ? 'sm' : 'default'}
+              className={cn(isCompact ? "w-auto" : "w-full sm:w-auto", "bg-primary hover:bg-primary/90 text-primary-foreground")}
+            >
+              {!isPromptAvailable ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
+              {!isPromptAvailable ? 'Prompt Unavailable' : 'Copy Prompt'}
+            </Button>
+          )}
+        </CardFooter>
+      </div>
     </Card>
   );
 }
