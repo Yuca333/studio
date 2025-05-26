@@ -99,7 +99,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
   const ToolIcon = phase.toolIcon || ExternalLink;
   const ExtraActionIcon = phase.extraAction?.icon || Download;
 
-  const showMainToolButtons = !(phase.isOptional || !phase.toolUrl || phase.id === 'phaseA_error_handling');
+  const showMainToolButtons = !(phase.isOptional || !phase.toolUrl || phase.id === 'phaseA_error_handling' || phase.id === 'phase2' || phase.id === 'phase5' || phase.id === 'phase6');
   
   const isPromptAvailable = promptContent !== null && (!Array.isArray(promptContent) || promptContent.length > 0);
   const hasPromptFile = phase.promptFileName !== null && phase.id !== 'phaseA_error_handling';
@@ -186,7 +186,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
               />
             </div>
              {/* Row 2: Tool Button and Copy Button */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-end gap-2">
                 {phase.toolUrl && ( 
                 <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn("shrink-0", isCompact ? "h-8" : "h-10")}>
                     <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
@@ -210,9 +210,13 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
 
         {/* Image for Non-Portrait or (Non-Compact but not Portrait) */}
         {!isCompact && phase.imageSrc && !isTwoColumnLayout && (
-          <CardContent className={cn("transition-all duration-300 ease-in-out overflow-hidden", "p-6 pt-0", phase.id === 'phaseA_error_handling' && isCompact && "hidden")}>
-             {/* Hide content for optional phases in compact view */}
-            {!(isCompact && phase.isOptional) && (
+          <CardContent className={cn(
+            "transition-all duration-300 ease-in-out overflow-hidden", 
+            "p-6 pt-0", 
+            phase.isOptional && isCompact && "hidden", // Handles hiding for Phase A content specifically in compact
+            isCompact && "hidden" // General hide for images in compact non-PhaseA
+           )}>
+            {!(isCompact && phase.isOptional) && !(isCompact && !phase.isOptional) && ( // Show if not compact, or if it's Phase A and not compact
                 <div className="mb-4">
                     <ImageDisplay />
                 </div>
@@ -225,7 +229,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           isCompact ? 'p-2 flex-row justify-end' : 'p-6 pt-0 flex-col sm:flex-row justify-between',
           isTwoColumnLayout && "md:pt-3 mt-auto" 
         )}>
-          {showMainToolButtons && phase.id !== 'phase2' && phase.id !== 'phase5' && phase.id !== 'phase6' && phase.toolUrl && (
+          {showMainToolButtons && (
             <div className={cn("flex gap-2", isCompact ? "flex-row" : "flex-col sm:flex-row w-full sm:w-auto")}>
                 <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn(isCompact ? "w-auto" : "w-full sm:w-auto")}>
                 <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
@@ -262,4 +266,3 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
     </Card>
   );
 }
-
