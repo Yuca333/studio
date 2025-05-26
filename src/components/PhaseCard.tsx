@@ -110,13 +110,14 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
         )}
       </CardHeader>
 
-      {/* URL Input and Copy Prompt button row for Phase 2 */}
+      {/* URL Input, Copy Prompt button, and Tool Link button row for Phase 2 */}
       {phase.id === 'phase2' && (
         <div className={cn("flex items-end gap-2", isCompact ? "p-2 pt-0" : "px-6 pb-4")}>
+          {/* URL Input */}
           <div className="flex-grow space-y-1">
             <Label 
               htmlFor={`url-input-${phase.id}`} 
-              className={cn("font-medium", isCompact ? "text-xs" : "text-sm")} // Adjusted label size slightly for non-compact too
+              className={cn("font-medium", isCompact ? "text-xs" : "text-sm")}
             >
               Webseiten-URL für Analyse eingeben:
             </Label>
@@ -126,18 +127,28 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
               placeholder="z.B. https://www.beispielseite.de"
               value={urlInput}
               onChange={(e) => setUrlInput(e.target.value)}
-              className={cn(isCompact ? "h-8 text-xs px-2 py-1" : "h-10 text-base")} // Using h-10 for non-compact for consistency
+              className={cn(isCompact ? "h-8 text-xs px-2 py-1" : "h-10 text-base")}
             />
           </div>
+          {/* Copy Prompt Button for Phase 2 */}
           <Button
             onClick={handleCopyPrompt}
             disabled={!isPromptAvailable}
             size={isCompact ? 'sm' : 'default'}
-            className={cn("shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground", isCompact ? "h-8" : "h-10")} // Match height with input
+            className={cn("shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground", isCompact ? "h-8" : "h-10")}
           >
             {!isPromptAvailable ? <AlertTriangle className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
             {!isPromptAvailable ? (isCompact ? 'N/A' : 'Prompt Unavailable') : (isCompact ? 'Copy' : 'Copy Prompt')}
           </Button>
+          {/* Tool Link Button for Phase 2 */}
+          {showToolButtons && ( /* This condition is true for phase 2, kept for consistency */
+             <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn("shrink-0", isCompact ? "h-8" : "h-10")}>
+              <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
+                  <ToolIcon className="mr-2 h-4 w-4" />
+                  {phase.toolNameJsx || phase.toolName}
+              </a>
+            </Button>
+          )}
         </div>
       )}
 
@@ -156,7 +167,8 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
         )}
       </CardContent>
       <CardFooter className={cn("flex items-center gap-2", isCompact ? 'p-2 flex-row justify-end' : 'p-6 pt-0 flex-col sm:flex-row justify-between')}>
-        {showToolButtons && (
+        {/* Conditionally render tool buttons (and extra action) only if NOT phase 2 AND showToolButtons is true */}
+        {showToolButtons && phase.id !== 'phase2' && (
           <div className={cn("flex gap-2", isCompact ? "flex-row" : "flex-col sm:flex-row w-full sm:w-auto")}>
               <Button variant="outline" asChild size={isCompact ? 'sm' : 'default'} className={cn(isCompact ? "w-auto" : "w-full sm:w-auto")}>
               <a href={phase.toolUrl} target="_blank" rel="noopener noreferrer">
@@ -175,7 +187,6 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           </div>
         )}
         
-        {/* Spacer for compact view if tool buttons are hidden AND it's not Phase 2 (where copy button is moved) */}
         {isCompact && !showToolButtons && phase.id !== 'phase2' && <div className="flex-grow"></div>}
 
         {/* "Copy Prompt" button for phases OTHER THAN Phase 2 */}
