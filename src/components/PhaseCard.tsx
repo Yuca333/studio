@@ -189,8 +189,8 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
         
         {isCompact && !showToolButtons && phase.id !== 'phase2' && <div className="flex-grow"></div>}
 
-        {/* "Copy Prompt" button for phases OTHER THAN Phase 2 */}
-        {phase.id !== 'phase2' && (
+        {/* "Copy Prompt" button for phases OTHER THAN Phase 2 and Phase 4 */}
+        {phase.id !== 'phase2' && phase.id !== 'phase4' && (
           <Button
             onClick={handleCopyPrompt}
             disabled={!isPromptAvailable}
@@ -205,3 +205,4 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
     </Card>
   );
 }
+
