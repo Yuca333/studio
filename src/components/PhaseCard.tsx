@@ -103,12 +103,33 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           <div className={cn("flex-shrink-0 flex items-center justify-center rounded-full font-bold shadow", isCompact ? "h-6 w-6 text-xs bg-primary text-primary-foreground" : "h-10 w-10 text-lg bg-primary text-primary-foreground")}>
             {phaseNumber}
           </div>
-          <CardTitle className={cn("font-semibold", isCompact ? 'text-sm leading-tight' : 'text-2xl')}>{phase.headline}</CardTitle>
+          <CardTitle className={cn("font-semibold", isCompact ? 'text-sm leading-tight line-clamp-2' : 'text-2xl')}>{phase.headline}</CardTitle>
         </div>
         {!isCompact && phase.description && (
           <CardDescription className="pt-1 text-base">{phase.description}</CardDescription>
         )}
       </CardHeader>
+
+      {/* URL Input for Phase 2 - visible in both compact and non-compact views */}
+      {phase.id === 'phase2' && (
+        <div className={cn("px-6 space-y-1", isCompact ? "pb-2 pt-0" : "pb-4")}>
+          <Label 
+            htmlFor={`url-input-${phase.id}`} 
+            className={cn("font-medium", isCompact ? "text-xs" : "text-base")}
+          >
+            Webseiten-URL für Analyse eingeben:
+          </Label>
+          <Input
+            id={`url-input-${phase.id}`}
+            type="url"
+            placeholder="z.B. https://www.beispielseite.de"
+            value={urlInput}
+            onChange={(e) => setUrlInput(e.target.value)}
+            className={cn(isCompact ? "h-8 text-xs px-2 py-1" : "text-base")}
+          />
+        </div>
+      )}
+
       <CardContent className={cn("transition-all duration-300 ease-in-out overflow-hidden", isCompact ? "max-h-0 p-0 opacity-0" : "max-h-[1000px] p-6 pt-0 opacity-100")}>
         {phase.imageSrc && (
           <div className="mb-4 overflow-hidden rounded-md aspect-video relative shadow-md">
@@ -122,21 +143,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
             />
           </div>
         )}
-         {phase.id === 'phase2' && !isCompact && (
-          <div className="space-y-2 mt-4">
-            <Label htmlFor={`url-input-${phase.id}`} className="text-base font-medium">
-              Webseiten-URL für Analyse eingeben:
-            </Label>
-            <Input
-              id={`url-input-${phase.id}`}
-              type="url"
-              placeholder="z.B. https://www.beispielseite.de"
-              value={urlInput}
-              onChange={(e) => setUrlInput(e.target.value)}
-              className="text-base"
-            />
-          </div>
-        )}
+        {/* The URL input for Phase 2 was previously here and conditional on !isCompact. It has been moved. */}
       </CardContent>
       <CardFooter className={cn("flex items-center gap-2", isCompact ? 'p-2 flex-row justify-end' : 'p-6 pt-0 flex-col sm:flex-row justify-between')}>
         {showToolButtons && (
@@ -157,7 +164,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
               )}
           </div>
         )}
-        {isCompact && !showToolButtons && <div className="flex-grow"></div>}
+        {isCompact && !showToolButtons && <div className="flex-grow"></div>} {/* This ensures copy button stays right */}
         <Button
           onClick={handleCopyPrompt}
           disabled={!isPromptAvailable}
