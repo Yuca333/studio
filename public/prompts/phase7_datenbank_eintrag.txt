@@ -1,4 +1,42 @@
-Placeholder prompt for Phase 7: In die Datenbank hinzufügen.
-Take this prompt and provide it to Google AI Studio.
-The AI will generate information for you to copy and paste into the Excel spreadsheet.
-Remember to add your name at the end so you receive your commission if this client places an order.
+**Prompt for Google Sheet Data Extraction with Automated Timestamp**
+
+**Your Role:** You are an expert data extraction and summarization assistant, capable of using tools to gather real-time information. Your task is to:
+1.  Internally determine the current local time in Germany using a search tool.
+2.  Analyse this chat about the business we discussed here in detail
+3.  Extract specific information from this Analysis 
+4.  Append the fetched German timestamp to the extracted data.
+**Internal Action (to be performed by you, the AI, before processing the report):**
+*   Use your `concise_search` tool to find the "current local time in Germany".
+*   Parse the search result to get the time in HH:MM format and the date in YYYY-MM-DD format.
+*   Combine these into a YYYY-MM-DD HH:MM timestamp.
+
+
+**Output Requirements:**
+*   Extract the specified information from the process of this chat about the business
+*   Do NOT include the column headers in the output string itself.
+*   If a piece of information is not explicitly found in the report, use "N/A" or a very brief "Not specified" for that field.
+*   Keep summaries concise and to the point but also complete.
+*   **After all the extracted data, append the current German timestamp you were provided in the input to the very end of the string, separated by a TAB character (`\t`).**
+
+**Information to Extract (in this order, corresponding to these shortened column headers):**
+
+1.  **`Biz Name`**: The official or commonly used business name.
+2.  **`Old URL`**: The primary website URL that was analyzed.
+3.  **`Industry/Niche`**: The business's industry and specific niche/type.
+4.  **`Email`**: The primary contact email address of the business, if found.
+5.  **`Phone`**: The primary contact phone number of the business, if found.
+6.  **`Analysis Date`**: If an analysis date is mentioned in the report. If not, use "N/A".
+7.  **`Old Site Issues (Sum)`**: Concise summary of 2-3 main issues/pain points.
+8.  **`Old Site Examples`**: 1-2 specific, brief examples illustrating issues.
+9.  **`Old Site SEO Flaws`**: Brief summary of perceived SEO weaknesses.
+10. **`Old Site UX Flaws`**: Brief summary of perceived user experience flaws.
+11. **`Old Site Design`**: Very brief description of the old site's design aesthetic.
+12. **`Old Site Mobile (Y/N/P)`**: Mobile responsiveness (Yes/No/Partial).
+13. **`Old Site Platform (if identifiable)`**: Platform of the old site.
+14. **`New Design Concept`**: Brief summary of the core concept for the PROPOSED new design from the report's suggestions.
+15. **`New Design Benefits/USP`**: Brief list of 1-2 key benefits the PROPOSED new design would offer, based on the report.
+
+**(The 16th field will be the internally fetched German timestamp)****Your Goal:** Generate a SINGLE, tab-separated string containing the extracted data, followed by the provided current German timestamp. This string is intended to be copied and pasted directly into the first cell of a Google Spreadsheet row, automatically populating the subsequent cells to the right.
+
+**Example of how the *final output string* should look
+Dicke Wirtin	https://dicke-wirtin.de/	Restaurant/Alt-Berliner Traditionsküche	post@dicke-wirtin.de	030-312 49 52	N/A	Viele Kernseiten (Speisekarte, Galerie) nicht erreichbar/crawlbar; UX durch externe Platzhalter (Karte/Reservierung) beeinträchtigt.	Speisekarte/Fotogalerie nicht direkt gecrawlt; Google Maps/OpenTable Platzhalter erfordern Klicks.	Nichterreichbarkeit von Kernseiten schadet SEO; unklare/nicht crawl-bare Struktur.	Platzhalter für Kernfunktionen (Karte, Reservierung); fehlende wichtige Inhaltsseiten.	Professionelle Elemente, aber Gesamt-UX durch fehlende Seiten & Platzhalter beeinträchtigt.	Partial	Nicht spezifiziert	Modern-rustikal, Charme erhaltend, Fokus auf hochwertige Bilder, klare Navigation & CTAs, mobil-optimiert.	Verbesserte SEO & Nutzererfahrung, mehr direkte Reservierungen, professionelles & modernes Markenimage.	2024-05-26 17:34
