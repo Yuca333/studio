@@ -24,7 +24,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
   const [urlInput, setUrlInput] = useState('');
 
   const handleCopyPrompt = async () => {
-    if (promptContent === null && phase.promptFileName === null) {
+    if (promptContent === null && phase.promptFileName === null && phase.id !== 'phaseA_error_handling') {
       toast({
         title: 'No Prompt to Copy',
         description: 'This phase does not have an associated prompt.',
@@ -39,6 +39,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
       });
       return;
     }
+    if (phase.id === 'phaseA_error_handling') return; // No prompt for error handling phase
 
     let textToCopy: string | null = null;
 
@@ -87,7 +88,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           description: 'Could not copy prompt to clipboard.',
         });
       }
-    } else if (phase.promptFileName !== null) { // This case handles if promptContent is an empty array or still null after checks
+    } else if (phase.promptFileName !== null) { 
       toast({
         variant: 'destructive',
         title: 'Prompt Not Available',
@@ -99,10 +100,10 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
   const ToolIcon = phase.toolIcon || ExternalLink;
   const ExtraActionIcon = phase.extraAction?.icon || Download;
 
-  const showMainToolButtons = !(phase.id === 'phase5' || phase.id === 'phase6' || phase.isOptional || !phase.toolUrl);
+  const showMainToolButtons = !(phase.id === 'phase5' || phase.id === 'phase6' || phase.isOptional || !phase.toolUrl || phase.id === 'phaseA_error_handling');
   
   const isPromptAvailable = promptContent !== null && (!Array.isArray(promptContent) || promptContent.length > 0);
-  const hasPromptFile = phase.promptFileName !== null;
+  const hasPromptFile = phase.promptFileName !== null && phase.id !== 'phaseA_error_handling';
 
   const getImageAspectRatioClass = () => {
     switch (phase.imageAspectRatio) {
@@ -127,7 +128,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
         style={{ objectFit: 'cover' }}
         data-ai-hint={phase.dataAiHint}
         sizes={isTwoColumnLayout 
-               ? "(max-width: 767px) 100vw, 280px" // For md breakpoint, image width is 280px
+               ? "(max-width: 767px) 100vw, 280px" 
                : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               }
       />
@@ -146,10 +147,10 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
         </div>
       )}
 
-      <div className={cn("flex flex-col flex-grow", isTwoColumnLayout && "min-w-0")}> {/* min-w-0 for flex child issues */}
+      <div className={cn("flex flex-col flex-grow", isTwoColumnLayout && "min-w-0")}>
         <CardHeader className={cn(
           isCompact ? 'p-2 pr-3' : 'p-6',
-          isTwoColumnLayout && 'md:pb-3' // Reduce bottom padding if image is on left
+          isTwoColumnLayout && 'md:pb-3' 
         )}>
           <div className={cn("flex items-center gap-3", isCompact ? "mb-0" : "mb-1")}>
             <div className={cn("flex-shrink-0 flex items-center justify-center rounded-full font-bold shadow", isCompact ? "h-6 w-6 text-xs bg-primary text-primary-foreground" : "h-10 w-10 text-lg bg-primary text-primary-foreground")}>
@@ -162,17 +163,17 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
           )}
         </CardHeader>
 
-        {/* URL Input, Tool Link button, and Copy Prompt button row for Phase 2 */}
         {phase.id === 'phase2' && (
           <div className={cn(
             "flex items-end gap-2", 
             isCompact ? "p-2 pt-0" : "px-6 pb-4",
-            isTwoColumnLayout && "md:px-6 md:pt-0 md:pb-4" // Ensure padding is correct in 2-col
+            isTwoColumnLayout && "md:px-6 md:pt-0 md:pb-4" 
           )}>
-            <div className="flex-grow space-y-1">
+            {/* Container for Label and Input - now horizontal */}
+            <div className="flex flex-grow items-center gap-x-2"> 
               <Label 
                 htmlFor={`url-input-${phase.id}`} 
-                className={cn("font-medium", isCompact ? "text-xs" : "text-sm")}
+                className={cn("font-medium whitespace-nowrap", isCompact ? "text-xs" : "text-sm")}
               >
                 Webseiten-URL für Analyse eingeben:
               </Label>
@@ -182,7 +183,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
                 placeholder="z.B. https://www.beispielseite.de"
                 value={urlInput}
                 onChange={(e) => setUrlInput(e.target.value)}
-                className={cn(isCompact ? "h-8 text-xs px-2 py-1" : "h-10 text-base")}
+                className={cn(isCompact ? "h-8 text-xs px-2 py-1" : "h-10 text-base", "w-full")}
               />
             </div>
             {phase.toolUrl && ( 
@@ -217,7 +218,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
         <CardFooter className={cn(
           "flex items-center gap-2", 
           isCompact ? 'p-2 flex-row justify-end' : 'p-6 pt-0 flex-col sm:flex-row justify-between',
-          isTwoColumnLayout && "md:pt-3 mt-auto" // mt-auto pushes footer to bottom in 2-col
+          isTwoColumnLayout && "md:pt-3 mt-auto" 
         )}>
           {showMainToolButtons && phase.id !== 'phase2' && phase.toolUrl && (
             <div className={cn("flex gap-2", isCompact ? "flex-row" : "flex-col sm:flex-row w-full sm:w-auto")}>
