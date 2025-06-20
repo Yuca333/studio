@@ -40,3 +40,5 @@
 
 **Example of how the *final output string* should look
 Dicke Wirtin	https://dicke-wirtin.de/	Restaurant/Alt-Berliner Traditionsküche	post@dicke-wirtin.de	030-312 49 52	N/A	Viele Kernseiten (Speisekarte, Galerie) nicht erreichbar/crawlbar; UX durch externe Platzhalter (Karte/Reservierung) beeinträchtigt.	Speisekarte/Fotogalerie nicht direkt gecrawlt; Google Maps/OpenTable Platzhalter erfordern Klicks.	Nichterreichbarkeit von Kernseiten schadet SEO; unklare/nicht crawl-bare Struktur.	Platzhalter für Kernfunktionen (Karte, Reservierung); fehlende wichtige Inhaltsseiten.	Professionelle Elemente, aber Gesamt-UX durch fehlende Seiten & Platzhalter beeinträchtigt.	Partial	Nicht spezifiziert	Modern-rustikal, Charme erhaltend, Fokus auf hochwertige Bilder, klare Navigation & CTAs, mobil-optimiert.	Verbesserte SEO & Nutzererfahrung, mehr direkte Reservierungen, professionelles & modernes Markenimage.	2024-05-26 17:34
+
+put it into markdown where i can copy it from and paste it into a google doc so that it fills automatically all the fields to the right correctly. 
