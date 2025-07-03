@@ -1,57 +1,451 @@
-Primary Target URL for Analysis: PLACEHOLDER
-Task:
-As an expert web content analyst and SEO specialist, your task is to provide a comprehensive overview of the website at the Primary Target URL. This analysis should be tailored for a web developer who will be creating a new website (or significantly updating an existing one) for the same business. Pay close attention to capturing the essence and unique characteristics of the business. Your output should be an analytical report and a requirements outline; do NOT attempt to generate a mock-up, wireframe, or prototype of the new website itself.
-Follow these steps meticulously:
-Website Crawling and Content Extraction Strategy:
-a. Initial Homepage Browse: Use the browse tool on the Primary Target URL to attempt to retrieve its full HTML content.
-Note on Tool Limitations: Be aware that the browse tool may not always return full, easily parsable HTML, especially for sites heavily reliant on JavaScript for content or link rendering. If full HTML for link discovery is not obtained, this will be noted, and fallback methods will be prioritized.
-b. Internal Link Discovery - Methodical Approach:
-i. Primary - Parse Homepage HTML: If full HTML was retrieved in step 1a (or if the user provided homepage HTML for this specific analysis run), meticulously examine it for internal navigation links. Focus on <nav> elements, <ul> or <ol> lists within headers or designated menu areas, and footer links. Extract href attributes from <a> tags pointing to internal pages (URLs on the same domain). List all discovered navigation link texts and their corresponding URLs.
-ii. Fallback 1 - Re-Browse Homepage for Menu Text (if link extraction failed): If step 1b.i fails to yield clear navigation links (e.g., if browse returned a summary without linkable HTML), re-attempt to browse the homepage with a specific query asking it to identify the text content of list items (<li>) within <nav> or header elements that seem to constitute the main menu. This helps identify potential page names even if direct URLs aren't initially extractable.
-iii. Fallback 2 - site: Search: If primary navigation links are still unclear or incomplete, use the concise_search tool with the query site:[TARGET_URL_HERE] to discover indexed pages. Add these to your list of potential internal URLs to investigate.
-iv. Fallback 3 - Sitemap Check:
-Attempt to browse [TARGET_URL_HERE]/robots.txt. If successful and it contains a Sitemap: directive, extract that sitemap URL.
-Attempt to browse the sitemap URL found (e.g., sitemap.xml, sitemap_index.xml). If a sitemap is found and successfully browsed, attempt to parse it for further internal URLs and add them to your list. Explicitly state if the sitemap browse was successful and if you were able to parse URLs from it. If parsing fails, note this.
-v. Fallback 4 - Common Page Probing (Limited & Prioritized): If key business sections (like Services, About, Portfolio, Contact) are still missing after the above steps, attempt to browse a maximum of 4-5 highly common page slugs. Prioritize:
-German sites: /leistungen, /ueber-uns (or /wir-ueber-uns), /kontakt, /projekte (or /referenzen, /portfolio, /galerie).
-English sites: /services, /about (or /about-us), /contact, /portfolio (or /projects, /gallery).
-Clearly state that these are speculative attempts.
-vi. Standard Pages: Regardless of other findings, specifically attempt to locate and add "Impressum" (or "Imprint," "Legal Notice") and "Datenschutz" (or "Privacy Policy") pages to your browsing list, typically found in footers or via methods above.
-c. Reporting Link Discovery: In your final report, clearly state which method(s) (Homepage HTML parsing, Homepage Menu Text query, site: search, Sitemap, Common Slugs) were primarily used to compile the list of internal URLs that were subsequently browsed, and which method yielded the most comprehensive list of navigation items.
-d. Sub-Page Browsing: Sequentially use the browse tool on each of the distinct internal URLs discovered. If browsing a specific URL fails (e.g., 404 error) or returns minimal/irrelevant content, note this failure and proceed to the next URL. Compile a list of all successfully browsed URLs that yielded meaningful content.
-Gather and Summarize Content of Each Successfully Browsed Page:
-a. For each successfully browsed page that yielded meaningful content:
-i. Extract all user-visible text content. This includes text within headings (<h1>-<h6>), paragraphs (<p>), lists (<li>), table cells (<td>, <th>), footers, and any text in prominent sections or within modal/pop-up dialogs if their content is present in the static HTML.
-ii. Note the page title (from the <title> tag or a primary <h1> heading) associated with each distinct page's content.
-iii. Provide a complete overview of the purpose and key topics covered on that specific page. When describing content (like on a contact page), specifically note if elements like map embeds or interactive forms are mentioned or seem to be present, even if their full interactive content isn't extractable by the browse tool.
-Identify Key Themes and Business Characteristics:
-a. Based on all successfully browsed pages, identify major themes, core services offered, products (if any), and unique value propositions (USPs).
-b. Business Name Identification: From the content of the browsed pages (e.g., homepage title, main headings, "About Us" section, or "Impressum"), identify and state the official business name. If multiple variations are used (e.g., "Friseur Honsell" and "Friseur Stefan Honsell"), note both.
-c. What makes this business special or different from its competitors? This section should be detailed, drawing from all extracted content.
-Extract and Integrate Relevant Image URLs:
-a. From the HTML of all successfully browsed pages, identify 2-3 <img> tags that are visually representative of the business/offerings.
-b. Extract their full, direct src attributes (absolute URLs).
-c. If direct src attributes are elusive from <img> tags, but image filenames or descriptive alt text, captions, or image credits (e.g., in Impressum) are found in the HTML, note these as strong indicators of images. Also, check for CSS background images if <style> tags or inline styles are accessible and easily parsable for background-image: url(...).
-d. Note the page and context. Integrate URLs/descriptions. If no images or strong indicators are found, state this clearly.
-Analyze Website Structure and Navigation:
-a. Describe the website structure: number of successfully browsed pages, identified top-level navigation items (based on actual link discovery from HTML menu structures, sitemap, or site: search, not just guesses).
-b. Page Organization: How are pages linked? Is a hierarchy apparent (e.g., main items with sub-pages)?
-c. Navigation Intuition: Based on link text and discovered structure, is navigation likely intuitive?
-d. Gaps/Issues: Any missing expected pages (e.g., "Services," "Portfolio" if not found despite attempts) or poorly integrated sections?
-e. Color/Font Estimation: Inspect HTML of key pages for inline styles, <style> blocks, or CSS links. Note potential font-family, color, background-color indicators. Acknowledge this is an estimation based on code inspection.
-Evaluate from a Web Developer's Perspective:
-a. Strengths of current site's content/structure.
-b. Weaknesses/areas for technical, structural, or content presentation improvement (consider mobile-friendliness from viewport tags, modern standards, content discoverability, and any issues noted from failed browse attempts).
-Outline Website Content Requirements for Web Developer (PRD Style):
-a. Provide a clear, actionable outline of content sections and specific information for the new website.
-b. Use PRD best practices, focusing on content needs.
-c. Recommend reuse of good existing text, possibly with improved formatting/structure, per modern web design/UX.
-Highlight Opportunities for Improvement:
-a. List key opportunities for enhancing effectiveness (SEO, UX, content depth, visuals, CTAs, interactivity, accessibility).
-Format the Output:
-a. Use clear, professional German headings/subheadings.
-b. Page summaries: list format, identified by title/main heading.
-c. Bullet points for themes, images, requirements, opportunities.
-d. Include the identified Business Name and the Primary Target URL at the start.
-Deliver the output in a single, well-organized document.
-The first and the last sentence of the report must be your confidence score (e.g., "Confidence / completion score of the task: X%") regarding your ability to comprehensively analyze the website based on these instructions and your tool's capabilities. Briefly justify the score based on the success of the link discovery and content extraction phases, noting any significant limitations encountered with the tools.
+# Optimized Website Analysis Prompt for Lovable.dev PRD Generation
+
+## Primary Target URL for Analysis: PLACEHOLDER
+
+## Confidence Scoring Guidelines
+
+**Your analysis must generate a Lovable.dev-ready PRD. Incomplete analysis should be discarded.**
+
+**Minimum Requirements for Acceptable Analysis (70%+ confidence):**
+- Complete business identity and service extraction
+- Best-in-class competitor inspiration identified and analyzed
+- Lovable.dev-specific component and layout specifications
+- Clear visual design direction with specific examples
+- Comprehensive content strategy with exact copy examples
+
+**Confidence Scoring:**
+- **90-100%**: Complete content extraction + best-in-class competitor analysis + detailed Lovable.dev specifications
+- **80-89%**: Substantial content + solid competitor research + good Lovable.dev requirements
+- **70-79%**: Adequate content + basic competitor analysis + basic Lovable.dev specs
+- **Below 70%**: INSUFFICIENT - Analysis should be discarded
+
+## Task Overview
+
+As an expert web analyst and Lovable.dev specialist, create a comprehensive PRD that will enable Lovable.dev to build an exceptional website in the first 2-3 prompts. Focus on extracting the essence of the original business while incorporating best-in-class design and content strategies from industry leaders.
+
+**Critical Success Factors:**
+- Generate Lovable.dev-ready component specifications
+- Identify and analyze the absolute best competitor websites globally (not just locally)
+- Create detailed visual design direction with specific examples
+- Provide exact copy and content that preserves brand voice
+- Structure output for immediate Lovable.dev implementation
+
+## Phase 1: Target Business Analysis
+
+### Step 1: Complete Original Content Extraction
+**Success Metric**: 100% original content preservation with complete business characterization
+
+1. **Browse Primary Target URL**
+2. **Extract ALL Original Content Verbatim**:
+   - Complete business name, tagline, and slogan (exact wording)
+   - ALL headlines and subheadings (H1-H6) word-for-word
+   - Complete service descriptions (every sentence, preserving original phrasing)
+   - Full "About Us" content including company history, mission, vision
+   - ALL testimonials, reviews, and customer quotes (complete text)
+   - Contact information, business hours, addresses (exact formatting)
+   - Pricing information, packages, service tiers (original descriptions)
+   - Navigation menu items and footer content (exact text)
+   - Call-to-action language and button text (every variation)
+   - Legal text, disclaimers, certifications mentioned
+   - Team member descriptions and bios if present
+   - Any unique selling propositions or guarantees (original language)
+   - Process descriptions, methodology explanations
+   - FAQ content if available
+   - Any special offers, promotions, or unique programs
+
+3. **Brand Voice Preservation Analysis**:
+   - Identify recurring phrases and terminology the business uses
+   - Note specific industry language or technical terms they prefer
+   - Analyze tone: formal/casual, technical/simple, friendly/professional
+   - Document any unique personality traits in the writing
+   - Identify key messaging themes and how they're expressed
+   - Note any local/regional language characteristics
+   - Capture any humor, catchphrases, or memorable expressions
+
+### Step 2: Visual Asset Extraction and Site Architecture
+**Success Metric**: Complete visual inventory and site structure understanding
+
+1. **Critical Image URL Extraction**:
+   - **Hero/Header Images**: Extract direct URLs from main banner/hero sections
+   - **Logo Images**: Company logo variations and brand marks
+   - **Service Images**: Key images representing main services/products
+   - **Team/About Images**: Professional photos of staff, office, or facilities
+   - **Gallery/Portfolio Images**: Work examples or showcase images
+   - **Background Images**: Important background visuals or patterns
+   
+   **For each image URL extracted**:
+   - Document the source URL (complete https:// link)
+   - Note the context where it's used (hero, about, services, etc.)
+   - Record any alt text or captions associated with the image
+   - Identify the image's role in the brand presentation
+   - Note image dimensions and aspect ratios if visible
+   - Capture any overlay text or call-to-actions on images
+
+2. **Page Discovery and Content Mapping**:
+   - Extract all navigation links from homepage
+   - Use web search "site:[TARGET_DOMAIN]" for additional pages
+   - Test common page paths: /services, /about, /contact, /pricing, /portfolio
+   - **For each discovered page, extract ALL content**:
+     - Complete page titles and meta descriptions
+     - All headlines, subheadings, and body text
+     - Service descriptions, pricing, processes
+     - Contact forms, field labels, and instructions
+     - Any page-specific images and their contexts
+     - Unique content that adds to the business story
+
+## Phase 2: Best-in-Class Competitor Analysis
+
+### Step 3: Global Excellence Identification
+**Success Metric**: Find the absolute best websites in this business niche globally
+
+**Research Strategy**:
+1. **Search for Industry Leaders**:
+   - "[business industry] best website design"
+   - "[business industry] award winning websites"
+   - "[business industry] website inspiration"
+   - "top [business industry] companies website"
+
+2. **Identify 3-5 Best-in-Class Examples**:
+   - Prioritize websites with exceptional design and UX
+   - Look for industry awards or recognition
+   - Focus on businesses with strong online presence
+   - Include both similar-sized and aspirational larger companies
+
+### Step 4: Best-in-Class Analysis for Lovable.dev
+**Success Metric**: Detailed analysis of superior design and content strategies
+
+For each top competitor:
+
+1. **Visual Design Excellence**:
+   - Layout structure and grid systems
+   - Color palette and brand application
+   - Typography hierarchy and font choices
+   - Image treatment and visual style
+   - White space and visual rhythm
+   - Interactive elements and micro-animations
+
+2. **Content Strategy Analysis**:
+   - Headline formulas and messaging approaches
+   - Service description depth and structure
+   - Social proof presentation and integration
+   - Call-to-action positioning and language
+   - Information architecture and user flow
+   - Trust-building elements and credibility indicators
+
+3. **Component-Level Analysis**:
+   - Hero section design and content structure
+   - Service cards/blocks layout and content
+   - About section storytelling approach
+   - Contact form design and fields
+   - Footer structure and content
+   - Navigation design and organization
+
+4. **Conversion Optimization Elements**:
+   - Lead capture strategies and placement
+   - Pricing presentation and psychology
+   - Customer journey optimization
+   - Mobile-first design approaches
+   - Performance and loading strategies
+
+## Phase 3: Lovable.dev PRD Generation
+
+### Step 5: Lovable.dev Component Specifications
+**Success Metric**: Detailed component requirements ready for immediate development
+
+#### **Hero Section Specification**:
+```
+Component: Hero Section
+- Layout: [Specific layout from best competitor example]
+- Original Headline: "[EXACT original headline from website]"
+- Optimized Headline: "[Enhanced version preserving original voice]"
+- Original Subheadline: "[EXACT original subheadline/tagline]"
+- Optimized Subheadline: "[Enhanced version maintaining brand voice]"
+- Original CTA: "[Exact original button/link text]"
+- Optimized CTA: "[Enhanced version preserving intent]"
+- Background Image: [URL of original hero image if extracted]
+- Alternative Images: [URLs of other suitable images if hero not available]
+- Visual Elements: [Icons, graphics, or animations to include]
+- Brand Voice Notes: [Specific phrases/terminology that must be preserved]
+```
+
+#### **Services Section Specification**:
+```
+Component: Services Grid/Cards
+- Layout: [Grid structure inspired by best competitor]
+- Original Services Listed: 
+  * Service 1: "[EXACT original service name and description]"
+  * Service 2: "[EXACT original service name and description]"
+  * Service 3: "[EXACT original service name and description]"
+- Optimized Service Presentations:
+  * Service 1: "[Enhanced description maintaining original voice]"
+  * Service 2: "[Enhanced description maintaining original voice]"
+  * Service 3: "[Enhanced description maintaining original voice]"
+- Service Images: [URLs of any service-related images extracted]
+- Original CTAs: "[Exact original call-to-action text for services]"
+- Visual Style: [Color, spacing, hover effects from best practice]
+- Brand Terminology: [Industry-specific terms the business uses]
+```
+
+#### **About Section Specification**:
+```
+Component: About Section
+- Layout: [Structure from best competitor example]
+- Original About Content: "[COMPLETE original about text, word-for-word]"
+- Optimized About Content: "[Enhanced version preserving all key information and personality]"
+- Original Company Story: "[Any company history, mission, or vision statements]"
+- Team Information: "[Any team member descriptions or bios]"
+- Team Images: [URLs of team photos or facility images]
+- Trust Indicators: "[Original certifications, awards, years in business mentioned]"
+- Brand Personality: "[Specific personality traits evident in original content]"
+- Local References: "[Any local community connections or regional focus]"
+```
+
+#### **Contact Section Specification**:
+```
+Component: Contact Form + Information
+- Original Contact Info: "[EXACT original contact details, hours, address]"
+- Original Form Fields: "[Any existing contact form fields and labels]"
+- Optimized Form Design: [Enhanced form based on best practices]
+- Contact Images: [URLs of location images, maps, or contact-related visuals]
+- Original Contact Copy: "[Any contact page specific messaging or instructions]"
+- Business Hours: "[Exact original hours and availability information]"
+- Location Details: "[Complete address, service area, directions if provided]"
+```
+
+#### **Additional Content Sections**:
+```
+Component: [Any other sections found - FAQ, Testimonials, Portfolio, etc.]
+- Original Content: "[COMPLETE original content from these sections]"
+- Customer Testimonials: "[EXACT testimonials with customer names/locations]"
+- Reviews/Social Proof: "[Any reviews, ratings, or social proof mentioned]"
+- Portfolio/Gallery: "[Work examples, case studies, or portfolio pieces]"
+- Gallery Images: [URLs of portfolio or gallery images]
+- Pricing Information: "[Any pricing, packages, or cost information]"
+- Process/Methodology: "[How they work, their approach, or process descriptions]"
+```
+
+### Step 6: Visual Design Direction for Lovable.dev
+**Success Metric**: Specific design specifications that Lovable.dev can implement immediately
+
+#### **Color Palette**:
+- Primary Colors: [Hex codes from best competitor analysis]
+- Secondary Colors: [Supporting palette]
+- Accent Colors: [For CTAs and highlights]
+- Neutral Colors: [Text and background colors]
+
+#### **Typography System**:
+- Primary Font: [Specific font family from best practice]
+- Secondary Font: [For headings or accents]
+- Font Sizes: [H1-H6 and body text specifications]
+- Font Weights: [Bold, regular, light specifications]
+
+#### **Layout and Spacing**:
+- Grid System: [Column structure from best competitor]
+- Container Widths: [Max-width specifications]
+- Spacing Scale: [Margin and padding system]
+- Responsive Breakpoints: [Mobile, tablet, desktop specifications]
+
+#### **Visual Elements**:
+- Button Styles: [Specific button designs from best practice]
+- Card Designs: [Shadow, border, hover effects]
+- Icon Style: [Solid, outline, or custom icon approach]
+- Image Treatment: [Aspect ratios, filters, overlay styles]
+
+### Step 7: Content Strategy for Lovable.dev
+**Success Metric**: Exact copy and content structure ready for implementation
+
+#### **Original Content Preservation**:
+- **Complete Text Bank**: [ALL original text content organized by section]
+- **Brand Voice Characteristics**: [Specific language patterns, tone, personality traits]
+- **Key Messaging**: [Core messages that must be preserved and enhanced]
+- **Industry Terminology**: [Specific technical terms or industry language used]
+- **Local/Regional Elements**: [Any location-specific content or community connections]
+- **Unique Phrases**: [Memorable expressions, catchphrases, or unique descriptions]
+
+#### **Visual Asset Integration**:
+- **Hero/Header Images**: [Complete URLs with context and usage notes]
+- **Service Images**: [URLs with descriptions of what each image represents]
+- **Team/About Images**: [Professional photos with context and placement notes]
+- **Portfolio/Gallery Images**: [Work examples with descriptions and placement]
+- **Brand Assets**: [Logo variations and brand-related images]
+- **Background/Accent Images**: [Supporting visual elements and their contexts]
+
+#### **Enhanced Copy Strategy**:
+- **Original Headlines**: [Exact original headlines with optimization suggestions]
+- **Original Descriptions**: [Complete service/product descriptions with enhancement notes]
+- **Original CTAs**: [All call-to-action text with optimization alternatives]
+- **Original About Content**: [Complete about section with narrative enhancement suggestions]
+- **Original Contact Copy**: [Contact page messaging with improvement notes]
+- **Original Testimonials**: [Complete customer testimonials and reviews]
+
+#### **Content Organization**:
+- **Page Structure**: [Exact section order and hierarchy]
+- **Content Blocks**: [Modular content pieces for flexibility]
+- **SEO Copy**: [Title tags, meta descriptions, alt text]
+- **Social Proof**: [Testimonials, reviews, case studies]
+
+## Phase 4: Lovable.dev Implementation Guide
+
+### Step 8: First Prompt Optimization
+**Success Metric**: Everything needed for Lovable.dev's first development prompt
+
+#### **Prompt 1 - Foundation with Original Content**:
+```
+Business Context:
+- Business Name: [Exact name]
+- Original Tagline: "[Exact original tagline/slogan]"
+- Industry: [Industry with original business descriptions]
+- Services: [Original service names and descriptions]
+- Target Audience: [Customer segments from original content]
+- Brand Voice: [Specific tone characteristics from original text]
+- Original Key Messages: [Core messages that must be preserved]
+
+Visual Assets to Include:
+- Hero Image: [Direct URL of main hero/header image]
+- Logo: [Direct URL of logo if extracted]
+- Service Images: [URLs of key service-related images]
+- About Images: [URLs of team/facility images]
+
+Design Requirements:
+- Visual Style: [Design direction inspired by best competitor]
+- Color Palette: [Exact hex codes based on analysis]
+- Typography: [Font specifications from best practice]
+- Layout: [Grid and spacing system from competitors]
+
+Original Content to Preserve:
+- Hero Section: "[EXACT original headline and subheadline]"
+- Services: "[EXACT original service descriptions]"
+- About: "[EXACT original about content]"
+- Contact: "[EXACT original contact information and messaging]"
+
+Enhancement Direction:
+- Maintain all original information and personality
+- Improve visual presentation using best competitor layouts
+- Enhance readability while preserving brand voice
+- Add modern design elements without losing business character
+```
+
+#### **Prompt 2 - Content Enhancement and Image Integration**:
+```
+Content Enhancement Tasks:
+- Integrate all extracted images with proper context:
+  * Hero image: [URL] for main banner section
+  * Service images: [URLs] for respective service sections
+  * About images: [URLs] for team/company story section
+  * Portfolio images: [URLs] for work examples if applicable
+
+Original Content Optimization:
+- Take original headline: "[EXACT TEXT]" and enhance readability while maintaining meaning
+- Take original services: "[EXACT DESCRIPTIONS]" and improve formatting while keeping all information
+- Take original about content: "[EXACT TEXT]" and enhance storytelling while preserving personality
+- Take original testimonials: "[EXACT TESTIMONIALS]" and present them more effectively
+
+Functionality Requirements:
+- Contact form using original field preferences
+- Responsive design for all original content
+- SEO optimization preserving original keywords and phrases
+- Performance optimization for all integrated images
+```
+
+#### **Prompt 3 - Final Polish and Brand Consistency**:
+```
+Brand Consistency Check:
+- Verify all original business information is preserved
+- Ensure brand voice matches original tone throughout
+- Confirm all extracted images are properly integrated
+- Validate that owner will recognize their original content
+
+Enhancement Requests:
+- Add micro-animations that complement the brand personality
+- Implement advanced responsive design for all content sections
+- Add conversion optimization while maintaining original messaging
+- Include any missing original content sections
+- Polish image presentations and loading optimization
+
+Final Quality Assurance:
+- All original text content must be recognizable to business owner
+- All extracted images must be properly integrated and optimized
+- Enhanced design must feel like a premium version of the original
+- Business personality and voice must be completely preserved
+```
+
+### Step 9: Quality Assurance Checklist
+**Success Metric**: Comprehensive requirements validation
+
+#### **Completeness Check**:
+- [ ] ALL original content extracted and preserved verbatim
+- [ ] 3-6 key images with direct URLs extracted and catalogued
+- [ ] Business owner would recognize their original content throughout
+- [ ] Brand voice and personality completely preserved
+- [ ] All original services, descriptions, and messaging maintained
+- [ ] Best-in-class design elements identified and specified
+- [ ] Lovable.dev components fully defined with original content integration
+- [ ] Visual design direction complete with image URL specifications
+- [ ] Enhanced content strategy maintains original business character
+- [ ] Implementation guidance structured for immediate use with assets
+
+#### **Lovable.dev Readiness**:
+- [ ] Original content is word-for-word preserved with enhancement directions
+- [ ] All extracted image URLs are ready for direct integration
+- [ ] Component specifications include both original and enhanced versions
+- [ ] Design requirements include exact measurements, colors, and image placements
+- [ ] Content preserves business personality while improving presentation
+- [ ] Technical requirements include all original visual assets
+- [ ] First 3 prompts will create a recognizable but improved version of original site
+
+## Output Format Requirements
+
+### PRD Structure for Lovable.dev:
+
+1. **Executive Summary**: Business overview + design direction
+2. **Business Analysis**: Complete brand and service characterization
+3. **Best-in-Class Inspiration**: Top competitor analysis with specific examples
+4. **Lovable.dev Component Specifications**: Detailed technical requirements
+5. **Visual Design System**: Complete design specifications
+6. **Content Strategy**: Exact copy and messaging
+7. **Implementation Guide**: First 3 Lovable.dev prompts structured
+8. **Quality Checklist**: Validation that all requirements are met
+
+### Formatting Standards:
+- Use clear headings and subheadings for easy navigation
+- Include specific measurements, colors, and technical specifications
+- Provide exact copy and content, not just outlines
+- Structure for immediate Lovable.dev implementation
+- Include code snippets or component examples where helpful
+
+## Advanced Research Techniques
+
+### When Standard Approaches Fail:
+
+1. **Content Extraction Challenges**:
+   - Search "[business name] + about" for external descriptions
+   - Check cached versions: "cache:site:[URL]"
+   - Look for PDF brochures or marketing materials
+   - Search social media for business descriptions
+
+2. **Competitor Research Enhancement**:
+   - Use "[industry] + website + award" searches
+   - Look for "best [industry] websites 2024" articles
+   - Search design galleries and showcases
+   - Check industry association websites for examples
+
+3. **Visual Design Research**:
+   - Search "[industry] + website + design + inspiration"
+   - Look for Dribbble, Behance, or Awwwards examples
+   - Find color palette and typography inspiration
+   - Research component libraries and design systems
+
+## Final Confidence Assessment
+
+**First sentence**: "Confidence/completion score: X%"
+**Last sentence**: "Confidence/completion score: X% - [justification based on completeness for Lovable.dev implementation]"
+
+## Success Criteria
+
+A successful PRD will enable Lovable.dev to:
+1. **Preserve Original Business Character** - Owner recognizes their content and voice throughout
+2. **Integrate Original Images** - All extracted images properly placed and optimized
+3. **Build Enhanced Foundation** - First prompt creates improved version of original site
+4. **Maintain Brand Authenticity** - All original messaging, services, and personality preserved
+5. **Implement Best-in-Class Design** - Superior visual presentation without losing business identity
+6. **Create Seamless Recognition** - Business owner sees their improved website, not a replacement
