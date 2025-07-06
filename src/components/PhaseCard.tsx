@@ -99,7 +99,7 @@ export default function PhaseCard({ phase, phaseNumber, isCompact, promptContent
   const ToolIconComponent = phase.toolIcon || ExternalLink;
   const ExtraActionIcon = phase.extraAction?.icon || Download;
 
-  const showMainToolButtons = !(phase.isOptional || !phase.toolUrl || phase.id === 'phaseA_error_handling' || phase.id === 'phase2' || phase.id === 'phase5' || phase.id === 'phase5b' || phase.id === 'phase6');
+  const showMainToolButtons = !(phase.isOptional || !phase.toolUrl || phase.id === 'phaseA_error_handling' || phase.id === 'phase2' || phase.id === 'phase5' || phase.id === 'phase5b' || phase.id === 'phase5c' || phase.id === 'phase6');
   
   const isPromptAvailable = promptContent !== null && (!Array.isArray(promptContent) || promptContent.length > 0);
   const hasPromptFile = phase.promptFileName !== null && phase.id !== 'phaseA_error_handling';
