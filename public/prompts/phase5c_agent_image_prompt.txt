@@ -1,1 +1,163 @@
-Erstelle einen professionellen und freundlichen Avatar für einen KI-Assistenten auf einer Webseite. Der Agent sollte vertrauenswürdig und zugänglich aussehen. Der Stil sollte modern und sauber sein und zu einer professionellen Unternehmenswebseite passen. Der Hintergrund sollte einfach sein, vielleicht ein sanfter Farbverlauf oder eine einfarbige Farbe, die zur Unternehmensmarke passt. Vermeide übermäßig roboterhafte oder futuristische Klischees. Der Agent sollte hilfsbereit und intelligent wirken.
+
+Using your advanced Agent Mode capabilities, analyze the existing website and strategically integrate 1-2 high-impact, custom-generated images that will significantly enhance business credibility, user engagement, and conversion potential. Focus on areas where visual elements can replace or enhance text-heavy content with maximum strategic impact.
+STEP 1: COMPREHENSIVE BUSINESS & TECHNICAL ANALYSIS
+Business Intelligence Gathering
+
+Deep Content Analysis: Read through all existing website content to understand the business positioning, target audience, and unique value propositions
+Competitive Context: Analyze the industry and identify visual opportunities that differentiate this business from competitors
+User Journey Mapping: Identify critical decision points where users need additional confidence or clarity to proceed
+Trust Signal Assessment: Determine what credibility markers this business needs to communicate visually
+
+Technical Architecture Investigation
+
+Codebase Analysis: Examine existing React components, shadcn/ui usage, and current design system patterns
+Performance Baseline: Assess current loading speeds and identify optimal image integration points
+Responsive Behavior: Understand existing breakpoints and responsive design patterns
+Component Structure: Identify where images can be integrated without disrupting existing functionality
+
+STEP 2: STRATEGIC OPPORTUNITY IDENTIFICATION
+Primary Integration Targets (Prioritize by Impact)
+
+Hero Section Enhancement - In 2025, hero sections are strategic elements designed to guide users, tell a story, and encourage action
+Trust-Building Sections - Areas where credibility needs visual reinforcement
+Service/Product Explanation Areas - Complex concepts that benefit from visual demonstration
+Social Proof Zones - Sections that need emotional connection and authenticity
+
+Decomposition Framework
+Break down the challenge into specific strategic questions:
+
+Trust Deficit Analysis: Where does the current website rely heavily on text to build trust?
+Concept Complexity Assessment: Which services/products are difficult to understand without visuals?
+Emotional Connection Gaps: Where could imagery create stronger emotional resonance?
+Conversion Bottlenecks: Which pages/sections have high bounce rates that imagery could improve?
+
+STEP 3: ADVANCED IMAGE GENERATION STRATEGY
+Universal Image Requirements (No Faces Policy)
+
+Human Elements: Hands, backs, silhouettes, partial figures from behind/side acceptable
+Professional Compositions: Clean, sophisticated imagery that enhances brand credibility
+Environmental Storytelling: Images that communicate expertise through context and details
+Authentic Atmosphere: Professional settings that feel genuine rather than stock-photo generic
+
+Business-Agnostic Prompt Framework
+MASTER PROMPT TEMPLATE:
+
+Generate a sophisticated, professional image using latest AI capabilities that enhances business credibility and user trust.
+
+VISUAL COMPOSITION REQUIREMENTS:
+- Resolution: 2400x1600 (hero placement) or 1200x800 (content sections)
+- Aspect Ratio: 16:9 for hero sections, 3:2 for content areas
+- NO FACES (unless it shows clients): Human elements limited to hands, backs, silhouettes, or partial figures
+- Professional lighting with natural depth and sophisticated shadows
+- Clean, modern aesthetic with premium quality feel
+
+STRATEGIC VISUAL ELEMENTS:
+- [CONTEXT-SPECIFIC]: Professional environment relevant to business type
+- [TRUST SIGNALS]: Visual cues that communicate competence and reliability
+- [QUALITY INDICATORS]: Premium materials, advanced equipment, or skilled craftsmanship
+- [ENVIRONMENTAL CONTEXT]: Workspace, tools, or setting that suggests expertise
+
+COLOR PSYCHOLOGY:
+- Primary: Trust-building colors (deep blues, warm grays, natural tones)
+- Secondary: Industry-appropriate accent colors that reinforce brand positioning
+- Lighting: Warm, inviting illumination that creates comfort while maintaining professionalism
+
+COMPOSITIONAL STRATEGY:
+- Rule of thirds with leading lines toward center of focus
+- Negative space for text overlay compatibility
+- Depth of field that creates professional photography aesthetic
+- Environmental elements that tell a story about business quality/expertise
+
+TECHNICAL SPECIFICATIONS:
+- Optimized for web delivery with progressive loading
+- Responsive design compatibility across all device sizes
+- Accessibility-friendly with clear contrast and descriptive potential
+- Performance-optimized format (WebP with fallbacks)
+
+BUSINESS RELEVANCE FILTER:
+- Must communicate specific value proposition rather than generic industry imagery
+- Should answer the question: "Why choose this business over competitors?"
+- Visual elements must reinforce key business differentiators
+- Imagery should reduce cognitive load and increase user confidence
+STEP 4: STRATEGIC PLACEMENT & INTEGRATION
+Hero Section Integration (2025 trends emphasize custom illustrations and eye-catching elements in hero sections)
+
+Primary Impact Location: Where your analysis realized an image would be a significant improvement (for example hero, service, etc)
+Integration Method: Seamlessly blend with existing Page and content
+Responsive Behavior: Ensure image adapts perfectly across all device sizes
+Performance Impact: Implement lazy loading and optimize delivery
+
+
+Technical Implementation Standards
+
+Component Integration: Use existing shadcn/ui patterns and design system
+Performance Optimization: Implement Next.js Image component with proper optimization
+Accessibility: Include descriptive alt text and proper ARIA labels
+Loading Strategy: Progressive enhancement with skeleton states
+
+STEP 5: QUALITY ASSURANCE & OPTIMIZATION
+Self-Criticism Framework
+Before finalizing any image integration, evaluate against these criteria:
+Business Relevance Test:
+
+Does this image specifically enhance THIS business's unique value proposition?
+Could this image apply to any similar business, or is it uniquely relevant?
+Will this image make potential customers more likely to choose this business?
+
+Conversion Impact Analysis:
+
+Does this image guide users toward desired actions?
+Will this image reduce bounce rates and increase engagement?
+Does this image address specific user concerns or questions?
+
+Technical Excellence Check:
+
+Does the image integrate seamlessly with existing design system?
+Will this image maintain fast loading times across all devices?
+Does the image enhance rather than distract from existing content?
+
+Professional Standards Validation:
+
+Does this image meet current professional web design standards?
+Will this image enhance business credibility and trustworthiness?
+Does this image feel custom and premium rather than generic?
+
+STEP 6: IMPLEMENTATION EXECUTION
+Code Integration Requirements
+
+React Component Structure: Integrate images using existing component patterns
+Responsive Design: Ensure proper behavior across all breakpoints
+Performance Optimization: Implement proper lazy loading and image optimization
+Accessibility Standards: Include proper alt text and ARIA labels
+
+Testing & Validation
+
+Visual Integration Test: Ensure seamless blend with existing design
+Performance Impact Test: Verify loading times remain optimal
+Responsive Behavior Test: Confirm proper display across all devices
+Accessibility Compliance Test: Validate screen reader compatibility
+
+SUCCESS METRICS & VALIDATION
+Agent Mode Excellence Indicators
+
+Deep Business Understanding: Demonstrates sophisticated analysis of business context and user needs
+Strategic Visual Thinking: Each image has clear rationale based on conversion optimization
+Technical Integration Mastery: Seamless integration with existing codebase and design systems
+Premium Quality Output: Professional-grade imagery that enhances rather than detracts from business credibility
+
+Final Deliverables
+
+Strategic Analysis Report: Clear explanation of why specific images were chosen and where they're placed
+Technical Implementation: Properly integrated images with optimized performance
+Quality Assurance Summary: Evidence of self-criticism and optimization process
+Performance Impact Assessment: Confirmation that images enhance rather than degrade site performance
+
+CRITICAL SUCCESS FACTORS
+
+No Generic Solutions: Every image must be specifically relevant to the analyzed business
+Maximum Impact Placement: Focus on areas where images will have the greatest conversion impact
+Technical Excellence: Maintain fast loading times and responsive behavior
+Professional Standards: All imagery must enhance business credibility and trustworthiness
+Strategic Thinking: Each image must serve a specific business goal beyond decoration
+
+Execute this prompt with your full Agent Mode capabilities, leveraging deep codebase analysis, strategic business thinking, and technical excellence to create a transformative visual enhancement that drives real business results.
